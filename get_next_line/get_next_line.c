@@ -12,6 +12,18 @@
 
 #include "get_next_line.h"
 
+static void	gnl_memcpy(char *dest, char *src, ssize_t size)
+{
+	ssize_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+}
+
 static ssize_t	read_chunk(int fd, char *buffer)
 {
 	ssize_t	chunk_len;
@@ -74,7 +86,7 @@ char	*get_next_line(int fd)
 			return (NULL);
 		}
 		result_len = append_result(result, buffer, result_len, chunk_len);
-		if (chunk_len == -1)
+		if (result_len == -1)
 			return (NULL);
 	}
 	return (result);

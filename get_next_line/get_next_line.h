@@ -20,10 +20,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef unsigned char	t_byte;
-
-void	gnl_memcpy(char *dest, char *src, ssize_t size);
-
 char	*get_next_line(int fd);
 
 #endif
