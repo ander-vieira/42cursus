@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:08:19 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/13 10:08:19 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:36:44 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+# include <stdio.h>
+
+void	gnl_memcpy(char *dest, char *src, ssize_t size);
+ssize_t	find_newline(char *buffer, ssize_t chunk_len);
 
 char	*get_next_line(int fd);
 
