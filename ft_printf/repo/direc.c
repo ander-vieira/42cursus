@@ -1,24 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   direc.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 13:09:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/15 01:50:41 by ander            ###   ########.fr       */
+/*   Created: 2023/09/15 01:41:30 by ander             #+#    #+#             */
+/*   Updated: 2023/09/15 01:53:31 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <unistd.h>
-# include <stdlib.h>
+ssize_t	count_direc(char *str)
+{
+	size_t	i;
+	size_t	str_l;
+	ssize_t	result;
+	ssize_t	found;
 
-# include "direc.h"
-# include "strutil.h"
+	str_l = pf_strlen(str);
+	i = 0;
+	result = 0;
+	while (i < str_l)
+	{
+		found = pf_strfind(str + i, DIREC_START);
+		if (found == -1)
+			break ;
+		i += found + 1;
+		found = pf_strfind(str + i, DIREC_END);
+		if (found == -1)
+			return (-1);
+		result++;
+	}
+	return (result);
+}
 
-int	ft_printf(const char *format, ...);
-
-#endif

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   strutil.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/14 13:09:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/15 01:50:41 by ander            ###   ########.fr       */
+/*   Created: 2023/09/15 01:41:47 by ander             #+#    #+#             */
+/*   Updated: 2023/09/15 01:43:15 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef STRUTIL_H
+# define STRUTIL_H
 
-# include <unistd.h>
 # include <stdlib.h>
 
-# include "direc.h"
-# include "strutil.h"
-
-int	ft_printf(const char *format, ...);
+size_t	pf_strlen(char *str);
+char	pf_strcontains(char *str, char c);
+ssize_t	pf_strfind(char *str, char *charset);
 
 #endif
