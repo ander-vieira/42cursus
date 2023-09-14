@@ -6,83 +6,78 @@
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 10:08:12 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/13 21:25:06 by ander            ###   ########.fr       */
+/*   Updated: 2023/09/15 00:21:17 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char		g_buffer[BUFFER_SIZE];
-static ssize_t	g_chunk_len;
-
-static ssize_t	append_buffer(char **result, ssize_t old_len,
-	ssize_t append_len)
+static void	realloc_result(t_str *result, ssize_t new_l)
 {
 	char	*old_result;
 
-	if (append_len == 0)
-		return (old_len);
-	old_result = *result;
-	*result = (char *)malloc(sizeof(char) * (old_len + append_len + 1));
-	if (*result != NULL)
-	{
-		if (old_result != NULL)
-			gnl_memcpy(*result, old_result, old_len);
-		gnl_memcpy(*result + old_len, g_buffer, append_len);
-		(*result)[old_len + append_len] = '\0';
-	}
-	if (old_result != NULL)
-		free(old_result);
-	if (*result == NULL)
-		return (-1);
-	return (old_len + append_len);
+	if (new_l == result->l)
+		return ;
+	old_result = result->d;
+	result->d = (char *)malloc(sizeof(char) * new_l);
+	if (old_result == NULL)
+		return ;
+	if (result->d != NULL)
+		gnl_memcpy(result->d, old_result, result->l);
+	free(old_result);
 }
 
-static ssize_t	append_to_line(char **result, ssize_t *result_len)
+static char	add_to_result(t_str *result, t_buf *buf)
 {
 	ssize_t	newline_pos;
+	ssize_t	append_l;
 
-	newline_pos = find_newline(g_buffer, g_chunk_len);
+	if (buf->l <= 0)
+		return (1);
+	newline_pos = find_newline(buf->b, buf->l);
+	append_l = buf->l;
 	if (newline_pos != -1)
+		append_l = newline_pos;
+	realloc_result(result, result->l + append_l + 1);
+	if (result->d != NULL)
 	{
-		*result_len = append_buffer(result, *result_len, newline_pos);
-		if (*result_len == -1)
-			return (-1);
-		g_chunk_len -= newline_pos;
-		gnl_memcpy(g_buffer, g_buffer + newline_pos, g_chunk_len);
+		gnl_memcpy(result->d + result->l, buf->b, append_l);
+		result->d[result->l + append_l] = '\0';
+		result->l += append_l;
+		if (newline_pos != -1)
+		{
+			buf->l -= newline_pos;
+			gnl_memcpy(buf->b, buf->b + newline_pos, buf->l);
+			return (0);
+		}
 		return (1);
 	}
-	*result_len = append_buffer(result, *result_len, g_chunk_len);
-	if (*result_len == -1)
-		return (-1);
-	return (0);
+	return (-1);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*result;
-	ssize_t	result_len;
-	ssize_t	done;
+	char			loop;
+	t_str			result;
+	static t_buf	buf;
 
-	if (g_chunk_len == -1)
-		g_chunk_len = 0;
-	result = NULL;
-	result_len = 0;
-	done = append_to_line(&result, &result_len);
-	while (done == 0)
+	result.d = NULL;
+	result.l = 0;
+	loop = 1;
+	while (loop > 0)
 	{
-		g_chunk_len = read(fd, g_buffer, sizeof(char) * BUFFER_SIZE);
-		if (g_chunk_len == -1)
-			done = -1;
-		else if (g_chunk_len == 0)
-			done = 1;
-		else
-			done = append_to_line(&result, &result_len);
+		loop = add_to_result(&result, &buf);
+		if (loop > 0)
+		{
+			buf.l = read(fd, buf.b, sizeof(char) * BUFFER_SIZE);
+			if (buf.l <= 0)
+				loop = buf.l;
+		}
 	}
-	if (done == -1 && result != NULL)
+	if (loop == -1 && result.d != NULL)
 	{
-		free(result);
-		result = NULL;
+		free(result.d);
+		result.d = NULL;
 	}
-	return (result);
+	return (result.d);
 }
