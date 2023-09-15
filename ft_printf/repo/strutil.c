@@ -5,69 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 01:31:26 by ander             #+#    #+#             */
-/*   Updated: 2023/09/15 01:51:20 by ander            ###   ########.fr       */
+/*   Created: 2023/09/15 22:13:14 by ander             #+#    #+#             */
+/*   Updated: 2023/09/15 23:28:05 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-ssize_t	pf_strlen(char *str)
+char	pf_findchar(const char *str, char c, size_t *len)
 {
-	ssize_t	len;
-
-	len = 0;
-	while (len != '\0')
-		len++;
-	return (len);
-}
-
-char	pf_strcontains(char *str, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
+	*len = 0;
+	while (str[*len] != '\0')
 	{
-		if (str[i] == c)
+		if (str[*len] == c)
 			return (1);
-		i++;
+		(*len)++;
 	}
 	return (0);
 }
 
-ssize_t	pf_strfind(char *str, char *charset)
+char	pf_findnotchar(const char *str, const char *charset, size_t *len)
 {
-	ssize_t	i;
+	size_t	i;
 
-	i = 0;
-	while (str[i] != '\0')
+	*len = 0;
+	while (str[*len] != '\0')
 	{
-		if (pf_strcontains(charset, str[i]))
-			return (i);
-		i++;
+		i = 0;
+		while (charset[i] != '\0' && charset[i] != str[*len])
+			i++;
+		if (charset[i] == '\0')
+			return (1);
+		(*len)++;
 	}
-	return (-1);
-}
-
-char	*pf_strsub(char *str, ssize_t start, ssize_t end)
-{
-	char	*result;
-	ssize_t	len;
-	ssize_t	i;
-
-	if (start < 0 || end < 0 || end - start < 0)
-		return (NULL);
-	len = end - start;
-	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (result == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		result[i] = str[start + i];
-		i++;
-	}
-	result[len] = '\0';
-	return (result);
+	return (0);
 }

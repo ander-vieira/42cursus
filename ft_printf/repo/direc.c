@@ -5,53 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 01:41:30 by ander             #+#    #+#             */
-/*   Updated: 2023/09/15 01:53:31 by ander            ###   ########.fr       */
+/*   Created: 2023/09/15 22:24:41 by ander             #+#    #+#             */
+/*   Updated: 2023/09/16 00:10:58 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libftprintf.h"
 
-void	free_direc(t_direc *direc, ssize_t direc_n)
+static void	pf_direc_char(t_pdata *pdata, va_list args)
 {
-	ssize_t	i;
+	int	c;
 
-	if (direc != NULL)
+	c = va_arg(args, int);
+	if (write(STDOUT_FILENO, &c, sizeof(char)) == -1)
+		pdata->s = -1;
+	pdata->l += 1;
+}
+
+static void	pf_direc_int(t_pdata *pdata, va_list args)
+{
+	int		i;
+	char	c;
+
+	i = va_arg(args, int);
+	c = '0';
+	if (i >= 0 && i <= 9)
+		c += i;
+	if (write(STDOUT_FILENO, &c, sizeof(char)) == -1)
+		pdata->s = -1;
+	pdata->l += 1;
+}
+
+static void	pf_direc(t_pdata *pdata, size_t flags_len, va_list args)
+{
+	if (pdata->f[flags_len + 1] == 'c')
+		pf_direc_char(pdata, args);
+	else if (pdata->f[flags_len + 1] == 'd')
+		pf_direc_int(pdata, args);
+	else
 	{
-		i = 0;
-		while (i < direc_n)
+		if (write(STDOUT_FILENO, pdata->f, flags_len + 2) == -1)
 		{
-			if (direc[i].flags != NULL)
-				free(direc[i].flags);
-			i++;
+			pdata->s = -1;
+			return ;
 		}
-		free(direc);
+		pdata->l += flags_len + 2;
 	}
-}
-
-static char	validate_direc_flags(char *flags, ssize_t flags_l)
-{
-	i = 0;
-	while (i < flags_l)
-	{
-		if (!pf_strcontains(DIREC_FLAG, flags[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-char	parse_direc(t_direc *direc, char *str, ssize_t *pos)
-{
-	ssize_t	end_l;
-
-	str += *pos;
-	end_l = pf_strfind(str + 1, DIREC_END);
-	if (!pf_strcontains(DIREC_START, str[0])
-		|| end_l == -1 || !validate_direc_flags(str + 1, end_l))
-		return (0);
-	direc->flags = pf_strsub(str, 1, end_l);
-	direc->end = str[end_l + 1];
-	*pos += end_l + 1;
-	return (1);
+	pdata->f += flags_len + 2;
 }
