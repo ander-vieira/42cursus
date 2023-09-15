@@ -13,21 +13,18 @@
 #ifndef DIREC_H
 # define DIREC_H
 
+# include <stdlib.h>
+
 # define DIREC_START "%"
 # define DIREC_FLAG ""
-# define DIREC_FLAG_NUM 0
 # define DIREC_END "cspdiuxX%"
 
 typedef struct s_direc {
-	char	s;
 	char	*flags;
-	char	e;
+	char	end;
 }	t_direc;
 
-typedef struct s_format {
-	ssize_t	n;
-	char	**s;
-	char	**d;
-}	t_format;
+void	free_direc(t_direc *direc, ssize_t len);
+char	parse_direc(t_direc *direc, char *str, ssize_t *pos);
 
 #endif

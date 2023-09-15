@@ -1,23 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strutil.h                                          :+:      :+:    :+:   */
+/*   split.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
+/*   By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/15 01:41:47 by ander             #+#    #+#             */
-/*   Updated: 2023/09/15 01:43:15 by ander            ###   ########.fr       */
+/*   Created: 2023/09/15 14:56:24 by andeviei          #+#    #+#             */
+/*   Updated: 2023/09/15 14:56:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUTIL_H
-# define STRUTIL_H
+#ifndef SPLIT_H
+# define SPLIT_H
 
 # include <stdlib.h>
 
-size_t	pf_strlen(char *str);
-char	pf_strcontains(char *str, char c);
-ssize_t	pf_strfind(char *str, char *charset);
-char	*pf_strsub(char *str, ssize_t start, ssize_t end);
+void	free_split(char **split, ssize_t direc_n);
+char	parse_split(char **split, char *str, ssize_t *pos);
 
 #endif
