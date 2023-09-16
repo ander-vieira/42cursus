@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 12:29:54 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/16 21:32:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:57:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,27 @@ t_list	*ft_lstmap(t_list *lst, void *(*fun)(void *)
 	, void (*del)(void *))
 {
 	t_list	*result;
-	t_list	*node;
+	void	*content;
 
-	result = NULL;
-	while (lst != NULL)
+	if (lst != NULL)
 	{
-		node = ft_lstnew(fun(lst->content));
-		if (node == NULL)
+		content = fun(lst->content);
+		result = ft_lstnew(content);
+		if (result == NULL)
 		{
-			if (result != NULL)
-				ft_lstclear(&result, del);
+			del(content);
 			return (NULL);
 		}
-		if (result == NULL)
-			result = node;
-		else
-			ft_lstadd_back(&result, node);
-		lst = lst->next;
+		if (lst->next != NULL)
+		{
+			result->next = ft_lstmap(lst->next, fun, del);
+			if (result->next == NULL)
+			{
+				ft_lstdelone(result, del);
+				return (NULL);
+			}
+		}
+		return (result);
 	}
-	return (result);
+	return (NULL);
 }
