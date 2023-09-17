@@ -3,22 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/12 09:47:29 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/16 20:45:15 by andeviei         ###   ########.fr       */
+/*   Created: 2023/09/17 15:39:38 by ander             #+#    #+#             */
+/*   Updated: 2023/09/17 16:01:55 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_splits(const char *str, char c)
+static char	**free_splits(char **split, size_t	n)
 {
 	size_t	i;
-	size_t	result;
 
-	i = 0;
+	if (split != NULL)
+	{
+		i = 0;
+		while (i < n)
+		{
+			if (split[i] != NULL)
+				free(split[i]);
+			i++;
+		}
+		free(split);
+	}
+	return (NULL);
+}
+
+static size_t	count_splits(const char *str, char c)
+{
+	size_t	result;
+	size_t	i;
+
 	result = 0;
+	i = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] != c && (i == 0 || str[i - 1] == c))
@@ -28,51 +46,53 @@ static size_t	count_splits(const char *str, char c)
 	return (result);
 }
 
-static size_t	get_split(char **dest, const char *str, size_t start, char c)
+static size_t	get_split_len(char *str, char c)
 {
-	size_t	split_len;
-	size_t	delim_len;
+	size_t	len;
 
-	split_len = 0;
-	while (str[start + split_len] != '\0' && str[start + split_len] != c)
-		split_len++;
-	*dest = (char *)malloc(sizeof(char) * (split_len + 1));
-	if (*dest != NULL)
-	{
-		ft_memcpy(*dest, str + start, split_len);
-		(*dest)[split_len] = '\0';
-	}
-	delim_len = 0;
-	while (str[start + split_len + delim_len] == c)
-		delim_len++;
-	return (split_len + delim_len);
+	len = 0;
+	while (str[len] != '\0' && str[len] != c)
+		len++;
+	return (len);
+}
+
+static char	*get_split(const char *str, size_t *pos, char c)
+{
+	char	*result;
+	size_t	result_l;
+
+	while (str[*pos] == c)
+		(*pos)++;
+	result_l = get_split_len((char *)str + *pos, c);
+	result = (char *)malloc(sizeof(char) * (result_l + 1));
+	if (result == NULL)
+		return (NULL);
+	ft_memcpy(result, (char *)str + *pos, result_l);
+	result[result_l] = '\0';
+	*pos += result_l;
+	return (result);
 }
 
 char	**ft_split(const char *str, char c)
 {
-	char		**result;
-	size_t		split_num;
-	size_t		str_len;
-	size_t		str_index;
-	size_t		split_index;
+	char	**split;
+	size_t	split_n;
+	size_t	i;
+	size_t	pos;
 
-	if (str == NULL)
+	split_n = count_splits(str, c);
+	split = (char **)malloc(sizeof(char *) * (split_n + 1));
+	if (split == NULL)
 		return (NULL);
-	split_num = count_splits(str, c);
-	str_len = ft_strlen(str);
-	result = (char **)malloc(sizeof(char *) * (split_num + 1));
-	if (result != NULL)
+	i = 0;
+	pos = 0;
+	while (i < split_n)
 	{
-		str_index = 0;
-		split_index = 0;
-		while (str[str_index] == c)
-			str_index++;
-		while (str_index < str_len && split_index < split_num)
-		{
-			str_index += get_split(result + split_index, str, str_index, c);
-			split_index++;
-		}
-		result[split_num] = NULL;
+		split[i] = get_split(str, &pos, c);
+		if (split[i] == NULL)
+			return (free_splits(split, i));
+		i++;
 	}
-	return (result);
+	split[split_n] = NULL;
+	return (split);
 }
