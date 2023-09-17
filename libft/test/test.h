@@ -6,7 +6,7 @@
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:22:02 by ander             #+#    #+#             */
-/*   Updated: 2023/09/17 17:49:31 by ander            ###   ########.fr       */
+/*   Updated: 2023/09/18 00:52:36 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@
 
 # include "../repo/libft.h"
 
-# define TOTAL_TESTS 1
-
 void	print_test(char *test_id, char result);
 
-size_t	test_split(void);
+void	test_is(void);
+void	test_to(void);
+void	test_mem(void);
+void	test_split(void);
 
 #endif
