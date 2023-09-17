@@ -6,7 +6,7 @@
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:22:02 by ander             #+#    #+#             */
-/*   Updated: 2023/09/17 15:16:53 by ander            ###   ########.fr       */
+/*   Updated: 2023/09/17 17:49:31 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 
 void	print_test(char *test_id, char result);
 
-char	test_split(void);
+size_t	test_split(void);
 
 #endif
