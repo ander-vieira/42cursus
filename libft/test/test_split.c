@@ -6,7 +6,7 @@
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:04:46 by ander             #+#    #+#             */
-/*   Updated: 2023/09/17 17:13:34 by ander            ###   ########.fr       */
+/*   Updated: 2023/09/17 17:14:26 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	test_split(void)
 {
 	char	**split;
-	size_t	result;
+	char	result;
 
 	split = ft_split(" SPLIT DEEZ NUTS ", ' ');
 	result = (split != NULL
