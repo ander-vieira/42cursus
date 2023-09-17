@@ -6,13 +6,13 @@
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:18:49 by ander             #+#    #+#             */
-/*   Updated: 2023/09/15 23:58:58 by ander            ###   ########.fr       */
+/*   Updated: 2023/09/17 17:10:43 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	init_pdata(t_pdata *pdata, const char *format)
+static void	init_pdata(t_pdata *pdata, const char *format)
 {
 	pdata->f = (char *)format;
 	pdata->l = 0;

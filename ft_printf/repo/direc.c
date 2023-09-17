@@ -6,7 +6,7 @@
 /*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:24:41 by ander             #+#    #+#             */
-/*   Updated: 2023/09/16 00:10:58 by ander            ###   ########.fr       */
+/*   Updated: 2023/09/17 17:10:32 by ander            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	pf_direc_int(t_pdata *pdata, va_list args)
 	pdata->l += 1;
 }
 
-static void	pf_direc(t_pdata *pdata, size_t flags_len, va_list args)
+void	pf_direc(t_pdata *pdata, size_t flags_len, va_list args)
 {
 	if (pdata->f[flags_len + 1] == 'c')
 		pf_direc_char(pdata, args);
