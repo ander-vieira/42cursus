@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:22:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/18 18:33:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <fcntl.h>
 # include <unistd.h>
 
-# include "../../test/testutils.h"
+# include "testutils.h"
 
 # include "../repo/libft.h"
 
