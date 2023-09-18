@@ -1,27 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   testutils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ander <ander@student.42.fr>                +#+  +:+       +#+        */
+/*   By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:24:09 by ander             #+#    #+#             */
-/*   Updated: 2023/09/18 00:25:54 by ander            ###   ########.fr       */
+/*   Created: 2023/09/18 13:43:44 by andeviei          #+#    #+#             */
+/*   Updated: 2023/09/18 13:43:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef TESTUTILS_H
+# define TESTUTILS_H
 
-int	main(void)
-{
-	test_is();
-	test_to();
-	test_mem();
-	test_str();
-	test_split();
-	test_atoi();
-	test_fd();
-	test_bonus();
-	print_all_tests();
-	return (0);
-}
+# include <stdio.h>
+
+void	print_test(char *test_id, char result);
+void	print_all_tests(void);
+
+#endif

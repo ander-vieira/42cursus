@@ -13,16 +13,15 @@
 #ifndef TEST_H
 # define TEST_H
 
-# include <stdio.h>
 # include <string.h>
 # include <fcntl.h>
 # include <unistd.h>
 
-# include "../repo/libft.h"
+# include "../../test/testutils.h"
+
+# include "libft.h"
 
 # define TMP_FD "tmp_fd"
-
-void	print_test(char *test_id, char result);
 
 void	test_is(void);
 void	test_to(void);
