@@ -37,7 +37,7 @@ int	main(void)
 	test_atoi();
 	test_fd();
 	test_bonus();
-	if (g_failed != 0)
+	if (g_failed == 0)
 		printf("ALL TESTS OK\n");
 	return (0);
 }
