@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 09:48:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 09:48:21 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:43:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	test_bonus_2(t_list *lst, t_list *lst1, t_list *lst2)
 	lst_m = ft_lstmap(lst, &map, &del_c);
 	print_test("ft_lstmap", *(char *)(lst_m->content) == 'm'
 		&& *(char *)(lst_m->next->content) == 'm');
-	ft_lstclear(lst_m, &del_c);
+	ft_lstclear(&lst_m, &del_c);
 }
 
 void	test_bonus(void)
@@ -64,6 +64,7 @@ void	test_bonus(void)
 	print_test("ft_lstnew", lst1 != NULL && *(char *)(lst1->content) == 'a'
 		&& lst2 != NULL && *(char *)(lst2->content) == 'b');
 	test_bonus_2(lst, lst1, lst2);
+	printf("%p\n", lst->content);
 	ft_lstiter(lst, &iter);
 	print_test("ft_lstiter", c1 == 'i' && c2 == 'i');
 	ft_lstdelone(lst1, &del_c);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_fd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 09:08:56 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 09:08:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	test_fd(void)
 	fd = open(TMP_FD, O_RDONLY);
 	if (fd == -1)
 		return ;
-	read(fd, &c, sizeof(char) * 15);
+	read(fd, buf, sizeof(char) * 15);
 	close(fd);
 	remove(TMP_FD);
 	print_test("ft_putchar_fd", buf[0] == 'D');

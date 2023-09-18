@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_str.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 09:07:14 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 09:07:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ static void	test_str_3(void)
 {
 	char	str[10];
 
-	print_result("ft_strlcpy 1", ft_strlcpy(str, "HELLO", 10) == 5
+	print_test("ft_strlcpy 1", ft_strlcpy(str, "HELLO", 10) == 5
 		&& !strcmp(str, "HELLO"));
-	print_result("ft_strlcpy 2", ft_strlcpy(str, "HELLO WORLD", 10) == 11
+	print_test("ft_strlcpy 2", ft_strlcpy(str, "HELLO WORLD", 10) == 11
 		&& !strcmp(str, "HELLO WOR"));
-	strcpy(buf, "HELLO");
-	print_result("ft_strlcat 1", ft_strlcat(str, " W", 10) == 7
+	strcpy(str, "HELLO");
+	print_test("ft_strlcat 1", ft_strlcat(str, " W", 10) == 7
 		&& !strcmp(str, "HELLO W"));
-	strcpy(buf, "HELLO");
-	print_result("ft_strlcat 2", ft_strlcat(str, " WORLD", 10) == 11
+	strcpy(str, "HELLO");
+	print_test("ft_strlcat 2", ft_strlcat(str, " WORLD", 10) == 11
 		&& !strcmp(str, "HELLO WOR"));
-	strcpy(buf, "HELLO");
-	print_result("ft_strlcat 3", ft_strlcat(str, " WORLD HELLO", 10) == 17
+	strcpy(str, "HELLO");
+	print_test("ft_strlcat 3", ft_strlcat(str, " WORLD HELLO", 10) == 17
 		&& !strcmp(str, "HELLO WOR"));
 }
 
@@ -80,9 +80,9 @@ void	test_str(void)
 	print_test("ft_strmapi", str != NULL && !strcmp(str, "JFMMP"));
 	free(str);
 	print_test("ft_strncmp", ft_strncmp("HELLO", "HEY", 5)
-		&& !ft_strncmp("HELLO", "HEY", 2) && ft_strncmp("HELLO", "WORLD")
-		&& ft_strncmp("HELLO", ""));
-	str = ft_strtrim("   HELLO WORLD  ");
+		&& !ft_strncmp("HELLO", "HEY", 2) && ft_strncmp("HELLO", "WORLD", 5)
+		&& ft_strncmp("HELLO", "", 5));
+	str = ft_strtrim("   HELLO WORLD  ", " ");
 	print_test("ft_strtrim", str != NULL && !strcmp(str, "HELLO WORLD"));
 	free(str);
 	str = ft_substr("HELLOWORLD", 3, 4);
