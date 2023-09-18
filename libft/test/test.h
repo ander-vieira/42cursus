@@ -15,14 +15,22 @@
 
 # include <stdio.h>
 # include <string.h>
+# include <fcntl.h>
+# include <unistd.h>
 
 # include "../repo/libft.h"
+
+# define TMP_FD "tmp_fd"
 
 void	print_test(char *test_id, char result);
 
 void	test_is(void);
 void	test_to(void);
 void	test_mem(void);
+void	test_str(void);
 void	test_split(void);
+void	test_atoi(void);
+void	test_fd(void);
+void	test_bonus(void);
 
 #endif

@@ -12,31 +12,32 @@
 
 #include "test.h"
 
-static unsigned int	g_testcount;
-static unsigned int	g_totaltests;
+static unsigned int	g_failed;
 
 void	print_test(char *test_id, char result)
 {
-	g_totaltests++;
 	printf("%s ", test_id);
 	if (result)
-	{
 		printf("OK\n");
-		g_testcount++;
-	}
 	else
+	{
+		g_failed++;
 		printf("KO\n");
+	}
 }
 
 int	main(void)
 {
-	g_testcount = 0;
-	g_totaltests = 0;
+	g_failed = 0;
 	test_is();
 	test_to();
 	test_mem();
+	test_str();
 	test_split();
-	if (g_testcount == g_totaltests)
+	test_atoi();
+	test_fd();
+	test_bonus();
+	if (g_failed != 0)
 		printf("ALL TESTS OK\n");
 	return (0);
 }
