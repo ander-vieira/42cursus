@@ -20,6 +20,7 @@ echo "---------------" >> test_output.txt
 echo "TESTS (BUFFER_SIZE 1)" >> test_output.txt
 echo "---------------" >> test_output.txt
 ./output >> test_output.txt 2>&1
+rm -f output
 
 echo "---------------" >> test_output.txt
 echo "COMPILE (BUFFER_SIZE 10)" >> test_output.txt
@@ -30,6 +31,7 @@ echo "---------------" >> test_output.txt
 echo "TESTS (BUFFER_SIZE 10)" >> test_output.txt
 echo "---------------" >> test_output.txt
 ./output >> test_output.txt 2>&1
+rm -f output
 
 echo "---------------" >> test_output.txt
 echo "COMPILE (BUFFER_SIZE 1000)" >> test_output.txt
@@ -40,6 +42,7 @@ echo "---------------" >> test_output.txt
 echo "TESTS (BUFFER_SIZE 1000)" >> test_output.txt
 echo "---------------" >> test_output.txt
 ./output >> test_output.txt 2>&1
+rm -f output
 
 echo "---------------" >> test_output.txt
 echo "BONUS COMPILE (BUFFER_SIZE 10)" >> test_output.txt
@@ -50,6 +53,4 @@ echo "---------------" >> test_output.txt
 echo "BONUS TESTS (BUFFER_SIZE 10)" >> test_output.txt
 echo "---------------" >> test_output.txt
 ./output_bonus >> test_output.txt 2>&1
-
-rm -f output
 rm -f output_bonus
