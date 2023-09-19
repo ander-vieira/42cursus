@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 13:06:06 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/19 19:49:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/19 20:31:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	**get_lines(const char *file)
 	return (strs);
 }
 
-void	free_lines(char **strs)
+static void	free_lines(char **strs)
 {
 	size_t	i;
 
