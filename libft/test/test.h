@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:22:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 18:33:33 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:57:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void	test_is(void);
 void	test_to(void);
 void	test_mem(void);
 void	test_str(void);
+void	test_striter(void);
 void	test_split(void);
 void	test_atoi(void);
 void	test_fd(void);
-void	test_bonus(void);
+void	test_lst(void);
+void	test_lstiter(void);
 
 #endif

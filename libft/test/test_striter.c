@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_striter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:24:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/19 16:57:28 by andeviei         ###   ########.fr       */
+/*   Created: 2023/09/19 16:48:38 by andeviei          #+#    #+#             */
+/*   Updated: 2023/09/19 16:57:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-int	main(void)
+static void	revcaesar(unsigned int i, char *c)
 {
-	test_is();
-	test_to();
-	test_mem();
-	test_str();
-	test_striter();
-	test_split();
-	test_atoi();
-	test_fd();
-	test_lst();
-	test_lstiter();
-	print_all_tests();
-	return (0);
+	i++;
+	(*c)--;
+}
+
+static char	mapcaesar(unsigned int i, char c)
+{
+	i++;
+	return (c + 1);
+}
+
+void	test_striter(void)
+{
+	char	*str;
+	
+	str = ft_strmapi("HELLO", &mapcaesar);
+	print_test("ft_strmapi", str != NULL && !strcmp(str, "IFMMP"));
+	ft_striteri(str, &revcaesar);
+	print_test("ft_striteri", !strcmp(str, "HELLO"));
+	free(str);
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 09:08:56 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/19 17:01:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	test_fd(void)
 		return ;
 	read(fd, buf, sizeof(char) * 15);
 	close(fd);
-	remove(TMP_FD);
+	unlink(TMP_FD);
 	print_test("ft_putchar_fd", buf[0] == 'D');
 	print_test("ft_putendl_fd", !memcmp(buf + 5, "NUTS\n", sizeof(char) * 5));
 	print_test("ft_putnbr_fd 1", !memcmp(buf + 10, "42", sizeof(char) * 2));

@@ -6,23 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/18 09:07:14 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/19 16:57:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
-
-void	caesar(unsigned int i, char *c)
-{
-	i++;
-	(*c)++;
-}
-
-char	mapcaesar(unsigned int i, char c)
-{
-	i++;
-	return (c + 1);
-}
 
 static void	test_str_2(void)
 {
@@ -41,8 +29,6 @@ static void	test_str_2(void)
 	print_test("ft_strnstr 3", ft_strnstr(NULL, NULL, 0) == NULL
 		&& ft_strnstr(NULL, "", 5) == NULL
 		&& ft_strnstr("HELLO", "H", 0) == NULL);
-	ft_striteri(str, &caesar);
-	print_test("ft_striteri", !strcmp(str, "JFMMP"));
 }
 
 static void	test_str_3(void)
@@ -76,9 +62,6 @@ void	test_str(void)
 	free(str);
 	print_test("ft_strlen", ft_strlen("") == 0
 		&& ft_strlen("HELLOWORLD\n") == 11);
-	str = ft_strmapi("HELLO", &mapcaesar);
-	print_test("ft_strmapi", str != NULL && !strcmp(str, "JFMMP"));
-	free(str);
 	print_test("ft_strncmp", ft_strncmp("HELLO", "HEY", 5)
 		&& !ft_strncmp("HELLO", "HEY", 2) && ft_strncmp("HELLO", "WORLD", 5)
 		&& ft_strncmp("HELLO", "", 5));
