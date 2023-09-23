@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 13:09:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:35:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,16 @@
 # include <unistd.h>
 # include <stdarg.h>
 
-# define DIREC_START '%'
-# define DIREC_FLAG ""
+# define BASE_DEC	"0123456789"
+# define BASE_HEX_U	"0123456789ABCDEF"
+# define BASE_HEX_L	"0123456789abcdef"
+
+# define FLAG_LEFT	0x01
+# define FLAG_ZERO	0x02
+# define FLAG_PREC	0x04
+# define FLAG_ALTER	0x08
+# define FLAG_BLANK	0x10
+# define FLAG_SIGN	0x20
 
 typedef struct s_pdata {
 	char		*f;
@@ -27,10 +35,18 @@ typedef struct s_pdata {
 	char		s;
 }	t_pdata;
 
-char	pf_findchar(const char *str, char c, size_t *len);
-char	pf_findnotchar(const char *str, const char *charset, size_t *len);
+typedef struct s_pdirec {
+	unsigned char	f;
+	char			t;
+}	t_pdirec;
 
-void	pf_direc(t_pdata *pdata, size_t flags_len, va_list args);
+ssize_t	pf_putchar(char c);
+ssize_t	pf_putstr(char *str);
+ssize_t	pf_putsign(int num);
+ssize_t	pf_putnbr_base(long num, char *base);
+
+void	pf_parseflags(t_pdirec *direc, t_pdata *pdata);
+void	pf_direc(t_pdirec direc, t_pdata *pdata, va_list args);
 
 int		ft_printf(const char *format, ...);
 

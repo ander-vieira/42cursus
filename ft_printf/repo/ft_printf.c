@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:18:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:44:54 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:30:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@ static void	init_pdata(t_pdata *pdata, const char *format)
 static void	parse_text(t_pdata *pdata)
 {
 	size_t	len;
-	char	result;
 
-	result = pf_findchar(pdata->f, DIREC_START, &len);
+	len = 0;
+	while (pdata->f[len] != '\0' && pdata->f[len] != '%')
+		len++;
 	if (write(STDOUT_FILENO, pdata->f, len) == -1)
 	{
 		pdata->s = -1;
@@ -32,22 +33,16 @@ static void	parse_text(t_pdata *pdata)
 	}
 	pdata->f += len;
 	pdata->l += len;
-	if (result == 0)
+	if (pdata->f[0] == '\0')
 		pdata->s = 0;
 }
 
 static void	parse_direc(t_pdata *pdata, va_list args)
 {
-	size_t	flags_len;
+	t_pdirec	direc;
 
-	if (!pf_findnotchar(pdata->f + 1, DIREC_FLAG, &flags_len))
-	{
-		write(STDOUT_FILENO, "%", 1);
-		pdata->f += 1;
-		pdata->l += 1;
-		return ;
-	}
-	pf_direc(pdata, flags_len, args);
+	pf_parseflags(&direc, pdata);
+	pf_direc(direc, pdata, args);
 	if (pdata->f[0] == '\0')
 		pdata->s = 0;
 }

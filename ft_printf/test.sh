@@ -1,16 +1,22 @@
 rm -f test_output.txt
 
-echo "NORMINETTE" >> test_output.txt
-echo "---------------" >> test_output.txt
-norminette repo/ >> test_output.txt 2>&1
+echo "NORMINETTE"
+echo "---------------"
+norminette repo/
 
+echo "---------------"
+echo "COMPILE"
+echo "---------------"
 make -C repo/ -s all clean
-gcc test/*.c repo/libftprintf.a -o output
+gcc test/test.c repo/libftprintf.a -o ft_printf
+gcc test/test_printf.c repo/libftprintf.a -o printf
 
-echo "---------------" >> test_output.txt
-echo "TESTS" >> test_output.txt
-echo "---------------" >> test_output.txt
-./output >> test_output.txt 2>&1
+echo "---------------"
+echo "TESTS (DIFF, OK IF BLANK)"
+echo "---------------"
+./ft_printf > ft_printf.out
+./printf > printf.out
+diff ft_printf.out printf.out
 
-rm -f output
+rm -f ft_printf printf
 make -C repo/ -s fclean
