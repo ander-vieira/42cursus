@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:55:51 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 18:12:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:15:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static size_t	numlen(long num, int base_l, int min)
 {
 	size_t	len;
 
-	if (num == 0)
+	if (num == 0 && min != 0)
 		return (1);
 	len = 0;
 	while ((int)len < min || num != 0)
