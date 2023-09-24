@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:39:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 16:31:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/24 17:49:09 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	pf_strfree(char *str)
 		free(str);
 }
 
-static void	pf_strcpy(char *dest, char *src)
+void	pf_strcpy(char *dest, char *src)
 {
 	size_t	i;
 

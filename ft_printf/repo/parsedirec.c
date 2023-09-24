@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 16:25:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 16:30:16 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:03:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,25 @@ static void	pf_parseflags(t_direc *direc, t_pdata *pdata)
 	}
 }
 
+static void	pf_parsewidth(t_direc *direc, t_pdata *pdata)
+{
+	direc->w = pf_strreadint(&(pdata->f));
+	if (*(pdata->f) == '.')
+	{
+		(pdata->f)++;
+		direc->f |= FLAG_PREC;
+		direc->p = pf_strreadint(&(pdata->f));
+	}
+	else
+		direc->p = 0;
+}
+
 void	pf_parsedirec(t_direc *direc, t_pdata *pdata)
 {
 	direc->f = 0x00;
 	(pdata->f)++;
 	pf_parseflags(direc, pdata);
-	if (*(pdata->f) == '.')
-	{
-		direc->f |= FLAG_PREC;
-		(pdata->f)++;
-	}
+	pf_parsewidth(direc, pdata);
 	direc->t = *(pdata->f);
 	(pdata->f)++;
 	if (pdata->f[0] == '\0')

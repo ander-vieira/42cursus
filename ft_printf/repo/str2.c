@@ -6,21 +6,27 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 14:55:51 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 15:37:43 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/24 18:12:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-char	*pf_strchar(char c)
+char	*pf_strfill(char c, size_t len)
 {
 	char	*result;
+	size_t	i;
 
-	result = malloc(2);
+	result = malloc(len + 1);
 	if (result != NULL)
 	{
-		result[0] = c;
-		result[1] = '\0';
+		i = 0;
+		while (i < len)
+		{
+			result[i] = c;
+			i++;
+		}
+		result[len] = '\0';
 	}
 	return (result);
 }
@@ -44,24 +50,24 @@ char	*pf_strsign(long num, t_flag flags)
 	char	*result;
 
 	if (num < 0)
-		result = pf_strchar('-');
+		result = pf_strfill('-', 1);
 	else if (flags & FLAG_SIGN)
-		result = pf_strchar('+');
+		result = pf_strfill('+', 1);
 	else if (flags & FLAG_BLANK)
-		result = pf_strchar(' ');
+		result = pf_strfill(' ', 1);
 	else
 		result = pf_strdup("");
 	return (result);
 }
 
-static size_t	numlen(long num, int base_l)
+static size_t	numlen(long num, int base_l, int min)
 {
 	size_t	len;
 
 	if (num == 0)
 		return (1);
 	len = 0;
-	while (num != 0)
+	while ((int)len < min || num != 0)
 	{
 		num /= base_l;
 		len++;
@@ -69,7 +75,7 @@ static size_t	numlen(long num, int base_l)
 	return (len);
 }
 
-char	*pf_strnum(long num, char *base)
+char	*pf_strnum(long num, char *base, int min)
 {
 	char	*result;
 	int		base_l;
@@ -79,7 +85,7 @@ char	*pf_strnum(long num, char *base)
 	if (num < 0)
 		num *= -1;
 	base_l = pf_strlen(base);
-	len = numlen(num, base_l);
+	len = numlen(num, base_l, min);
 	result = malloc(len + 1);
 	if (result != NULL)
 	{
