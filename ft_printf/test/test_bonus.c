@@ -1,38 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   test_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 17:09:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 15:29:48 by andeviei         ###   ########.fr       */
+/*   Created: 2023/09/24 12:46:15 by andeviei          #+#    #+#             */
+/*   Updated: 2023/09/24 15:46:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../repo/libftprintf.h"
 
-int	main(void)
+void	test_alter(void)
+{
+	int	n;
+	
+	n = ft_printf("%#x\n", 0x5A);
+	ft_printf("%d\n", n);
+	n = ft_printf("%#X\n", 0x5A);
+	ft_printf("%d\n", n);
+	n = ft_printf("%#x\n", 0);
+	ft_printf("%d\n", n);
+}
+
+void	test_sign(void)
 {
 	int	n;
 
-	n = ft_printf("%c\n", ';');
+	n = ft_printf("%+d\n", 15);
 	ft_printf("%d\n", n);
-	n = ft_printf("%s\n", "HELLO WORLD");
+	n = ft_printf("% d\n", 15);
 	ft_printf("%d\n", n);
-	n = ft_printf("%i\n", 2147483647);
+	n = ft_printf("%+d\n", -15);
 	ft_printf("%d\n", n);
-	n = ft_printf("%d\n", (int)-2147483648);
+	n = ft_printf("% d\n", -15);
 	ft_printf("%d\n", n);
-	n = ft_printf("%u\n", (unsigned int)4294967295);
-	ft_printf("%d\n", n);
-	n = ft_printf("%x\n", -0xA8);
-	ft_printf("%d\n", n);
-	n = ft_printf("%X\n", 0x5F);
-	ft_printf("%d\n", n);
-	n = ft_printf("%p\n", NULL);
-	ft_printf("%d\n", n);
-	n = ft_printf("%p\n", (void *)0x7ffd764d44b4);
-	ft_printf("%d\n", n);
+}
+
+int	main(void)
+{
+	test_alter();
+	test_sign();
 	return (0);
 }

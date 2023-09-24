@@ -2,7 +2,7 @@ NAME = libftprintf.a
 
 CFLAGS = -c -Wall -Wextra -Werror
 
-SRCS = ft_printf.c direc.c io.c
+SRCS = ft_printf.c parsedirec.c printdirec.c str.c str2.c
 OBJS = ${SRCS:.c=.o}
 
 all: $(NAME)
