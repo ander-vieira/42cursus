@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 22:24:41 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 18:12:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:21:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static char	*pf_printnbr(long num, t_direc direc)
 
 	if (direc.t == 'u')
 		str = pf_strnum(num, BASE_DEC, direc.p);
+	if (direc.t == 'o')
+	{
+		str = pf_strnum(num, BASE_OCT, direc.p);
+		if ((direc.f & FLAG_ALTER) && str[0] != '0')
+			str = pf_strjoin(pf_strdup(PREFIX_OCT), str);
+	}
 	else if (direc.t == 'x' || direc.t == 'X')
 	{
 		str = pf_strnum(num, BASE_HEX, direc.p);

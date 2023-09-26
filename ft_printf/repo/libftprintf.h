@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 13:09:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 18:09:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/09/24 19:17:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include <unistd.h>
 # include <stdarg.h>
 
+# define BASE_OCT	"01234567"
 # define BASE_DEC	"0123456789"
 # define BASE_HEX	"0123456789abcdef"
 
+# define PREFIX_OCT	"0"
 # define PREFIX_HEX	"0x"
 # define PTR_NULL	"(nil)"
 
