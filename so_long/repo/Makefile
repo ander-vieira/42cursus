@@ -5,32 +5,31 @@
 #                                                     +:+ +:+         +:+      #
 #    By: andeviei <andeviei@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/10 12:31:37 by andeviei          #+#    #+#              #
-#    Updated: 2023/10/10 12:31:37 by andeviei         ###   ########.fr        #
+#    Created: 2023/10/10 12:31:30 by andeviei          #+#    #+#              #
+#    Updated: 2023/10/10 12:31:30 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = so_long
 
-CFLAGS = -c -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
-SRCS = ft_printf.c parsedirec.c printdirec.c str.c str2.c str3.c
-OBJS = ${SRCS:.c=.o}
+SRCS = parse_game.c point.c print.c so_long.c str.c
+HDRS = so_long.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	ar -rcs $(NAME) $(OBJS)
-
-$(OBJS): $(SRCS)
-	gcc $(CFLAGS) $(SRCS)
+$(NAME): $(SRCS) $(HDRS)
+	gcc $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+#bonus: $(SRCS_BONUS) $(HDRS_BONUS)
+#	gcc $(CFLAGS) $(SRCS_BONUS) -o $(NAME)
+
+.PHONY: all clean fclean re bonus
