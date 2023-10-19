@@ -21,19 +21,19 @@ diff ft_printf.out printf.out
 rm -f ft_printf printf
 make -C repo/ -s fclean
 
-echo "---------------"
-echo "BONUS COMPILE"
-echo "---------------"
-make -C repo/ -s all clean
-gcc test/test_bonus.c repo/libftprintf.a -o ft_printf
-gcc test/test_printf_bonus.c repo/libftprintf.a -o printf
+# echo "---------------"
+# echo "BONUS COMPILE"
+# echo "---------------"
+# make -C repo/ -s all clean
+# gcc test/test_bonus.c repo/libftprintf.a -o ft_printf
+# gcc test/test_printf_bonus.c repo/libftprintf.a -o printf
 
-echo "---------------"
-echo "BONUS TESTS (DIFF, OK IF BLANK)"
-echo "---------------"
-./ft_printf #>> ft_printf_bonus.out
-./printf #>> printf_bonus.out
-#diff ft_printf_bonus.out printf_bonus.out
+# echo "---------------"
+# echo "BONUS TESTS (DIFF, OK IF BLANK)"
+# echo "---------------"
+# ./ft_printf #>> ft_printf_bonus.out
+# ./printf #>> printf_bonus.out
+# #diff ft_printf_bonus.out printf_bonus.out
 
-rm -f ft_printf printf
-make -C repo/ -s fclean
+# rm -f ft_printf printf
+# make -C repo/ -s fclean

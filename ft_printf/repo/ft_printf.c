@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:51:38 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/18 20:29:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:31:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,35 @@ static void	pf_direc(t_print *print)
 {
 	t_direc	direc;
 
-	direc = pf_parsedirec();
+	direc = pf_parsedirec(print);
+	pf_printdirec(direc, print);
 }
 
 static void	pf_text(t_print *print)
 {
 	size_t	len;
-	ssize_t	wrt;
 
 	len = 0;
-	while (print->f != '\0' && print->f != '%')
+	while (print->s[len] != '\0' && print->s[len] != '%')
 		len++;
-	wrt = write(STDOUT_FILENO, print->f, len);
-	if (wrt == -1)
-		print->r = -1;
-	else
-		print->r += wrt;
+	pf_write(print->s, len, print);
+	print->s += len;
 }
 
 int	ft_printf(char const *f, ...)
 {
-	t_print print;
-	
+	t_print	print;
+
 	va_start(print.a, f);
-	print.f = f;
+	print.s = (char *)f;
 	print.r = 0;
-	while (print.r != -1 && print.f[0] != '\0')
+	while (print.r != -1 && print.s[0] != '\0')
 	{
-		if (print.f[0] == '%')
+		if (print.s[0] == '%')
 			pf_direc(&print);
 		else
 			pf_text(&print);
 	}
 	va_end(print.a);
+	return (print.r);
 }

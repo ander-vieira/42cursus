@@ -6,11 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 17:09:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 15:29:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:01:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../repo/libftprintf.h"
+#include "../repo/ft_printf.h"
 
 int	main(void)
 {
