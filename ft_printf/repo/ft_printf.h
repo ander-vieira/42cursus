@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:52:11 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 18:57:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:11:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define FLAG_PREC	0x20
 
 typedef unsigned char	t_flag;
+typedef unsigned int	t_uint;
 
 typedef struct s_print {
 	char	*s;
@@ -48,11 +49,15 @@ typedef struct s_direc {
 }	t_direc;
 
 size_t	pf_strlen(char *str);
+t_uint	pf_abs(int i);
+
+size_t	pf_countnbr(unsigned long num, size_t prec, size_t base_len);
 
 void	pf_write(void *buf, size_t len, t_print *print);
 void	pf_putchar(char c, t_print *print);
 void	pf_putstr(char *str, t_print *print);
-void	pf_putnbr(unsigned long num, char *base, t_print *print);
+void	pf_putnbr(unsigned long num, char *base, size_t prec, t_print *print);
+void	pf_putpad(char c, size_t w, size_t len, t_print *print);
 
 void	pf_printchar(t_direc direc, t_print *print);
 void	pf_printstr(t_direc direc, t_print *print);
@@ -61,7 +66,6 @@ void	pf_printunbr(t_direc direc, t_print *print, char *base, char *prefix);
 void	pf_printptr(t_direc direc, t_print *print);
 
 t_direc	pf_parsedirec(t_print *print);
-
 void	pf_printdirec(t_direc direc, t_print *print);
 
 int		ft_printf(char const *f, ...);

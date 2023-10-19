@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:08:54 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 15:18:43 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:31:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,29 @@ void	pf_putstr(char *str, t_print *print)
 	pf_write(str, pf_strlen(str), print);
 }
 
-void	pf_putnbr(long num, char *base, t_print *print)
-{
-	if (num < 0)
-	{
-		pf_write("-", 1, print);
-		pf_putunbr(-num, base, print);
-	}
-	else
-		pf_putunbr(num, base, print);
-}
-
-void	pf_putunbr(unsigned long num, char *base, t_print *print)
+void	pf_putnbr(unsigned long num, char *base, size_t prec, t_print *print)
 {
 	size_t	base_len;
 
 	base_len = pf_strlen(base);
-	if (num >= base_len)
-		pf_putunbr(num / base_len, base, print);
-	pf_write(base + (num % base_len), 1, print);
+	if (prec > 1)
+		pf_putnbr(num / base_len, base, prec - 1, print);
+	else if (num >= base_len)
+		pf_putnbr(num / base_len, base, prec, print);
+	if (num != 0 || prec > 0)
+		pf_write(base + (num % base_len), 1, print);
+}
+
+void	pf_putpad(char c, size_t w, size_t len, t_print *print)
+{
+	size_t	i;
+
+	if (w <= len)
+		return ;
+	i = 0;
+	while (i < w - len)
+	{
+		pf_write(&c, 1, print);
+		i++;
+	}
 }

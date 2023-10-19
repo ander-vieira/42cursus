@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:28:48 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 15:11:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:26:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static void	pf_parseflags(t_direc *direc, t_print *print)
 static void	pf_parsewidth(t_direc *direc, t_print *print)
 {
 	direc->w = 0;
+	direc->p = 1;
 	while (print->s[0] >= '0' && print->s[0] <= '9')
 	{
 		direc->w = direc->w * 10 + (print->s[0] - '0');
@@ -43,9 +44,10 @@ static void	pf_parsewidth(t_direc *direc, t_print *print)
 	}
 	if (print->s[0] == '.')
 	{
-		direc->p = 0;
 		direc->f |= FLAG_PREC;
+		direc->f &= ~FLAG_ZERO;
 		print->s += 1;
+		direc->p = 0;
 		while (print->s[0] >= '0' && print->s[0] <= '9')
 		{
 			direc->p = direc->p * 10 + (print->s[0] - '0');

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:47:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 19:06:01 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:05:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,8 @@ void	pf_printnbr(t_direc direc, t_print *print)
 
 	num = va_arg(print->a, int);
 	if (num < 0)
-	{
 		pf_putchar('-', print);
-		pf_putnbr((unsigned int)(-num), BASE_DEC, print);
-	}
-	else
-		pf_putnbr(num, BASE_DEC, print);
+	pf_putnbr(pf_abs(num), BASE_DEC, 0, print);
 	(void)direc;
 }
 
@@ -53,7 +49,7 @@ void	pf_printunbr(t_direc direc, t_print *print, char *base, char *prefix)
 	unsigned int	num;
 
 	num = va_arg(print->a, unsigned int);
-	pf_putnbr(num, base, print);
+	pf_putnbr(num, base, 0, print);
 	(void)direc;
 	(void)prefix;
 }
@@ -68,7 +64,7 @@ void	pf_printptr(t_direc direc, t_print *print)
 	else
 	{
 		pf_putstr(PRE_HEXL, print);
-		pf_putnbr((unsigned long)ptr, BASE_HEXL, print);
+		pf_putnbr((unsigned long)ptr, BASE_HEXL, 0, print);
 	}
 	(void)direc;
 }
