@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:47:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 20:05:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:46:35 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	pf_printnbr(t_direc direc, t_print *print)
 
 void	pf_printunbr(t_direc direc, t_print *print, char *base, char *prefix)
 {
-	unsigned int	num;
+	t_uint	num;
 
-	num = va_arg(print->a, unsigned int);
+	num = va_arg(print->a, t_uint);
 	pf_putnbr(num, base, 0, print);
 	(void)direc;
 	(void)prefix;

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:52:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 20:27:43 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:46:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	pf_printstr(t_direc direc, t_print *print)
 
 void	pf_printnbr(t_direc direc, t_print *print)
 {
-	int				num;
-	unsigned int	unum;
-	size_t			len;
+	int		num;
+	t_uint	unum;
+	size_t	len;
 
 	num = va_arg(print->a, int);
 	unum = pf_abs(num);
@@ -78,10 +78,10 @@ void	pf_printnbr(t_direc direc, t_print *print)
 
 void	pf_printunbr(t_direc direc, t_print *print, char *base, char *prefix)
 {
-	unsigned int	num;
-	size_t			len;
+	t_uint	num;
+	size_t	len;
 
-	num = va_arg(print->a, unsigned int);
+	num = va_arg(print->a, t_uint);
 	len = pf_countnbr(num, direc.p, pf_strlen(base));
 	if ((direc.f & FLAG_ALTER) && num != 0)
 		len += pf_strlen(prefix);

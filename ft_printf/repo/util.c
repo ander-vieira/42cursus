@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:22:58 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 20:05:08 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 20:46:45 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ size_t	pf_strlen(char *str)
 	return (len);
 }
 
-unsigned int	pf_abs(int i)
+t_uint	pf_abs(int i)
 {
 	if (i < 0)
-		return ((unsigned int)(-i));
+		return ((t_uint)(-i));
 	else
-		return ((unsigned int)i);
+		return ((t_uint)i);
 }
