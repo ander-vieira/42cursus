@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 12:46:15 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 18:26:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:31:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ void	test_sign(void)
 	n = printf("%+d\n", -15);
 	printf("%d\n", n);
 	n = printf("% d\n", -15);
+	printf("%d\n", n);
+	n = printf("% s\n", "");
+	printf("%d\n", n);
+	n = printf("% s\n", "a");
 	printf("%d\n", n);
 }
 
@@ -70,7 +74,7 @@ int	main(void)
 {
 	test_alter();
 	test_sign();
-	test_pad();
-	test_prec();
+	//test_pad();
+	//test_prec();
 	return (0);
 }

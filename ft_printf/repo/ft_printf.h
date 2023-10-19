@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:52:11 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 14:35:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:54:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,11 @@
 # define PRE_HEXU	"0X"
 
 # define FLAG_ALTER	0x01
-# define FLAG_MINUS 0x02
-# define FLAG_SPACE 0x04
+# define FLAG_PLUS	0x02
+# define FLAG_SPACE	0x04
+# define FLAG_MINUS	0x08
+# define FLAG_ZERO	0x10
+# define FLAG_PREC	0x20
 
 typedef unsigned char	t_flag;
 
@@ -39,6 +42,8 @@ typedef struct s_print {
 
 typedef struct s_direc {
 	t_flag	f;
+	size_t	w;
+	size_t	p;
 	char	t;
 }	t_direc;
 

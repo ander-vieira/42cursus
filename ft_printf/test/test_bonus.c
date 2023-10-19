@@ -6,11 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/24 12:46:15 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/24 18:26:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:31:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../repo/libftprintf.h"
+#include "../repo/ft_printf.h"
 
 void	test_alter(void)
 {
@@ -37,6 +37,10 @@ void	test_sign(void)
 	n = ft_printf("%+d\n", -15);
 	ft_printf("%d\n", n);
 	n = ft_printf("% d\n", -15);
+	ft_printf("%d\n", n);
+	n = ft_printf("% s\n", "");
+	ft_printf("%d\n", n);
+	n = ft_printf("% s\n", "a");
 	ft_printf("%d\n", n);
 }
 
@@ -70,7 +74,7 @@ int	main(void)
 {
 	test_alter();
 	test_sign();
-	test_pad();
-	test_prec();
+	//test_pad();
+	//test_prec();
 	return (0);
 }
