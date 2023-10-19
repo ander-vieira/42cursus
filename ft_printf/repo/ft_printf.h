@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:52:11 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 14:54:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/19 18:57:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ size_t	pf_strlen(char *str);
 void	pf_write(void *buf, size_t len, t_print *print);
 void	pf_putchar(char c, t_print *print);
 void	pf_putstr(char *str, t_print *print);
-void	pf_putnbr(long num, char *base, t_print *print);
-void	pf_putunbr(unsigned long num, char *base, t_print *print);
+void	pf_putnbr(unsigned long num, char *base, t_print *print);
+
+void	pf_printchar(t_direc direc, t_print *print);
+void	pf_printstr(t_direc direc, t_print *print);
+void	pf_printnbr(t_direc direc, t_print *print);
+void	pf_printunbr(t_direc direc, t_print *print, char *base, char *prefix);
+void	pf_printptr(t_direc direc, t_print *print);
 
 t_direc	pf_parsedirec(t_print *print);
 
