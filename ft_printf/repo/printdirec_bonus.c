@@ -6,11 +6,20 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 13:07:22 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 19:06:36 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:33:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void	pf_printpercent(t_direc direc, t_print *print)
+{
+	if (!(direc.f & FLAG_MINUS))
+		pf_putpad(' ', direc.w, 1, print);
+	pf_putchar('%', print);
+	if (direc.f & FLAG_MINUS)
+		pf_putpad(' ', direc.w, 1, print);
+}
 
 void	pf_printdirec(t_direc direc, t_print *print)
 {
@@ -29,7 +38,7 @@ void	pf_printdirec(t_direc direc, t_print *print)
 	else if (direc.t == 'p')
 		pf_printptr(direc, print);
 	else if (direc.t == '%')
-		pf_putchar('%', print);
+		pf_printpercent(direc, print);
 	else
 	{
 		pf_putchar('%', print);

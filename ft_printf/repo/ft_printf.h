@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:52:11 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 20:11:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:24:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # define BASE_HEXL	"0123456789abcdef"
 # define BASE_HEXU	"0123456789ABCDEF"
 # define STR_NULL	"(null)"
-# define PTR_NULL	"(nil)"
 # define PRE_HEXL	"0x"
 # define PRE_HEXU	"0X"
 

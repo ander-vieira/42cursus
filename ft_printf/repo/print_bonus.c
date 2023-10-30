@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:52:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 20:46:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:33:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 void	pf_printchar(t_direc direc, t_print *print)
 {
-	char	c;
-
-	c = va_arg(print->a, int);
 	if (!(direc.f & FLAG_MINUS))
 		pf_putpad(' ', direc.w, 1, print);
-	pf_putchar(c, print);
+	pf_putchar(va_arg(print->a, int), print);
 	if (direc.f & FLAG_MINUS)
 		pf_putpad(' ', direc.w, 1, print);
 }
@@ -31,18 +28,10 @@ void	pf_printstr(t_direc direc, t_print *print)
 
 	str = va_arg(print->a, char *);
 	if (str == NULL)
-	{
 		str = STR_NULL;
-		len = pf_strlen(str);
-		if ((direc.f & FLAG_PREC) && direc.p < len)
-			len = 0;
-	}
-	else
-	{
-		len = pf_strlen(str);
-		if ((direc.f & FLAG_PREC) && direc.p < len)
-			len = direc.p;
-	}
+	len = pf_strlen(str);
+	if ((direc.f & FLAG_PREC) && direc.p < len)
+		len = direc.p;
 	if (!(direc.f & FLAG_MINUS))
 		pf_putpad(' ', direc.w, len, print);
 	pf_write(str, len, print);
@@ -102,20 +91,12 @@ void	pf_printptr(t_direc direc, t_print *print)
 	size_t	len;
 
 	ptr = va_arg(print->a, void *);
-	if (ptr == NULL)
-		len = pf_strlen(PTR_NULL);
-	else
-		len = pf_strlen(PRE_HEXL)
-			+ pf_countnbr((unsigned long)ptr, 1, pf_strlen(BASE_HEXL));
+	len = pf_strlen(PRE_HEXL)
+		+ pf_countnbr((unsigned long)ptr, 1, pf_strlen(BASE_HEXL));
 	if (!(direc.f & FLAG_MINUS))
 		pf_putpad(' ', direc.w, len, print);
-	if (ptr == NULL)
-		pf_putstr(PTR_NULL, print);
-	else
-	{
-		pf_putstr(PRE_HEXL, print);
-		pf_putnbr((unsigned long)ptr, BASE_HEXL, 1, print);
-	}
+	pf_putstr(PRE_HEXL, print);
+	pf_putnbr((unsigned long)ptr, BASE_HEXL, 1, print);
 	if (direc.f & FLAG_MINUS)
 		pf_putpad(' ', direc.w, len, print);
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 18:47:43 by andeviei          #+#    #+#             */
-/*   Updated: 2023/10/19 20:46:35 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:24:32 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,7 @@ void	pf_printunbr(t_direc direc, t_print *print, char *base, char *prefix)
 
 void	pf_printptr(t_direc direc, t_print *print)
 {
-	void	*ptr;
-
-	ptr = va_arg(print->a, void *);
-	if (ptr == NULL)
-		pf_putstr(PTR_NULL, print);
-	else
-	{
-		pf_putstr(PRE_HEXL, print);
-		pf_putnbr((unsigned long)ptr, BASE_HEXL, 0, print);
-	}
+	pf_putstr(PRE_HEXL, print);
+	pf_putnbr((unsigned long)va_arg(print->a, void *), BASE_HEXL, 0, print);
 	(void)direc;
 }
