@@ -9,7 +9,7 @@ echo "COMPILE"
 echo "---------------"
 make -C repo/ -s all clean
 gcc test/test.c repo/libftprintf.a -o ft_printf
-gcc test/test_printf.c repo/libftprintf.a -o printf
+gcc test/test_printf.c -o printf
 
 echo "---------------"
 echo "TESTS (DIFF, OK IF BLANK)"
@@ -26,7 +26,7 @@ echo "BONUS COMPILE"
 echo "---------------"
 make -C repo/ -s bonus clean
 gcc test/test_bonus.c repo/libftprintf.a -o ft_printf
-gcc test/test_printf_bonus.c repo/libftprintf.a -o printf
+gcc test/test_printf_bonus.c -o printf
 
 echo "---------------"
 echo "BONUS TESTS (DIFF, OK IF BLANK)"

@@ -7,9 +7,6 @@ then
 	cp -rf $1/test/ ~/42eval/test
 	cp -f $1/test.sh ~/42eval/
 	git clone $2 ~/42eval/repo
-	cd ~/42eval
-	echo "Executing tests..."
-	./test.sh
 else
 	echo "Usage: $0 <project> <git repo>"
 fi
