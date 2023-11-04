@@ -1,0 +1,6 @@
+**
+!Makefile
+!*.c
+!*.h
+!maps/
+!textures/
