@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/04 19:56:57 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/04 21:03:32 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = so_long
 
 CFLAGS = -Wall -Wextra -Werror -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS = so_long.c print.c str.c
+SRCS = so_long.c readfile.c print.c str.c validmap.c
 HDRS = so_long.h
 
 all: $(NAME)

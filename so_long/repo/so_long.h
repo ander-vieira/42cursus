@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/04 19:55:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:16:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
 # include <mlx.h>
 
 # define MAP_SUF	".ber"
+# define MAP_BUFSIZ	256
 
 # define WIN_WIDTH	1920
 # define WIN_HEIGHT	1080
@@ -40,10 +42,18 @@
 
 typedef unsigned int	t_uint;
 
+typedef struct s_buf {
+	char	b[MAP_BUFSIZ];
+	ssize_t	i;
+	ssize_t	m;
+}	t_buf;
+
 typedef struct s_sl {
-	void	*x;
-	void	*w;
-	char	**m;
+	void	*mlx;
+	void	*win;
+	char	*m;
+	t_uint	w;
+	t_uint	h;
 }	t_sl;
 
 size_t	sl_strlen(char *str);
@@ -52,5 +62,9 @@ char	sl_strends(char *str, char *suf);
 void	sl_printstr(char *str);
 void	sl_printnbr(t_uint num);
 void	sl_printnnl(t_uint num);
+
+char	sl_readfile(char *file, t_sl *sl);
+
+char	sl_validmap(t_sl *sl);
 
 #endif
