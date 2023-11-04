@@ -1,8 +1,6 @@
-rm -f test_output.txt
-
 echo "NORMINETTE"
 echo "---------------"
-norminette -o repo/
+norminette repo/
 
 echo "---------------"
 echo "COMPILE"
