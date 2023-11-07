@@ -13,6 +13,8 @@ echo "TESTS"
 echo "---------------"
 echo "USAGE TEST:"
 repo/pipex
+echo "NO INPUT FILE TEST:"
+repo/pipex fakefile.fake "./test1.out" "./test1.out" file1.out
 echo "TEST 1:"
 repo/pipex test/testfile1.txt "./test1.out" "./test1.out" file1.out
 <test/testfile1.txt ./test1.out | ./test1.out >file2.out
