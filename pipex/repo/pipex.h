@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/07 20:53:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/07 22:14:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@
 # define PATH_PREF	"PATH="
 # define PATH_DELIM	'/'
 # define ENV_DELIM	':'
+
+# define MSG_USAGE_1	"Usage: "
+# define MSG_USAGE_2	" infile command1 command2 outfile\n"
+# define MSG_OPEN_1		": cannot access "
+# define MSG_COLON		": "
+# define MSG_NL			"\n"
 
 typedef struct s_pipex {
 	char	*name;
