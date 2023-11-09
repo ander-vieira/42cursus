@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validmap.c                                         :+:      :+:    :+:   */
+/*   bool.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 20:55:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 15:35:12 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/09 15:16:30 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/09 15:17:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef BOOL_H
+# define BOOL_H
 
-//TODO
-t_bool	sl_validmap(t_sl *sl)
-{
-	(void)sl;
-	return (TRUE);
-}
+# define TRUE		1
+# define FALSE		0
+
+typedef unsigned char	t_bool;
+
+#endif

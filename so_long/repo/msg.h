@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validmap.c                                         :+:      :+:    :+:   */
+/*   msg.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 20:55:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 15:35:12 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/09 17:20:25 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/09 17:22:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#ifndef MSG_H
+# define MSG_H
 
-//TODO
-t_bool	sl_validmap(t_sl *sl)
-{
-	(void)sl;
-	return (TRUE);
-}
+# define NEWLINE		"\n"
+# define COLON			": "
+
+# define ERR_GENERIC	"Error\n"
+# define ERR_USAGE		"Program must have exactly one parameter\n"
+# define ERR_EXT		"Argument must have the .ber extension\n"
+# define ERR_MAPSTR		"Map doesn't have the correct file structure\n"
+# define ERR_OPEN		"open: cannot access file "
+# define ERR_READ		"read: cannot read from file "
+
+#endif
