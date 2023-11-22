@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/07 22:14:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 15:06:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@
 # define PATH_PREF	"PATH="
 # define PATH_DELIM	'/'
 # define ENV_DELIM	':'
-
-# define MSG_USAGE_1	"Usage: "
-# define MSG_USAGE_2	" infile command1 command2 outfile\n"
-# define MSG_OPEN_1		": cannot access "
-# define MSG_COLON		": "
-# define MSG_NL			"\n"
 
 typedef struct s_pipex {
 	char	*name;
@@ -51,7 +45,6 @@ void	px_split_free(char **split);
 void	px_putstr(char *str, int fd);
 
 void	px_err_usage(char *pname);
-void	px_err_open(char *pname, char *fname);
 void	px_err_func(char *pname, char *func);
 
 void	px_cmd_run(char *cmd, int *fd, t_pipex *px);

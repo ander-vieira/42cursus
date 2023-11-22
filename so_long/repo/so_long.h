@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 17:21:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:43:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,19 @@ typedef struct s_buf {
 	ssize_t	m;
 }	t_buf;
 
+typedef struct s_map {
+	char	*m;
+	t_uint	w;
+	t_uint	h;
+}	t_map;
+
 /*
  *	The generic structure that contains the application's data
  */
 typedef struct s_sl {
 	void	*mlx;
 	void	*win;
-	char	*m;
-	t_uint	w;
-	t_uint	h;
+	t_map	map;
 }	t_sl;
 
 size_t	sl_strlen(char *str);
@@ -76,9 +80,9 @@ void	sl_printerr(char *errormsg);
 void	sl_printerr_open(char *file);
 void	sl_printerr_read(char *file);
 
-t_bool	sl_readfile(char *file, t_sl *sl);
+t_bool	sl_readfile(char *file, t_map *map);
 
-t_bool	sl_validmap(t_sl *sl);
+t_bool	sl_validmap(t_map *map);
 
 void	sl_initmlx(t_sl *sl);
 

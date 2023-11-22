@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:28:48 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 17:21:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/09 17:43:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	main(int argc, char **argv)
 {
 	t_sl	sl;
 
-	if (sl_validargs(argc, argv) && sl_readfile(argv[1], &sl)
-		&& sl_validmap(&sl))
+	if (sl_validargs(argc, argv) && sl_readfile(argv[1], &(sl.map))
+		&& sl_validmap(&(sl.map)))
 		sl_initmlx(&sl);
 	return (0);
 }

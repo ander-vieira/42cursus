@@ -1,0 +1,54 @@
+#!/bin/bash
+
+tests/printtitle "NORMINETTE"
+norminette repo/ | grep -v ': OK!$'
+if [ $? -ne 0 ]
+then
+	echo "No norminette errors!"
+fi
+
+tests/printtitle "COMPILE"
+make -C repo/ -s all
+if [ $? -ne 0 ]
+then
+	tests/printtitle "COMPILATION ERROR"
+	exit
+else
+	echo "No compilation errors!"
+fi
+
+tests/printtitle "USAGE TEST"
+repo/pipex
+
+tests/printtitle "TEST LS/WC WITH NO INPUT"
+repo/pipex fakefile.fake "ls -l" "wc -l" file1.out
+<fakefile.fake ls -l | wc -l >file2.out
+tests/testdiff file1.out file2.out
+
+tests/printtitle "TEST LS/WC"
+repo/pipex tests/file1.txt "ls -l" "wc -l" file1.out
+<tests/file1.txt ls -l | wc -l >file2.out
+tests/testdiff file1.out file2.out
+
+tests/printtitle "TEST CAT/CAT"
+repo/pipex tests/file1.txt "cat" "cat" file1.out
+<tests/file1.txt cat | cat >file2.out
+tests/testdiff file1.out file2.out
+
+tests/printtitle "TEST CAT/CAT WITH LOCKED OUTPUT"
+echo "kkk" > locked1.out
+echo "kkk" > locked2.out
+chmod -w locked1.out locked2.out
+repo/pipex tests/file1.txt "cat" "cat" locked1.out
+<tests/file1.txt cat | cat >locked2.out
+tests/testdiff locked1.out locked2.out
+rm -f locked1.out locked2.out
+
+tests/printtitle "TEST GREP/WC"
+repo/pipex tests/file1.txt "grep a1" "wc -w" file1.out
+<tests/file1.txt grep a1 | wc -w >file2.out
+tests/testdiff file1.out file2.out
+
+# Clean up
+make -C repo/ -s clean
+rm -f file1.out file2.out

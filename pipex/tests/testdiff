@@ -1,0 +1,15 @@
+#!/bin/bash
+
+d=$(diff $1 $2)
+if [ $? -ne 0 ]
+then
+	if [ $? -eq 1 ]
+	then
+		echo "Test KO, diff below"
+		echo "$d"
+	else
+		echo "Test KO"
+	fi
+else
+	echo "Test OK"
+fi
