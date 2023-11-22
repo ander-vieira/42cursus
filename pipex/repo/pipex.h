@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:20:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:36:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,18 @@ typedef struct s_pipex {
 	char	**env;
 }	t_pipex;
 
-size_t	px_strlen(char *str);
-t_bool	px_strstarts(char *str, char *pref);
-char	*px_strjoin(char *str1, char *str2);
+size_t	av_strlen(char *str);
+t_bool	av_strstarts(char *str, char *pref);
+char	*av_strjoin(char *str1, char *str2);
 
-void	px_putstr(char *str, int fd);
+void	av_putstr(char *str, int fd);
 
-void	px_err_usage(char *pname);
-void	px_err_func(char *pname, char *func);
+void	av_err_usage(char *pname);
+void	av_err_func(char *pname, char *func);
 
-char	**px_split(char *str, int space);
-void	px_split_free(char **split);
+char	**av_split(char *str, int space);
+void	av_split_free(char **split);
 
-void	px_cmd_run(char *cmd, int *fd, t_pipex *px);
+void	av_cmd_run(char *cmd, int *fd, t_pipex *px);
 
 #endif
