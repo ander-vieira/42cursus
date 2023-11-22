@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 17:01:44 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/22 15:14:09 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/22 17:17:04 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = pipex.c command.c error.c put.c split.c str.c
+SRCS = pipex.c error.c getpath.c put.c split.c str.c
 HDRS = pipex.h
 
 all: $(NAME)

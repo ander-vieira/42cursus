@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:36:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:16:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,33 @@ static t_pipex	av_initdata(char **argv, char **envp)
 	px.outfile = argv[4];
 	px.env = envp;
 	return (px);
+}
+
+static void	av_cmd_run(char *cmd, int *fd, t_pipex *px)
+{
+	pid_t	pid;
+	char	**argv;
+	char	*pname;
+
+	pid = fork();
+	if (pid != 0)
+	{
+		waitpid(pid, NULL, 0);
+		close(fd[0]);
+		close(fd[1]);
+	}
+	else
+	{
+		argv = av_split(cmd, -1);
+		pname = av_getpath(argv[0], px);
+		if (pname == NULL)
+			exit(0);
+		dup2(fd[0], STDOUT_FILENO);
+		dup2(fd[1], STDIN_FILENO);
+		execve(pname, argv, px->env);
+		av_err_func(px->pname, "execve");
+		exit(0);
+	}
 }
 
 static int	av_initpipes(t_pipex *px)

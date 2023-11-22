@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:36:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:16:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,18 @@ typedef struct s_pipex {
 
 size_t	av_strlen(char *str);
 t_bool	av_strstarts(char *str, char *pref);
+void	av_strncpy(char *dst, char *src, size_t len);
 char	*av_strjoin(char *str1, char *str2);
 
 void	av_putstr(char *str, int fd);
 
 void	av_err_usage(char *pname);
+void	av_err_generic(char *pname, char *func, char *msg);
 void	av_err_func(char *pname, char *func);
 
 char	**av_split(char *str, int space);
 void	av_split_free(char **split);
 
-void	av_cmd_run(char *cmd, int *fd, t_pipex *px);
+char	*av_getpath(char *cmd, t_pipex *px);
 
 #endif

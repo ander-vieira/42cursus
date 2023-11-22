@@ -20,7 +20,12 @@ fi
 tests/printtitle "USAGE TEST"
 repo/pipex
 
-tests/printtitle "TEST LS/WC WITH NO INPUT"
+tests/printtitle "TEST WITH INVALID COMMAND"
+repo/pipex tests/file1.txt "k" "cat" file1.out
+<tests/file1.txt k | cat >file2.out
+tests/testdiff file1.out file2.out
+
+tests/printtitle "TEST LS/WC WITH INVALID INPUT"
 repo/pipex fakefile.fake "ls -l" "wc -l" file1.out
 <fakefile.fake ls -l | wc -l >file2.out
 tests/testdiff file1.out file2.out
