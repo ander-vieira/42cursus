@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:08:07 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:36:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:44:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,20 +54,34 @@ void	av_strncpy(char *dst, char *src, size_t len)
 	}
 }
 
-char	*av_strjoin(char *str1, char *str2)
+t_bool	av_strcmp(char *str1, char *str2)
 {
-	char	*result;
-	size_t	len1;
-	size_t	len2;
+	size_t	i;
 
-	len1 = av_strlen(str1);
-	len2 = av_strlen(str2);
-	result = (char *)malloc(sizeof(char) * (len1 + len2 + 2));
+	i = 0;
+	while (str1[i] != '\0' || str2[i] != '\0')
+	{
+		if (str1[i] != str2[i])
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+char	**av_sublist(char **list, size_t len)
+{
+	char	**result;
+	size_t	i;
+
+	result = (char **)malloc(sizeof(char *) * (len + 1));
 	if (result == NULL)
 		return (NULL);
-	av_strncpy(result, str1, len1);
-	result[len1] = PATH_DELIM;
-	av_strncpy(result + len1 + 1, str2, len2);
-	result[len1 + len2 + 1] = '\0';
+	i = 0;
+	while (i < len)
+	{
+		result[i] = list[i];
+		i++;
+	}
+	result[len] = NULL;
 	return (result);
 }

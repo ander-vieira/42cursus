@@ -6,23 +6,37 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 17:16:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 17:43:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static t_pipex	av_initdata(char **argv, char **envp)
+static t_bool	av_initdata(t_pipex *px, int argc, char **argv, char **envp)
 {
-	t_pipex	px;
+	t_bool	here_doc;
 
-	px.pname = argv[0];
-	px.infile = argv[1];
-	px.c_1 = argv[2];
-	px.c_2 = argv[3];
-	px.outfile = argv[4];
-	px.env = envp;
-	return (px);
+	here_doc = (argc >= 2 && av_strcmp(argv[1], "here_doc"));
+	if (argc < 5 || (here_doc && argc < 6))
+		return (FALSE);
+	px->pname = argv[0];
+	if (here_doc)
+	{
+		px->infile = argv[2];
+		px->cmd_num = (size_t)(argc - 4);
+		px->cmds = av_sublist(argv + 3, px->cmd_num);
+	}
+	else
+	{
+		px->infile = argv[1];
+		px->cmd_num = (size_t)(argc - 3);
+		px->cmds = av_sublist(argv + 2, px->cmd_num);
+	}
+	px->outfile = argv[argc - 1];
+	px->env = envp;
+	if (px->cmds == NULL)
+		return (av_err_func(px->pname, "malloc"), FALSE);
+	return (TRUE);
 }
 
 static void	av_cmd_run(char *cmd, int *fd, t_pipex *px)
@@ -65,8 +79,8 @@ static int	av_initpipes(t_pipex *px)
 		return (av_err_func(px->pname, px->outfile), -1);
 	if (pipe(fd + 1) == -1)
 		return (av_err_func(px->pname, "pipe"), -1);
-	av_cmd_run(px->c_1, fd + 2, px);
-	av_cmd_run(px->c_2, fd, px);
+	av_cmd_run(px->cmds[0], fd + 2, px);
+	av_cmd_run(px->cmds[1], fd, px);
 	return (0);
 }
 
@@ -75,8 +89,9 @@ int	main(int argc, char **argv, char **envp)
 	t_pipex	px;
 
 	if (argc != 5)
-		return (av_err_usage(argv[0]), 0);
-	px = av_initdata(argv, envp);
+		return (av_err_usage(argv[0]), 1);
+	if (!av_initdata(&px, argc, argv, envp))
+		return (1);
 	av_initpipes(&px);
 	return (0);
 }
