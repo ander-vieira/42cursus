@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:00:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:20:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,23 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 
+# include "bool.h"
+
 # define PATH_PREF	"PATH="
 # define PATH_DELIM	'/'
 # define ENV_DELIM	':'
 
 typedef struct s_pipex {
 	char	*pname;
-	char	*i_f;
+	char	*infile;
 	char	*c_1;
 	char	*c_2;
-	char	*o_f;
+	char	*outfile;
 	char	**env;
 }	t_pipex;
 
 size_t	px_strlen(char *str);
-char	px_strhas(char *str, char c);
-char	px_strstarts(char *str, char *pref);
+t_bool	px_strstarts(char *str, char *pref);
 char	*px_strjoin(char *str1, char *str2);
 
 void	px_putstr(char *str, int fd);

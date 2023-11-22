@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:08:07 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/07 20:53:50 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:20:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,7 @@ size_t	px_strlen(char *str)
 	return (len);
 }
 
-char	px_strhas(char *str, char c)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	px_strstarts(char *str, char *pref)
+t_bool	px_strstarts(char *str, char *pref)
 {
 	size_t	str_len;
 	size_t	pref_len;
@@ -45,15 +31,15 @@ char	px_strstarts(char *str, char *pref)
 	str_len = px_strlen(str);
 	pref_len = px_strlen(pref);
 	if (str_len < pref_len)
-		return (0);
+		return (FALSE);
 	i = 0;
 	while (i < pref_len)
 	{
 		if (str[i] != pref[i])
-			return (0);
+			return (FALSE);
 		i++;
 	}
-	return (1);
+	return (TRUE);
 }
 
 void	px_strncpy(char *dst, char *src, size_t len)

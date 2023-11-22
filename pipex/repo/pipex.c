@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:02:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:17:35 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static t_pipex	px_initdata(char **argv, char **envp)
 	t_pipex	px;
 
 	px.pname = argv[0];
-	px.i_f = argv[1];
+	px.infile = argv[1];
 	px.c_1 = argv[2];
 	px.c_2 = argv[3];
-	px.o_f = argv[4];
+	px.outfile = argv[4];
 	px.env = envp;
 	return (px);
 }
@@ -29,13 +29,13 @@ static int	px_initpipes(t_pipex *px)
 {
 	int	fd[4];
 
-	fd[3] = open(px->i_f, O_RDONLY);
+	fd[3] = open(px->infile, O_RDONLY);
 	if (fd[3] == -1)
-		return (px_err_func(px->pname, px->i_f), -1);
-	fd[0] = open(px->o_f, O_WRONLY | O_CREAT | O_TRUNC,
+		return (px_err_func(px->pname, px->infile), -1);
+	fd[0] = open(px->outfile, O_WRONLY | O_CREAT | O_TRUNC,
 			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (fd[0] == -1)
-		return (px_err_func(px->pname, px->o_f), -1);
+		return (px_err_func(px->pname, px->outfile), -1);
 	if (pipe(fd + 1) == -1)
 		return (px_err_func(px->pname, "pipe"), -1);
 	px_cmd_run(px->c_1, fd + 2, px);

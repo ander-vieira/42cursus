@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:38:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 16:00:50 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:18:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static char	*px_cmd_pname(char *name, t_pipex *px)
 	char	*pname;
 	size_t	i;
 
-	if (px_strhas(name, PATH_DELIM))
-		return (name);
 	path = px_getpath(px->env);
 	if (path == NULL)
 		return (NULL);
