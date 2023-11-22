@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:36:47 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 17:15:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:28:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static char	*av_joinpath(char *cmd, char *path, size_t *i, t_pipex *px)
 		len++;
 	fullcmd = (char *)malloc(sizeof(char) * (len + cmd_len + 2));
 	if (fullcmd == NULL)
-		return (av_err_func(px->pname, "malloc"), NULL);
+		return (av_printerror(px->pname, "malloc", NULL), NULL);
 	av_strncpy(fullcmd, path + *i, len);
 	fullcmd[len] = PATH_DELIM;
 	av_strncpy(fullcmd + len + 1, cmd, cmd_len);
@@ -55,7 +55,7 @@ char	*av_getpath(char *cmd, t_pipex *px)
 
 	path = av_envpath(px);
 	if (path == NULL)
-		return (av_err_generic(px->pname, cmd, "command not found"), NULL);
+		return (av_printerror(px->pname, cmd, "command not found"), NULL);
 	i = 0;
 	while (path[i] != '\0')
 	{
@@ -67,8 +67,9 @@ char	*av_getpath(char *cmd, t_pipex *px)
 		if (fullcmd == NULL || access(fullcmd, X_OK) == 0)
 			return (fullcmd);
 		if (errno != ENOENT)
-			return (av_err_func(px->pname, fullcmd), free(fullcmd), NULL);
+			return (av_printerror(px->pname, fullcmd, NULL),
+				free(fullcmd), NULL);
 		free(fullcmd);
 	}
-	return (av_err_generic(px->pname, cmd, "command not found"), NULL);
+	return (av_printerror(px->pname, cmd, "command not found"), NULL);
 }

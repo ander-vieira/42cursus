@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 17:41:32 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 21:28:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ char	**av_sublist(char **list, size_t len);
 
 void	av_putstr(char *str, int fd);
 
-void	av_err_usage(char *pname);
-void	av_err_generic(char *pname, char *func, char *msg);
-void	av_err_func(char *pname, char *func);
+void	av_printusage(char *pname);
+void	av_printerror(char *pname, char *func, char *msg);
 
 char	**av_split(char *str, int space);
 void	av_split_free(char **split);
