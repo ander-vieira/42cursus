@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 15:06:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:00:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define ENV_DELIM	':'
 
 typedef struct s_pipex {
-	char	*name;
+	char	*pname;
 	char	*i_f;
 	char	*c_1;
 	char	*c_2;
@@ -39,13 +39,13 @@ char	px_strhas(char *str, char c);
 char	px_strstarts(char *str, char *pref);
 char	*px_strjoin(char *str1, char *str2);
 
-char	**px_split(char *str, int space);
-void	px_split_free(char **split);
-
 void	px_putstr(char *str, int fd);
 
 void	px_err_usage(char *pname);
 void	px_err_func(char *pname, char *func);
+
+char	**px_split(char *str, int space);
+void	px_split_free(char **split);
 
 void	px_cmd_run(char *cmd, int *fd, t_pipex *px);
 

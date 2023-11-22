@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 18:38:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/07 20:53:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/22 16:00:50 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static char	*px_cmd_pname(char *name, t_pipex *px)
 			break ;
 		i++;
 	}
-	return (px_err_func(px->name, name), free(path), NULL);
+	return (px_err_func(px->pname, name), free(path), NULL);
 }
 
 void	px_cmd_run(char *cmd, int *fd, t_pipex *px)
@@ -75,7 +75,7 @@ void	px_cmd_run(char *cmd, int *fd, t_pipex *px)
 		dup2(fd[0], STDOUT_FILENO);
 		dup2(fd[1], STDIN_FILENO);
 		execve(pname, argv, px->env);
-		px_err_func(px->name, "execve");
+		px_err_func(px->pname, "execve");
 		exit(0);
 	}
 }
