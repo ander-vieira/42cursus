@@ -36,8 +36,8 @@ repo/pipex tests/file1.txt "cat" "cat" file1.out
 tests/testdiff file1.out file2.out
 
 tests/printtitle "TEST CAT/CAT WITH LOCKED OUTPUT"
-echo "kkk" > locked1.out
-echo "kkk" > locked2.out
+cat tests/file1.txt > locked1.out
+cat tests/file1.txt > locked2.out
 chmod -w locked1.out locked2.out
 repo/pipex tests/file1.txt "cat" "cat" locked1.out
 <tests/file1.txt cat | cat >locked2.out
