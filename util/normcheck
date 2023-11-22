@@ -1,0 +1,13 @@
+#!/bin/bash
+
+red="\033[0;31m"
+green="\033[0;32m"
+nocolor="\033[0m"
+
+norminette=$(norminette $1 | grep -v ': OK!$')
+if [ $? -ne 0 ]
+then
+	echo -e "${green}No norminette errors!${nocolor}"
+else
+	echo -e "${red}${norminette}${nocolor}"
+fi

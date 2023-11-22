@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# Go to script's location
+cd $(dirname $0)
+
+if [ $# -lt 2 ]
+then
+	echo "Usage: $(basename $0) <project> <git repo>"
+	exit
+fi
+
+util/printtitle "CLONING REMOTE REPOSITORY"
+rm -rf ~/42repo
+git clone $2 ~/42repo
+if [ $? -eq 0 ]
+then
+	util/printtitle "REPOSITORY CLONED SUCCESSFULLY"
+else
+	util/printtitle "ERROR WHILE CLONING REPOSITORY"
+	exit
+fi
+
+util/printtitle "COPYING FILES ONTO NEW REPOSITORY"
+rm -rf ~/42repo/*
+cp -rf $1/repo/* ~/42repo
+cp -f $1/vogignore ~/42repo/.gitignore
+
+
+util/printtitle "COMMITTING FILES"
+git -C ~/42repo config user.name andeviei
+git -C ~/42repo config user.email andeviei@student.42urduliz.com
+git -C ~/42repo add .
+git -C ~/42repo commit -m "Upload to vogsphere"
+
+util/printtitle "PUSHING TO REMOTE"
+git -C ~/42repo push
+if [ $? -eq 0 ]
+then
+	util/printtitle "FILES PUSHED TO REMOTE SUCCESSFULLY"
+else
+	util/printtitle "ERROR WHILE PUSHING TO REMOTE"
+	exit
+fi

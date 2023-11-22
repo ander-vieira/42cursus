@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Go to script's location
+cd $(dirname $0)
+
+if [ $# -ge 1 ]
+then
+	repo="$1"
+else
+	repo="repo/"
+fi
+
+../util/printtitle "NORMINETTE"
+../util/normcheck $repo
+
+../util/printtitle "COMPILE (BUFFER_SIZE 1)"
+gcc tests/test.c tests/testutils.c $repo/get_next_line.c $repo/get_next_line_utils.c -I"$repo" -D BUFFER_SIZE=1 -D TESTFILE_DIR=\"tests/\" -o output
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "TESTS (BUFFER_SIZE 1)"
+./output
+rm -f output
+
+../util/printtitle "COMPILE (BUFFER_SIZE 10)"
+gcc tests/test.c tests/testutils.c $repo/get_next_line.c $repo/get_next_line_utils.c -I"$repo" -D BUFFER_SIZE=10 -D TESTFILE_DIR=\"tests/\" -o output
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "TESTS (BUFFER_SIZE 10)"
+./output
+rm -f output
+
+../util/printtitle "COMPILE (BUFFER_SIZE 1000)"
+gcc tests/test.c tests/testutils.c $repo/get_next_line.c $repo/get_next_line_utils.c -I"$repo" -D BUFFER_SIZE=1000 -D TESTFILE_DIR=\"tests/\" -o output
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "TESTS (BUFFER_SIZE 1000)"
+./output
+rm -f output
+
+../util/printtitle "STDIN COMPILE (BUFFER_SIZE 10)"
+gcc tests/test_stdin.c tests/testutils.c $repo/get_next_line_bonus.c $repo/get_next_line_utils_bonus.c -I"$repo" -D BUFFER_SIZE=10 -D TESTFILE_DIR=\"tests/\" -o output
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "STDIN TESTS (BUFFER_SIZE 10)"
+cat tests/stdin.txt | ./output
+rm -f output
+
+../util/printtitle "BONUS COMPILE (BUFFER_SIZE 10)"
+gcc tests/test_bonus.c tests/testutils.c $repo/get_next_line_bonus.c $repo/get_next_line_utils_bonus.c -I"$repo" -D BUFFER_SIZE=10 -D TESTFILE_DIR=\"tests/\" -o output
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "BONUS TESTS (BUFFER_SIZE 10)"
+./output
+rm -f output

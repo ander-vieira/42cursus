@@ -1,58 +1,62 @@
 #!/bin/bash
 
-tests/printtitle "NORMINETTE"
-norminette repo/ | grep -v ': OK!$'
-if [ $? -ne 0 ]
-then
-	echo "No norminette errors!"
-fi
+# Go to script's location
+cd $(dirname $0)
 
-tests/printtitle "COMPILE"
-make -C repo/ -s all
-if [ $? -ne 0 ]
+if [ $# -ge 1 ]
 then
-	tests/printtitle "COMPILATION ERROR"
-	exit
+	repo="$1"
 else
-	echo "No compilation errors!"
+	repo="repo/"
 fi
 
-tests/printtitle "USAGE TEST"
+../util/printtitle "NORMINETTE"
+../util/normcheck $repo
+
+../util/printtitle "COMPILE"
+make -C repo/ -s all
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "USAGE TEST"
 repo/pipex
 
-tests/printtitle "TEST WITH INVALID COMMAND"
+../util/printtitle "TEST WITH INVALID COMMAND"
 repo/pipex tests/file1.txt "k" "cat" file1.out
 <tests/file1.txt k | cat >file2.out
-tests/testdiff file1.out file2.out
+../util/testdiff file1.out file2.out
 
-tests/printtitle "TEST LS/WC WITH INVALID INPUT"
+../util/printtitle "TEST LS/WC WITH INVALID INPUT"
 repo/pipex fakefile.fake "ls -l" "wc -l" file1.out
 <fakefile.fake ls -l | wc -l >file2.out
-tests/testdiff file1.out file2.out
+../util/testdiff file1.out file2.out
 
-tests/printtitle "TEST LS/WC"
+../util/printtitle "TEST LS/WC"
 repo/pipex tests/file1.txt "ls -l" "wc -l" file1.out
 <tests/file1.txt ls -l | wc -l >file2.out
-tests/testdiff file1.out file2.out
+../util/testdiff file1.out file2.out
 
-tests/printtitle "TEST CAT/CAT"
+../util/printtitle "TEST CAT/CAT"
 repo/pipex tests/file1.txt "cat" "cat" file1.out
 <tests/file1.txt cat | cat >file2.out
-tests/testdiff file1.out file2.out
+../util/testdiff file1.out file2.out
 
-tests/printtitle "TEST CAT/CAT WITH LOCKED OUTPUT"
+../util/printtitle "TEST CAT/CAT WITH LOCKED OUTPUT"
 cat tests/file1.txt > locked1.out
 cat tests/file1.txt > locked2.out
 chmod -w locked1.out locked2.out
 repo/pipex tests/file1.txt "cat" "cat" locked1.out
 <tests/file1.txt cat | cat >locked2.out
-tests/testdiff locked1.out locked2.out
+../util/testdiff locked1.out locked2.out
 rm -f locked1.out locked2.out
 
-tests/printtitle "TEST GREP/WC"
+../util/printtitle "TEST GREP/WC"
 repo/pipex tests/file1.txt "grep a1" "wc -w" file1.out
 <tests/file1.txt grep a1 | wc -w >file2.out
-tests/testdiff file1.out file2.out
+../util/testdiff file1.out file2.out
 
 # Clean up
 make -C repo/ -s clean

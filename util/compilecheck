@@ -1,0 +1,13 @@
+#!/bin/bash
+
+green="\033[0;32m"
+nocolor="\033[0m"
+
+if [ $1 -ne 0 ]
+then
+	../util/printtitle "COMPILATION ERROR"
+	exit 1
+else
+	echo -e "${green}No compilation errors!${nocolor}"
+	exit 0
+fi

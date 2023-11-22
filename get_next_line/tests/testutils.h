@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_striter.c                                     :+:      :+:    :+:   */
+/*   testutils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 16:48:38 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/19 16:57:54 by andeviei         ###   ########.fr       */
+/*   Created: 2023/09/18 13:43:44 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/22 21:21:47 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#ifndef TESTUTILS_H
+# define TESTUTILS_H
 
-static void	revcaesar(unsigned int i, char *c)
-{
-	i++;
-	(*c)--;
-}
+# include <stdio.h>
 
-static char	mapcaesar(unsigned int i, char c)
-{
-	i++;
-	return (c + 1);
-}
+# define COLOR_R	"\033[0;31m"
+# define COLOR_G	"\033[0;32m"
+# define COLOR_NO	"\033[0m"
 
-void	test_striter(void)
-{
-	char	*str;
-	
-	str = ft_strmapi("HELLO", &mapcaesar);
-	print_test("ft_strmapi", str != NULL && !strcmp(str, "IFMMP"));
-	ft_striteri(str, &revcaesar);
-	print_test("ft_striteri", !strcmp(str, "HELLO"));
-	free(str);
-}
+void	print_test(char *test_id, char result);
+void	print_all_tests(void);
+
+#endif

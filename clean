@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Go to script's location
+cd $(dirname $0)
+
+util/printtitle "CLEANING AUXILIARY REPOSITORIES"
+
+rm -rf ~/42eval
+rm -rf ~/42repo
+

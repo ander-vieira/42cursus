@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   test_stdin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/17 14:22:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/19 16:57:21 by andeviei         ###   ########.fr       */
+/*   Created: 2023/09/19 20:28:46 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/22 21:22:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#include "test.h"
 
-# include <string.h>
-# include <fcntl.h>
-# include <unistd.h>
+int	main(void)
+{
+	char	*str;
 
-# include "testutils.h"
-
-# include "../repo/libft.h"
-
-# define TMP_FD "tmp_fd"
-
-void	test_is(void);
-void	test_to(void);
-void	test_mem(void);
-void	test_str(void);
-void	test_striter(void);
-void	test_split(void);
-void	test_atoi(void);
-void	test_fd(void);
-void	test_lst(void);
-void	test_lstiter(void);
-
-#endif
+	str = get_next_line(STDIN_FILENO);
+	print_test("get_next_line stdin", str != NULL && !strcmp(str, "TEST STDIN\n"));
+	free(str);
+	print_all_tests();
+}
