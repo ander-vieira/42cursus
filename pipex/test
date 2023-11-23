@@ -1,5 +1,9 @@
 #!/bin/bash
 
+red="\033[0;31m"
+green="\033[0;32m"
+nocolor="\033[0m"
+
 # Go to script's location
 cd $(dirname $0)
 
@@ -23,18 +27,61 @@ fi
 
 ../util/printtitle "USAGE TEST"
 repo/pipex
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
 
-../util/printtitle "TEST WITH EMPTY COMMANDS"
-repo/pipex tests/file1.txt "" "" file1.out
+../util/printtitle "TEST WITH ONE EMPTY COMMAND"
+repo/pipex tests/file1.txt "cat" "" file1.out
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
 <tests/file1.txt "" | "" >file2.out
-cat file1.out
-cat file2.out
+../util/testdiff file1.out file2.out
+
+../util/printtitle "TEST WITH TWO EMPTY COMMANDS"
+repo/pipex tests/file1.txt "" "" file1.out
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
+<tests/file1.txt "" | "" >file2.out
 ../util/testdiff file1.out file2.out
 
 ../util/printtitle "TEST WITH INVALID COMMAND"
 repo/pipex tests/file1.txt "k" "cat" file1.out
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
 <tests/file1.txt k | cat >file2.out
 ../util/testdiff file1.out file2.out
+
+../util/printtitle "TEST WITH THREE COMMANDS (SHOULD FAIL)"
+rm -f file1.out
+repo/pipex tests/file1.txt "cat" "grep a" "wc -l" file1.out
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
+if [ -f file1.out ]
+then
+	echo -e "${red}Test KO${nocolor}"
+else
+	echo -e "${green}Test OK${nocolor}"
+fi
 
 ../util/printtitle "TEST LS/WC WITH INVALID INPUT"
 repo/pipex fakefile.fake "ls -l" "wc -l" file1.out
@@ -63,6 +110,19 @@ rm -f locked1.out locked2.out
 ../util/printtitle "TEST GREP/WC"
 repo/pipex tests/file1.txt "grep a1" "wc -w" file1.out
 <tests/file1.txt grep a1 | wc -w >file2.out
+../util/testdiff file1.out file2.out
+
+../util/printtitle "BONUS COMPILE"
+make -C repo/ -s bonus
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
+../util/printtitle "BONUS TEST WITH THREE COMMANDS"
+repo/pipex tests/file1.txt "cat" "grep a" "wc -l" file1.out
+<tests/file1.txt cat | grep a | wc -l >file2.out
 ../util/testdiff file1.out file2.out
 
 # Clean up

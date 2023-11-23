@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 17:01:44 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/23 15:55:06 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/23 18:25:30 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ HDRS = pipex.h
 all: $(NAME)
 
 $(NAME): $(SRCS) $(HDRS)
+	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+
+bonus: $(SRCS) $(HDRS)
 	gcc $(CFLAGS) $(SRCS) -o $(NAME)
 
 clean:
