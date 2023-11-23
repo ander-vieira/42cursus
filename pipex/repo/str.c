@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:08:07 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 17:44:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:03:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,4 @@ t_bool	av_strcmp(char *str1, char *str2)
 		i++;
 	}
 	return (TRUE);
-}
-
-char	**av_sublist(char **list, size_t len)
-{
-	char	**result;
-	size_t	i;
-
-	result = (char **)malloc(sizeof(char *) * (len + 1));
-	if (result == NULL)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		result[i] = list[i];
-		i++;
-	}
-	result[len] = NULL;
-	return (result);
 }

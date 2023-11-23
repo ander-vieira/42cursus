@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 21:28:43 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:47:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,19 @@
 # define PATH_DELIM	'/'
 # define ENV_DELIM	':'
 
+typedef int	t_fd;
+
+typedef struct s_cmd {
+	char	*cmd;
+	int		fd_in;
+	int		fd_out;
+}	t_cmd;
+
 typedef struct s_pipex {
 	char	*pname;
 	char	*infile;
 	size_t	cmd_num;
-	char	**cmds;
+	t_cmd	*cmds;
 	char	*outfile;
 	char	**env;
 }	t_pipex;
@@ -40,15 +48,19 @@ size_t	av_strlen(char *str);
 t_bool	av_strstarts(char *str, char *pref);
 void	av_strncpy(char *dst, char *src, size_t len);
 t_bool	av_strcmp(char *str1, char *str2);
-char	**av_sublist(char **list, size_t len);
 
 void	av_putstr(char *str, int fd);
 
 void	av_printusage(char *pname);
 void	av_printerror(char *pname, char *func, char *msg);
 
-char	**av_split(char *str, int space);
-void	av_split_free(char **split);
+char	**av_getargv(t_pipex *px, size_t i);
+void	av_freeargv(char **argv);
+
+t_bool	av_runcmd(t_pipex *px, size_t i);
+
+t_bool	av_initpipex(t_pipex *px, int argc, char **argv, char **envp);
+void	av_freepipex(t_pipex *px);
 
 char	*av_getpath(char *cmd, t_pipex *px);
 
