@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 18:12:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:50:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ static int	av_runcmd_child(t_pipex *px, size_t i)
 t_bool	av_runcmd(t_pipex *px, size_t i)
 {
 	pid_t	pid;
+	int		status;
 
 	pid = fork();
 	if (pid == -1)
@@ -63,7 +64,9 @@ t_bool	av_runcmd(t_pipex *px, size_t i)
 			close(px->cmds[i].fd_in);
 		if (px->cmds[i].fd_out != -1)
 			close(px->cmds[i].fd_out);
-		waitpid(pid, NULL, 0);
+		waitpid(pid, &status, 0);
+		if (status != 0)
+			return (FALSE);
 		return (TRUE);
 	}
 }
