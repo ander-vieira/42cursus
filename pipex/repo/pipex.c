@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 00:24:13 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:54:11 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ static t_bool	av_runcmds(t_pipex *px)
 	i = 0;
 	while (i < px->cmd_num)
 	{
-		if (!av_runcmd(px, i))
-			ok = FALSE;
+		ok = av_runcmd(px, i);
 		i++;
 	}
 	return (ok);

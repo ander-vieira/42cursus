@@ -48,7 +48,18 @@ else
 	echo -e "${red}Command returns success, KO${nocolor}"
 fi
 
-../util/printtitle "TEST WITH ONE EMPTY COMMAND"
+../util/printtitle "TEST WITH FIRST COMMAND EMPTY"
+repo/pipex tests/file1.txt "" "cat" file1.out
+if [ $? -eq 0 ]
+then
+	echo -e "${green}Command returns success, OK${nocolor}"
+else
+	echo -e "${red}Command returns failure, KO${nocolor}"
+fi
+<tests/file1.txt "" | "cat" >file2.out
+../util/testdiff file1.out file2.out
+
+../util/printtitle "TEST WITH SECOND COMMAND EMPTY"
 repo/pipex tests/file1.txt "cat" "" file1.out
 if [ $? -ne 0 ]
 then
@@ -56,7 +67,7 @@ then
 else
 	echo -e "${red}Command returns success, KO${nocolor}"
 fi
-<tests/file1.txt "" | "" >file2.out
+<tests/file1.txt "cat" | "" >file2.out
 ../util/testdiff file1.out file2.out
 
 ../util/printtitle "TEST WITH TWO EMPTY COMMANDS"
@@ -72,11 +83,11 @@ fi
 
 ../util/printtitle "TEST WITH INVALID COMMAND"
 repo/pipex tests/file1.txt "k" "cat" file1.out
-if [ $? -ne 0 ]
+if [ $? -eq 0 ]
 then
-	echo -e "${green}Command returns failure, OK${nocolor}"
+	echo -e "${green}Command returns success, OK${nocolor}"
 else
-	echo -e "${red}Command returns success, KO${nocolor}"
+	echo -e "${red}Command returns failure, KO${nocolor}"
 fi
 <tests/file1.txt k | cat >file2.out
 ../util/testdiff file1.out file2.out
