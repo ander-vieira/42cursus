@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:40 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 15:52:13 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:24:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool	av_runcmds(t_pipex *px)
 			ok = FALSE;
 		i++;
 	}
-	return (TRUE);
+	return (ok);
 }
 
 int	main(int argc, char **argv, char **envp)

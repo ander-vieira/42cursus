@@ -17,6 +17,20 @@ fi
 ../util/printtitle "NORMINETTE"
 ../util/normcheck $repo
 
+../util/printtitle "MAKEFILE"
+if [ ! -f "$repo/Makefile" ]
+then
+	echo -e "${red}Missing Makefile, KO${nocolor}"
+	exit 1
+fi
+rules=$(../util/rulescheck $repo)
+if [ $rules == "no" ]
+then
+	echo -e "${red}Missing rules in Makefile, KO${nocolor}"
+	exit 1
+fi
+echo -e "${green}All rules in Makefile, OK${nocolor}"
+
 ../util/printtitle "COMPILE"
 make -C repo/ -s all
 ../util/compilecheck $?
@@ -111,6 +125,12 @@ rm -f locked1.out locked2.out
 repo/pipex tests/file1.txt "grep a1" "wc -w" file1.out
 <tests/file1.txt grep a1 | wc -w >file2.out
 ../util/testdiff file1.out file2.out
+
+if [ $rules != "bonus" ]
+then
+	../util/printtitle "NO BONUS"
+	exit 0
+fi
 
 ../util/printtitle "BONUS COMPILE"
 make -C repo/ -s bonus
