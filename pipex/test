@@ -24,6 +24,13 @@ fi
 ../util/printtitle "USAGE TEST"
 repo/pipex
 
+../util/printtitle "TEST WITH EMPTY COMMANDS"
+repo/pipex tests/file1.txt "" "" file1.out
+<tests/file1.txt "" | "" >file2.out
+cat file1.out
+cat file2.out
+../util/testdiff file1.out file2.out
+
 ../util/printtitle "TEST WITH INVALID COMMAND"
 repo/pipex tests/file1.txt "k" "cat" file1.out
 <tests/file1.txt k | cat >file2.out

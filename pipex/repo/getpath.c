@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:36:47 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 21:28:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:13:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*av_getpath(char *cmd, t_pipex *px)
 	size_t	i;
 
 	path = av_envpath(px);
-	if (path == NULL)
+	if (cmd == NULL || path == NULL)
 		return (av_printerror(px->pname, cmd, "command not found"), NULL);
 	i = 0;
 	while (path[i] != '\0')

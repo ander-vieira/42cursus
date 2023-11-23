@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 15:51:24 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/23 18:12:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ static int	av_runcmd_child(t_pipex *px, size_t i)
 	char	**argv;
 	char	*pname;
 
+	if (!av_updatefd(px, i))
+		return (EXIT_FAILURE);
 	argv = av_getargv(px, i);
 	if (argv == NULL)
 		return (EXIT_FAILURE);
 	pname = av_getpath(argv[0], px);
 	if (pname == NULL)
 		return (av_freeargv(argv), EXIT_FAILURE);
-	if (!av_updatefd(px, i))
-		return (av_freeargv(argv), free(pname), EXIT_FAILURE);
 	execve(pname, argv, px->env);
 	av_printerror(px->pname, "execve", NULL);
 	return (EXIT_FAILURE);
