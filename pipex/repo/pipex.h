@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 15:47:36 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:54:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ size_t	av_strlen(char *str);
 t_bool	av_strstarts(char *str, char *pref);
 void	av_strncpy(char *dst, char *src, size_t len);
 t_bool	av_strcmp(char *str1, char *str2);
-
-void	av_putstr(char *str, int fd);
 
 void	av_printusage(char *pname);
 void	av_printerror(char *pname, char *func, char *msg);

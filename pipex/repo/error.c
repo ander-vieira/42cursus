@@ -6,11 +6,16 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/22 21:28:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/23 15:54:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static void	av_putstr(char *str, int fd)
+{
+	write(fd, str, av_strlen(str));
+}
 
 void	av_printusage(char *pname)
 {
