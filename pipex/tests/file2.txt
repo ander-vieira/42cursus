@@ -4,4 +4,6 @@ bb
 Ebb
 bbE
 ccc
+E
+    E
 END

@@ -139,7 +139,7 @@ fi
 
 ../util/printtitle "TEST WITH HERE_DOC"
 rm -f file1.out
-repo/pipex here_doc END "grep a" "wc -l" file1.out
+repo/pipex here_doc END "grep E" "wc -l" file1.out <tests/file2.txt
 if [ $? -ne 0 ]
 then
 	echo -e "${green}Command returns failure, OK${nocolor}"
@@ -180,9 +180,6 @@ repo/pipex here_doc END "grep E" "wc -l" file1.out <tests/file2.txt
 <<END grep E | wc -l >>file2.out
 $(cat tests/file2.txt | grep -v '^END$')
 END
-cat file1.out
-echo "P"
-cat file2.out
 ../util/testdiff file1.out file2.out
 
 # Clean up

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:43:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 23:11:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 # define PATH_PREF	"PATH="
 # define PATH_DELIM	'/'
 # define ENV_DELIM	':'
-
-typedef int	t_fd;
 
 typedef struct s_cmd {
 	char	*cmd;
