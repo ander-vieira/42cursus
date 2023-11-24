@@ -186,5 +186,5 @@ cat file2.out
 ../util/testdiff file1.out file2.out
 
 # Clean up
-make -C repo/ -s clean
+make -C repo/ -s fclean
 rm -f file1.out file2.out

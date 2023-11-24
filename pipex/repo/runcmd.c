@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 01:54:12 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:28:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static t_bool	av_updatefd(t_pipex *px, size_t i)
 	if (px->here)
 	{
 		if (px->cmds[i].fd_in == -1)
-			px->cmds[i].fd_in = open(px->infile, O_RDONLY);
+			px->cmds[i].fd_in = av_heredoc(px);
 		if (px->cmds[i].fd_in == -1)
-			return (av_printerror(px->pname, px->infile, NULL), FALSE);
+			return (FALSE);
 		if (px->cmds[i].fd_out == -1)
 			px->cmds[i].fd_out = open(px->outfile,
 					O_WRONLY | O_CREAT | O_APPEND, 0664);
