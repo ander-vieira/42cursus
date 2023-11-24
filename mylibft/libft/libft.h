@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 17:29:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:44:12 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ ssize_t	ft_strchr(char *str, char c);
 t_bool	ft_strcmp(char *str1, char *str2);
 char	*ft_strdup(char *str);
 size_t	ft_strlen(char *str);
-t_bool	av_strprefix(char *str, char *prefix);
+t_bool	ft_strprefix(char *str, char *prefix);
 
 #endif

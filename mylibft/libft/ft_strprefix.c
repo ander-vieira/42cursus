@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:29:25 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 14:32:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:45:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	av_strprefix(char *str, char *prefix)
+t_bool	ft_strprefix(char *str, char *prefix)
 {
 	size_t	str_len;
 	size_t	pref_len;
