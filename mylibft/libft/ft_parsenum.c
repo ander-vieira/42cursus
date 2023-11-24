@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:44:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:13:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:37:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ static t_bool	ft_parsenum_getsign(char *str, size_t *i)
 	else
 		return (FALSE);
 }
-
-#include <stdio.h>
 
 static t_bool	ft_parsenum_overflow(int result,
 	int pos, int base_len, t_bool sign)
