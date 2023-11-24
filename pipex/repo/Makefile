@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 17:01:44 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/24 19:26:35 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/24 19:37:56 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,17 +15,24 @@ NAME = pipex
 CFLAGS = -Wall -Wextra -Werror
 
 SRCS = pipex.c error.c getargv.c getpath.c heredoc.c initpipex.c runcmd.c str.c
-HDRS = pipex.h bool.h
+HDRS = pipex.h
+
+LIBFT_DIR = libft/
+LIBFT = $(LIBFT_DIR)libft.a
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(HDRS)
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME): $(SRCS) $(HDRS) $(LIBFT)
+	gcc $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 
-bonus: $(SRCS) $(HDRS)
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+$(LIBFT):
+	make -C $(LIBFT_DIR) all clean
+
+bonus: $(SRCS) $(HDRS) $(LIBFT)
+	gcc $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 
 clean:
+	make -C $(LIBFT_DIR) fclean
 
 fclean: clean
 	rm -f $(NAME)

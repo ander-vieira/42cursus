@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:36:47 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 18:13:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:37:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*av_envpath(t_pipex *px)
 	while (px->env[i] != NULL)
 	{
 		if (av_strstarts(px->env[i], PATH_PREF))
-			return (px->env[i] + av_strlen(PATH_PREF));
+			return (px->env[i] + ft_strlen(PATH_PREF));
 		i++;
 	}
 	return (NULL);
@@ -32,7 +32,7 @@ static char	*av_joinpath(char *cmd, char *path, size_t *i, t_pipex *px)
 	size_t	cmd_len;
 	size_t	len;
 
-	cmd_len = av_strlen(cmd);
+	cmd_len = ft_strlen(cmd);
 	len = 0;
 	while (path[*i + len] != '\0' && path[*i + len] != ENV_DELIM)
 		len++;
