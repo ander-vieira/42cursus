@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:27:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 15:52:01 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 01:01:37 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,11 @@ static t_bool	av_initcmds(char **cmds, t_pipex *px)
 
 t_bool	av_initpipex(t_pipex *px, int argc, char **argv, char **envp)
 {
-	t_bool	here_doc;
-
-	here_doc = (argc >= 2 && av_strcmp(argv[1], "here_doc"));
-	if (argc < 5 || (here_doc && argc < 6))
+	px->here = (argc >= 2 && av_strcmp(argv[1], "here_doc"));
+	if (argc < 5 || (px->here && argc < 6))
 		return (av_printusage(argv[0]), FALSE);
 	px->pname = argv[0];
-	if (here_doc)
+	if (px->here)
 	{
 		px->infile = argv[2];
 		px->cmd_num = (size_t)(argc - 4);

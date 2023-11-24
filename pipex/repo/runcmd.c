@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 00:50:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 01:54:12 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,30 @@
 
 static t_bool	av_updatefd(t_pipex *px, size_t i)
 {
-	if (px->cmds[i].fd_in == -1)
-		px->cmds[i].fd_in = open(px->infile, O_RDONLY);
-	if (px->cmds[i].fd_in == -1)
-		return (av_printerror(px->pname, px->infile, NULL), FALSE);
-	if (px->cmds[i].fd_out == -1)
-		px->cmds[i].fd_out = open(px->outfile,
-				O_WRONLY | O_CREAT | O_TRUNC, 0664);
-	if (px->cmds[i].fd_out == -1)
-		return (av_printerror(px->pname, px->outfile, NULL), FALSE);
+	if (px->here)
+	{
+		if (px->cmds[i].fd_in == -1)
+			px->cmds[i].fd_in = open(px->infile, O_RDONLY);
+		if (px->cmds[i].fd_in == -1)
+			return (av_printerror(px->pname, px->infile, NULL), FALSE);
+		if (px->cmds[i].fd_out == -1)
+			px->cmds[i].fd_out = open(px->outfile,
+					O_WRONLY | O_CREAT | O_APPEND, 0664);
+		if (px->cmds[i].fd_out == -1)
+			return (av_printerror(px->pname, px->outfile, NULL), FALSE);
+	}
+	else
+	{
+		if (px->cmds[i].fd_in == -1)
+			px->cmds[i].fd_in = open(px->infile, O_RDONLY);
+		if (px->cmds[i].fd_in == -1)
+			return (av_printerror(px->pname, px->infile, NULL), FALSE);
+		if (px->cmds[i].fd_out == -1)
+			px->cmds[i].fd_out = open(px->outfile,
+					O_WRONLY | O_CREAT | O_TRUNC, 0664);
+		if (px->cmds[i].fd_out == -1)
+			return (av_printerror(px->pname, px->outfile, NULL), FALSE);
+	}
 	if (dup2(px->cmds[i].fd_in, STDIN_FILENO) == -1)
 		return (av_printerror(px->pname, "dup2", NULL), FALSE);
 	if (dup2(px->cmds[i].fd_out, STDOUT_FILENO) == -1)

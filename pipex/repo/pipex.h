@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 15:54:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 00:57:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_cmd {
 }	t_cmd;
 
 typedef struct s_pipex {
+	t_bool	here;
 	char	*pname;
 	char	*infile;
 	size_t	cmd_num;

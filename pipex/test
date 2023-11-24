@@ -92,22 +92,6 @@ fi
 <tests/file1.txt k | cat >file2.out
 ../util/testdiff file1.out file2.out
 
-../util/printtitle "TEST WITH THREE COMMANDS (SHOULD FAIL)"
-rm -f file1.out
-repo/pipex tests/file1.txt "cat" "grep a" "wc -l" file1.out
-if [ $? -ne 0 ]
-then
-	echo -e "${green}Command returns failure, OK${nocolor}"
-else
-	echo -e "${red}Command returns success, KO${nocolor}"
-fi
-if [ -f file1.out ]
-then
-	echo -e "${red}Test KO${nocolor}"
-else
-	echo -e "${green}Test OK${nocolor}"
-fi
-
 ../util/printtitle "TEST LS/WC WITH INVALID INPUT"
 repo/pipex fakefile.fake "ls -l" "wc -l" file1.out
 <fakefile.fake ls -l | wc -l >file2.out
@@ -137,6 +121,38 @@ repo/pipex tests/file1.txt "grep a1" "wc -w" file1.out
 <tests/file1.txt grep a1 | wc -w >file2.out
 ../util/testdiff file1.out file2.out
 
+../util/printtitle "TEST WITH THREE COMMANDS"
+rm -f file1.out
+repo/pipex tests/file1.txt "cat" "grep a" "wc -l" file1.out
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
+if [ -f file1.out ]
+then
+	echo -e "${red}Test KO${nocolor}"
+else
+	echo -e "${green}Test OK${nocolor}"
+fi
+
+../util/printtitle "TEST WITH HERE_DOC"
+rm -f file1.out
+repo/pipex here_doc END "grep a" "wc -l" file1.out
+if [ $? -ne 0 ]
+then
+	echo -e "${green}Command returns failure, OK${nocolor}"
+else
+	echo -e "${red}Command returns success, KO${nocolor}"
+fi
+if [ -f file1.out ]
+then
+	echo -e "${red}Test KO${nocolor}"
+else
+	echo -e "${green}Test OK${nocolor}"
+fi
+
 if [ $rules != "bonus" ]
 then
 	../util/printtitle "NO BONUS"
@@ -154,6 +170,19 @@ fi
 ../util/printtitle "BONUS TEST WITH THREE COMMANDS"
 repo/pipex tests/file1.txt "cat" "grep a" "wc -l" file1.out
 <tests/file1.txt cat | grep a | wc -l >file2.out
+../util/testdiff file1.out file2.out
+
+../util/printtitle "BONUS TEST WITH HERE_DOC"
+rm -f file1.out file2.out
+cat tests/file1.txt > file1.out
+cat tests/file1.txt > file2.out
+repo/pipex here_doc END "grep E" "wc -l" file1.out <tests/file2.txt
+<<END grep E | wc -l >>file2.out
+$(cat tests/file2.txt | grep -v '^END$')
+END
+cat file1.out
+echo "P"
+cat file2.out
 ../util/testdiff file1.out file2.out
 
 # Clean up
