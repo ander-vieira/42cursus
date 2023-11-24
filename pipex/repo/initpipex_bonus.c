@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initpipex.c                                        :+:      :+:    :+:   */
+/*   initpipex_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:27:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:21:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:23:01 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 static t_bool	av_initpipes(t_pipex *px)
 {
@@ -60,13 +60,24 @@ static t_bool	av_initcmds(char **cmds, t_pipex *px)
 
 t_bool	av_initpipex(t_pipex *px, int argc, char **argv, char **envp)
 {
-	if (argc != 5)
+	px->here = (argc >= 2 && ft_strcmp(argv[1], "here_doc"));
+	if (argc < 5 || (px->here && argc < 6))
 		return (av_printusage(argv[0]), FALSE);
 	px->pname = argv[0];
-	px->infile = argv[1];
-	px->cmd_num = (size_t)(argc - 3);
-	if (!av_initcmds(argv + 2, px))
-		return (FALSE);
+	if (px->here)
+	{
+		px->infile = argv[2];
+		px->cmd_num = (size_t)(argc - 4);
+		if (!av_initcmds(argv + 3, px))
+			return (FALSE);
+	}
+	else
+	{
+		px->infile = argv[1];
+		px->cmd_num = (size_t)(argc - 3);
+		if (!av_initcmds(argv + 2, px))
+			return (FALSE);
+	}
 	px->outfile = argv[argc - 1];
 	px->env = envp;
 	return (TRUE);
