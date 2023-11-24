@@ -22,7 +22,7 @@ fi
 
 util/printtitle "COPYING FILES ONTO NEW REPOSITORY"
 rm -rf ~/42repo/*
-cp -rf $1/repo/* ~/42repo
+cp -LRf $1/repo/* ~/42repo
 cp -f $1/vogignore ~/42repo/.gitignore
 
 
