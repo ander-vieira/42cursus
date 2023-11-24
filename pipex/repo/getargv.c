@@ -6,17 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:20:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/23 15:47:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:48:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static t_bool	av_isspace(char c)
-{
-	return (c == ' ' || c == '\f' || c == '\n'
-		|| c == '\r' || c == '\t' || c == '\v');
-}
 
 static size_t	av_getargc(char *str)
 {
@@ -27,11 +21,11 @@ static size_t	av_getargc(char *str)
 	result = 0;
 	while (str[i] != '\0')
 	{
-		while (str[i] != '\0' && av_isspace(str[i]))
+		while (str[i] != '\0' && ft_isspace(str[i]))
 			i++;
 		if (str[i] != '\0')
 			result += 1;
-		while (str[i] != '\0' && !av_isspace(str[i]))
+		while (str[i] != '\0' && !ft_isspace(str[i]))
 			i++;
 	}
 	return (result);
@@ -43,10 +37,10 @@ static char	*av_getparam(t_pipex *px, char **str)
 	size_t	len;
 	size_t	i;
 
-	while (**str != '\0' && av_isspace(**str))
+	while (**str != '\0' && ft_isspace(**str))
 		*str += 1;
 	len = 0;
-	while ((*str)[len] != '\0' && !av_isspace((*str)[len]))
+	while ((*str)[len] != '\0' && !ft_isspace((*str)[len]))
 		len++;
 	param = (char *)malloc(sizeof(char) * (len + 1));
 	if (param == NULL)

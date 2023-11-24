@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 16:36:47 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:37:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:44:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static char	*av_envpath(t_pipex *px)
 	i = 0;
 	while (px->env[i] != NULL)
 	{
-		if (av_strstarts(px->env[i], PATH_PREF))
+		if (ft_strprefix(px->env[i], PATH_PREF))
 			return (px->env[i] + ft_strlen(PATH_PREF));
 		i++;
 	}
@@ -39,9 +39,9 @@ static char	*av_joinpath(char *cmd, char *path, size_t *i, t_pipex *px)
 	fullcmd = (char *)malloc(sizeof(char) * (len + cmd_len + 2));
 	if (fullcmd == NULL)
 		return (av_printerror(px->pname, "malloc", NULL), NULL);
-	av_strncpy(fullcmd, path + *i, len);
+	ft_memcpy(fullcmd, path + *i, len);
 	fullcmd[len] = PATH_DELIM;
-	av_strncpy(fullcmd + len + 1, cmd, cmd_len);
+	ft_memcpy(fullcmd + len + 1, cmd, cmd_len);
 	fullcmd[len + cmd_len + 1] = '\0';
 	*i += len;
 	return (fullcmd);

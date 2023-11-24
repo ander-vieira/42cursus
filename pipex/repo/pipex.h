@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:37:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:43:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,6 @@ typedef struct s_pipex {
 	char	*outfile;
 	char	**env;
 }	t_pipex;
-
-t_bool	av_strstarts(char *str, char *pref);
-void	av_strncpy(char *dst, char *src, size_t len);
-t_bool	av_strcmp(char *str1, char *str2);
 
 void	av_printusage(char *pname);
 void	av_printerror(char *pname, char *func, char *msg);

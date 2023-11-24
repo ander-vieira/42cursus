@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:28:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/24 19:53:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static t_bool	av_updatefd(t_pipex *px, size_t i)
+static t_bool	av_updatefdin(t_pipex *px, size_t i)
 {
 	if (px->here)
 	{
@@ -20,11 +20,6 @@ static t_bool	av_updatefd(t_pipex *px, size_t i)
 			px->cmds[i].fd_in = av_heredoc(px);
 		if (px->cmds[i].fd_in == -1)
 			return (FALSE);
-		if (px->cmds[i].fd_out == -1)
-			px->cmds[i].fd_out = open(px->outfile,
-					O_WRONLY | O_CREAT | O_APPEND, 0664);
-		if (px->cmds[i].fd_out == -1)
-			return (av_printerror(px->pname, px->outfile, NULL), FALSE);
 	}
 	else
 	{
@@ -32,14 +27,25 @@ static t_bool	av_updatefd(t_pipex *px, size_t i)
 			px->cmds[i].fd_in = open(px->infile, O_RDONLY);
 		if (px->cmds[i].fd_in == -1)
 			return (av_printerror(px->pname, px->infile, NULL), FALSE);
-		if (px->cmds[i].fd_out == -1)
-			px->cmds[i].fd_out = open(px->outfile,
-					O_WRONLY | O_CREAT | O_TRUNC, 0664);
-		if (px->cmds[i].fd_out == -1)
-			return (av_printerror(px->pname, px->outfile, NULL), FALSE);
 	}
 	if (dup2(px->cmds[i].fd_in, STDIN_FILENO) == -1)
 		return (av_printerror(px->pname, "dup2", NULL), FALSE);
+	return (TRUE);
+}
+
+static t_bool	av_updatefdout(t_pipex *px, size_t i)
+{
+	if (px->cmds[i].fd_out == -1)
+	{
+		if (px->here)
+			px->cmds[i].fd_out = open(px->outfile,
+					O_WRONLY | O_CREAT | O_APPEND, 0664);
+		else
+			px->cmds[i].fd_out = open(px->outfile,
+					O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	}
+	if (px->cmds[i].fd_out == -1)
+		return (av_printerror(px->pname, px->outfile, NULL), FALSE);
 	if (dup2(px->cmds[i].fd_out, STDOUT_FILENO) == -1)
 		return (av_printerror(px->pname, "dup2", NULL), FALSE);
 	return (TRUE);
@@ -50,7 +56,9 @@ static int	av_runcmd_child(t_pipex *px, size_t i)
 	char	**argv;
 	char	*pname;
 
-	if (!av_updatefd(px, i))
+	if (!av_updatefdin(px, i))
+		return (EXIT_FAILURE);
+	if (!av_updatefdout(px, i))
 		return (EXIT_FAILURE);
 	argv = av_getargv(px, i);
 	if (argv == NULL)
