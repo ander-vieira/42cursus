@@ -6,11 +6,23 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:18:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:24:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:50:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static int	ft_printf_printptr(t_fd fd, void *ptr)
+{
+	int	result;
+
+	result = 0;
+	ft_print_addwrite(&result, ft_printstr(fd, PRINT_PTR_PREF));
+	if (result == -1)
+		return (-1);
+	ft_print_addwrite(&result, ft_printnbru(fd, (t_ulong)ptr, PRINT_BASE_HXL));
+	return (result);
+}
 
 static int	ft_printf_direc(t_fd fd, char **format, va_list args)
 {
@@ -28,6 +40,10 @@ static int	ft_printf_direc(t_fd fd, char **format, va_list args)
 		result = ft_printnbru(fd, va_arg(args, t_uint), PRINT_BASE_HXL);
 	else if ((*format)[1] == 'X')
 		result = ft_printnbru(fd, va_arg(args, t_uint), PRINT_BASE_HXU);
+	else if ((*format)[1] == 'p')
+		result = ft_printf_printptr(fd, va_arg(args, void *));
+	else if ((*format)[1] == '%')
+		result = ft_printchar(fd, '%');
 	else
 		result = write(fd, *format, 2);
 	*format += 1;

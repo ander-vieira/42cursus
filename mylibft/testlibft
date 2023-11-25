@@ -2,9 +2,10 @@
 
 make -s -C tests/ all clean
 
+echo "---- PARSENUM ----"
 
-tests/tester "01" "0" "1" "101011" "-111" "   +1011" "++1" "55" "10151" "10 01 10 01" > binary.out
-diff tests/binary.txt binary.out > /dev/null
+tests/parsenum_tester "01" "0" "1" "101011" "-111" "   +1011" "++1" "55" "10151" "10 01 10 01" > parsenum_output_binary.out
+diff tests/parsenum_output_binary.txt parsenum_output_binary.out > /dev/null
 if [ $? -ne 0 ]
 then
 	echo "Binary test KO"
@@ -12,8 +13,8 @@ else
 	echo "Binary test OK"
 fi
 
-tests/tester "0123456789" "0" "5" "+0" "-0" "+5" "-5" "     500" "-432" "  -6" "+-7" "kkk" "1k23j" "2147483647" "2147483648" "-2147483648" "-2147483647" "-2147483649" > decimal.out
-diff tests/decimal.txt decimal.out > /dev/null
+tests/parsenum_tester "0123456789" "0" "5" "+0" "-0" "+5" "-5" "     500" "-432" "  -6" "+-7" "kkk" "1k23j" "2147483647" "2147483648" "-2147483648" "-2147483647" "-2147483649" > parsenum_output_decimal.out
+diff tests/parsenum_output_decimal.txt parsenum_output_decimal.out > /dev/null
 if [ $? -ne 0 ]
 then
 	echo "Decimal test KO"
@@ -21,5 +22,16 @@ else
 	echo "Decimal test OK"
 fi
 
+echo "---- PRINTF ----"
+
+tests/printf_tester > printf_output.out
+diff tests/printf_output.txt printf_output.out > /dev/null
+if [ $? -ne 0 ]
+then
+	echo "Test KO"
+else
+	echo "Test OK"
+fi
+
 make -s -C tests/ fclean
-rm -f binary.out decimal.out
+rm -f parsenum_output_binary.out parsenum_output_decimal.out printf_output.out

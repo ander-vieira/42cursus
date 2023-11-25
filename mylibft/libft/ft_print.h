@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:15:51 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:19:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:48:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "ft_types.h"
 
 # define PRINT_NULL		"(null)"
+# define PRINT_PTR_PREF	"0x"
 # define PRINT_BASE_DEC	"0123456789"
 # define PRINT_BASE_HXL	"0123456789abcdef"
 # define PRINT_BASE_HXU	"0123456789ABCDEF"

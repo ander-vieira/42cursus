@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   printf_test.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 18:59:13 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 19:04:49 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/25 17:27:11 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/25 17:50:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
-
 #include "../libft/libft.h"
 
-#endif
+int	main(void)
+{
+	ft_printf(STDOUT_FILENO, "%c %s %d %h %% %x %u %X ppp %p\n", 'a', "HOLA", -555, 127, 100, 127, NULL);
+	return (0);
+}

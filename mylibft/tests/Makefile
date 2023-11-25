@@ -6,24 +6,28 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 18:58:01 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/24 19:14:43 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/25 17:37:35 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = tester
-
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = test.c
-HDRS = test.h
+PARSENUM_NAME = parsenum_tester
+PARSENUM_SRCS = parsenum_test.c
+
+PRINTF_NAME = printf_tester
+PRINTF_SRCS = printf_test.c
 
 LIBFT_DIR = ../libft/
 LIBFT =$(LIBFT_DIR)libft.a
 
-all: $(NAME)
+all: $(PARSENUM_NAME) $(PRINTF_NAME)
 
-$(NAME): $(SRCS) $(HDRS) $(LIBFT)
-	gcc $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
+$(PARSENUM_NAME): $(PARSENUM_SRCS) $(LIBFT)
+	gcc $(CFLAGS) $(PARSENUM_SRCS) $(LIBFT) -o $(PARSENUM_NAME)
+
+$(PRINTF_NAME): $(PRINTF_SRCS) $(LIBFT)
+	gcc $(CFLAGS) $(PRINTF_SRCS) $(LIBFT) -o $(PRINTF_NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) all clean
@@ -32,7 +36,7 @@ clean:
 	make -C $(LIBFT_DIR) fclean
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(PARSENUM_NAME) $(PRINTF_NAME)
 
 re: fclean all
 

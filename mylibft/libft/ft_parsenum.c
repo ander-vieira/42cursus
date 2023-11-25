@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:44:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:10:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:44:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static t_bool	ft_parsenum_getsign(char *str, size_t *i)
 		return (FALSE);
 }
 
-static t_bool	ft_parsenum_overflow(int result,
-	int pos, int base_len, t_bool sign)
+static t_bool	ft_parsenum_overflow(long result,
+	long pos, long base_len, t_bool sign)
 {
 	if (sign)
-		return (result > ((int)FT_INT_MIN - pos) / base_len);
+		return (result > ((long)FT_INT_MAX + 1 - pos) / base_len);
 	else
-		return (result > ((int)FT_INT_MAX - pos) / base_len);
+		return (result > ((long)FT_INT_MAX - pos) / base_len);
 }
 
 int	ft_parsenum(char *str, char *base, t_error *error)
