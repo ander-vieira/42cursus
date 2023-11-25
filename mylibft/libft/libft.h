@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:02:54 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:24:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,12 @@
 # include <unistd.h>
 
 # include "ft_error.h"
+# include "ft_gnl.h"
+# include "ft_print.h"
 # include "ft_types.h"
 
-# define GNL_FDLIMIT	4096
-# define GNL_BUFSIZE	64
-
+t_ulong	ft_abs(long num);
 void	ft_free(void *ptr);
-char	*ft_gnl(t_fd fd, t_error *error);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
 int		ft_parsenum(char *str, char *base, t_error *error);

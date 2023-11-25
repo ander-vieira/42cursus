@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:48:44 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 23:06:56 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:20:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef enum e_bool {
 	TRUE = 1
 }						t_bool;
 typedef unsigned int	t_uint;
+typedef unsigned long	t_ulong;
 typedef int				t_fd;
 
 #endif

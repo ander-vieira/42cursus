@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.h                                         :+:      :+:    :+:   */
+/*   ft_printnbru.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:04:30 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 16:17:35 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/25 16:39:35 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/25 17:18:37 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ERROR_H
-# define FT_ERROR_H
+#include "libft.h"
 
-# define ERR_OK		0
-# define ERR_READ	1
-# define ERR_WRITE	2
-# define ERR_MALLOC	3
+int	ft_printnbru(t_fd fd, t_ulong num, char *base)
+{
+	size_t	base_len;
+	int		result;
 
-# define ERR_PARSENUM_BADBASE	101
-# define ERR_PARSENUM_BADCHAR	102
-# define ERR_PARSENUM_OVERFLOW	103
-
-# define ERR_GNL_BADFD	101
-
-typedef unsigned char	t_error;
-
-#endif
+	base_len = ft_strlen(base);
+	if (base_len < 2)
+		return (-1);
+	result = 0;
+	if (num > base_len)
+		ft_print_addwrite(&result, ft_printnbru(fd, num / base_len, base));
+	if (result == -1)
+		return (-1);
+	ft_print_addwrite(&result, write(fd, base + (num % base_len), 1));
+	return (result);
+}

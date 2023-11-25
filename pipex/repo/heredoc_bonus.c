@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:51:44 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:22:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:17:16 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 t_fd	av_gnlerror(t_fd fd, t_error error, t_pipex *px)
 {
-	if (error == ERR_GNL_MALLOC)
+	if (error == ERR_MALLOC)
 		return (av_printerror(px->pname, "malloc", NULL), close(fd), -1);
-	else if (error == ERR_GNL_READ)
+	else if (error == ERR_READ)
 		return (av_printerror(px->pname, "read", NULL), close(fd), -1);
 	else
 		return (av_printerror(px->pname, "warning",

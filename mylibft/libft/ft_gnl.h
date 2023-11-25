@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.h                                         :+:      :+:    :+:   */
+/*   ft_gnl.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 16:04:30 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 16:17:35 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/25 16:11:39 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/25 16:13:47 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ERROR_H
-# define FT_ERROR_H
+#ifndef FT_GNL_H
+# define FT_GNL_H
 
-# define ERR_OK		0
-# define ERR_READ	1
-# define ERR_WRITE	2
-# define ERR_MALLOC	3
+# include "ft_error.h"
+# include "ft_types.h"
 
-# define ERR_PARSENUM_BADBASE	101
-# define ERR_PARSENUM_BADCHAR	102
-# define ERR_PARSENUM_OVERFLOW	103
+# define GNL_FDLIMIT	4096
+# define GNL_BUFSIZE	64
 
-# define ERR_GNL_BADFD	101
-
-typedef unsigned char	t_error;
+char	*ft_gnl(t_fd fd, t_error *error);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:33:34 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:05:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 16:16:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ static char	*ft_gnl_readline(t_fd fd, char *buf, t_error *error)
 
 	line = ft_gnl_joinline(NULL, buf);
 	if (line == NULL)
-		return (ft_seterror(error, ERR_GNL_MALLOC), NULL);
+		return (ft_seterror(error, ERR_MALLOC), NULL);
 	bytes_read = 1;
 	while (bytes_read > 0 && ft_strchr(line, '\n') == -1)
 	{
 		bytes_read = read(fd, buf, GNL_BUFSIZE);
 		if (bytes_read == -1)
-			return (ft_seterror(error, ERR_GNL_READ), free(line), NULL);
+			return (ft_seterror(error, ERR_READ), free(line), NULL);
 		if (bytes_read == 0 && ft_strlen(line) == 0)
-			return (ft_seterror(error, ERR_GNL_OK), free(line), NULL);
+			return (ft_seterror(error, ERR_OK), free(line), NULL);
 		line = ft_gnl_joinline(line, buf);
 		if (line == NULL)
-			return (ft_seterror(error, ERR_GNL_MALLOC), NULL);
+			return (ft_seterror(error, ERR_MALLOC), NULL);
 	}
-	return (ft_seterror(error, ERR_GNL_OK), line);
+	return (ft_seterror(error, ERR_OK), line);
 }
 
 static void	ft_gnl_remainder(char *buf)

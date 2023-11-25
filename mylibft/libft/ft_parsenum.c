@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:44:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 23:07:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/25 17:10:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,5 @@ int	ft_parsenum(char *str, char *base, t_error *error)
 	}
 	if (sign)
 		result *= -1;
-	return (ft_seterror(error, ERR_PARSENUM_OK), result);
+	return (ft_seterror(error, ERR_OK), result);
 }
