@@ -6,14 +6,16 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:55:42 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 14:48:35 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 14:57:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
 /*
- *	Trim path name to remove unnecessary slashes
+ *	Trim a pathname to remove trailing slashes
+ *	Arguments:
+ *	- name: the pathname to be trimmed
  */
 char	*ft_trimname(char *name)
 {

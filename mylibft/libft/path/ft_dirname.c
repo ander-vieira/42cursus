@@ -6,12 +6,21 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:41:19 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 14:48:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:02:02 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
+/*
+ *	Get the path to the directory containing the given pathname
+ *
+ *	Arguments:
+ *	- name: the pathname
+ *
+ *	Examples:
+ *	- "/home/user/" returns "/home"
+ */
 char	*ft_dirname(char *name)
 {
 	char	*trimname;
