@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:19:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 19:14:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,14 @@ int		ft_parsenum(char *str, char *base, t_error *error);
 /* ************************************************************************** */
 /* str: Functions for handling strings                                        */
 
+char	*ft_strbuild(char c, size_t len);
 ssize_t	ft_strchr(char *str, char c);
 t_bool	ft_strcmp(char *str1, char *str2);
+char	*ft_strformat(char *format, ...);
 char	*ft_strjoin(size_t n, ...);
 size_t	ft_strlen(char *str);
+char	*ft_strnbrs(long num, char *base);
+char	*ft_strnbru(t_ulong num, char *base);
 t_bool	ft_strprefix(char *str, char *prefix);
 ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);

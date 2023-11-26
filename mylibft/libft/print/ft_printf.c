@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:18:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 16:58:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:57:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_printf_printptr(t_fd fd, void *ptr)
 	return (result);
 }
 
-static int	ft_printf_direc(t_fd fd, char **format, va_list args)
+static int	ft_printf_conv(t_fd fd, char **format, va_list args)
 {
 	int		result;
 
@@ -97,7 +97,7 @@ int	ft_printf(t_fd fd, char *format, ...)
 	while (result != -1 && *format != '\0')
 	{
 		if (*format == '%')
-			ft_print_addwrite(&result, ft_printf_direc(fd, &format, args));
+			ft_print_addwrite(&result, ft_printf_conv(fd, &format, args));
 		else
 			ft_print_addwrite(&result, ft_printf_text(fd, &format));
 	}
