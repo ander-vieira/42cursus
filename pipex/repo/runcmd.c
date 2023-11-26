@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:00:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:21:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:47:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	av_runcmd_child(t_pipex *px, size_t i)
 		return (av_freeargv(argv), EXIT_FAILURE);
 	execve(pname, argv, px->env);
 	av_printerror(px->pname, "execve", NULL);
-	return (EXIT_FAILURE);
+	return (free(pname), av_freeargv(argv), EXIT_FAILURE);
 }
 
 t_bool	av_runcmd(t_pipex *px, size_t i)
