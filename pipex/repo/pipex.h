@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 00:20:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 18:12:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ void	av_printerror(char *pname, char *func, char *msg);
 
 char	**av_getargv(t_pipex *px, size_t i);
 void	av_freeargv(char **argv);
-
-t_fd	av_heredoc(t_pipex *px);
 
 t_bool	av_runcmd(t_pipex *px, size_t i);
 
