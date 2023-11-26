@@ -6,33 +6,93 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:24:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:17:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+/* ************************************************************************** */
+/* Standard library includes                                                  */
+
 # include <stdlib.h>
 # include <stdarg.h>
 # include <unistd.h>
 
-# include "ft_error.h"
-# include "ft_gnl.h"
-# include "ft_print.h"
-# include "ft_types.h"
+/* ************************************************************************** */
+/* General use types and macros                                               */
+
+# define FT_INT_MAX 2147483647
+
+typedef enum e_bool {
+	FALSE = 0,
+	TRUE = 1
+}						t_bool;
+typedef unsigned int	t_uint;
+typedef unsigned long	t_ulong;
+typedef int				t_fd;
+
+/* ************************************************************************** */
+/* Error handling functions and macros                                        */
+
+# define ERR_OK		0
+# define ERR_READ	1
+# define ERR_WRITE	2
+# define ERR_MALLOC	3
+
+# define ERR_PARSENUM_BADBASE	101
+# define ERR_PARSENUM_BADCHAR	102
+# define ERR_PARSENUM_OVERFLOW	103
+
+# define ERR_GNL_BADFD	101
+
+typedef unsigned char	t_error;
+
+void	ft_seterror(t_error *error, t_error value);
+
+/* ************************************************************************** */
+/* Miscellaneous functions                                                    */
 
 t_ulong	ft_abs(long num);
 void	ft_free(void *ptr);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
 int		ft_parsenum(char *str, char *base, t_error *error);
-void	ft_seterror(t_error *error, t_error value);
+
+/* ************************************************************************** */
+/* String handling functions                                                  */
+
 ssize_t	ft_strchr(char *str, char c);
 t_bool	ft_strcmp(char *str1, char *str2);
 char	*ft_strdup(char *str);
 char	*ft_strjoin(char *str1, char *str2);
 size_t	ft_strlen(char *str);
 t_bool	ft_strprefix(char *str, char *prefix);
+
+/* ************************************************************************** */
+/* Get next line                                                              */
+
+# define GNL_FDLIMIT	4096
+# define GNL_BUFSIZE	64
+
+char	*ft_gnl(t_fd fd, t_error *error);
+
+/* ************************************************************************** */
+/* Print functions                                                            */
+
+# define PRINT_NULL		"(null)"
+# define PRINT_PTR_PREF	"0x"
+# define PRINT_BASE_DEC	"0123456789"
+# define PRINT_BASE_HXL	"0123456789abcdef"
+# define PRINT_BASE_HXU	"0123456789ABCDEF"
+
+void	ft_print_addwrite(int *result, ssize_t bytes_write);
+
+int		ft_printchar(t_fd fd, char c);
+int		ft_printf(t_fd fd, char *format, ...);
+int		ft_printnbrs(t_fd fd, long num, char *base);
+int		ft_printnbru(t_fd fd, t_ulong num, char *base);
+int		ft_printstr(t_fd fd, char *str);
 
 #endif

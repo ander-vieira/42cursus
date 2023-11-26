@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:18:07 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/25 17:22:53 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/26 13:11:18 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ ft_seterror.c \
 ft_gnl.c \
 ft_print_addwrite.c ft_printchar.c ft_printf.c ft_printnbrs.c ft_printnbru.c ft_printstr.c \
 ft_strchr.c ft_strcmp.c ft_strdup.c ft_strjoin.c ft_strlen.c ft_strprefix.c
-HDRS = libft.h ft_error.h ft_gnl.h ft_print.h ft_types.h
+HDRS = libft.h
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
