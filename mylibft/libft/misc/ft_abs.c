@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:32:33 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 14:34:52 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/25 16:32:03 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:46:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-t_bool	ft_isspace(char c)
+t_ulong	ft_abs(long num)
 {
-	return (c == ' ' || c == '\t' || c == '\n'
-		|| c == '\f' || c == '\r' || c == '\v');
+	if (num < 0)
+		return (-num);
+	else
+		return (num);
 }

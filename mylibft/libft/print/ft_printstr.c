@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_addwrite.c                                :+:      :+:    :+:   */
+/*   ft_printstr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 17:05:00 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:05:43 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/25 16:34:48 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:43:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-/* 
- *	Libft internal, do not use in other projects!
- */
-void	ft_print_addwrite(int *result, ssize_t bytes_write)
+int	ft_printstr(t_fd fd, char *str)
 {
-	if (bytes_write == -1)
-		*result = -1;
-	else
-		*result += bytes_write;
+	if (str == NULL)
+		return (ft_printstr(fd, PRINT_NULL));
+	return (write(fd, str, ft_strlen(str)));
 }

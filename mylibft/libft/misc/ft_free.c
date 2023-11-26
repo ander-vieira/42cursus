@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printchar.c                                     :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 16:34:00 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:07:04 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 12:50:02 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:46:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-int	ft_printchar(t_fd fd, char c)
+void	ft_free(void *ptr)
 {
-	return (write(fd, &c, 1));
+	if (ptr != NULL)
+		free(ptr);
 }

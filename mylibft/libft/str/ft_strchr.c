@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printnbrs.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 16:39:35 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:10:27 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 14:26:32 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:21:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-int	ft_printnbrs(t_fd fd, long num, char *base)
+ssize_t	ft_strchr(char *str, char c)
 {
-	int	result;
+	ssize_t	i;
 
-	result = 0;
-	if (num < 0)
-		ft_print_addwrite(&result, write(fd, "-", 1));
-	if (result == -1)
+	i = 0;
+	while (str[i] != '\0' && str[i] != c)
+		i++;
+	if (str[i] != c)
 		return (-1);
-	ft_print_addwrite(&result, ft_printnbru(fd, ft_abs(num), base));
-	return (result);
+	return (i);
 }

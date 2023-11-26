@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_seterror.c                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 17:24:55 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 17:25:19 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 14:22:39 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:21:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-void	ft_seterror(t_error *error, t_error value)
+t_bool	ft_strcmp(char *str1, char *str2)
 {
-	if (error != NULL)
-		*error = value;
+	size_t	i;
+
+	i = 0;
+	while (str1[i] != '\0' || str2[i] != '\0')
+	{
+		if (str1[i] != str2[i])
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
 }

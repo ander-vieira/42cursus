@@ -6,11 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:33:34 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 16:16:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:46:31 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static char	*ft_gnl_joinline(char *line, char *buf)
 {

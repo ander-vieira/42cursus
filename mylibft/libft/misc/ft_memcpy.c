@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 23:19:52 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 23:31:21 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 12:54:22 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:46:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strjoin(char *str1, char *str2)
+void	ft_memcpy(void *dst, void *src, size_t len)
 {
-	char	*result;
-	size_t	len1;
-	size_t	len2;
+	size_t	i;
 
-	len1 = ft_strlen(str1);
-	len2 = ft_strlen(str2);
-	result = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (result == NULL)
-		return (NULL);
-	ft_memcpy(result, str1, len1);
-	ft_memcpy(result + len1, str2, len2);
-	result[len1 + len2] = '\0';
-	return (result);
+	if (dst == NULL || src == NULL || len == 0)
+		return ;
+	i = 0;
+	while (i < len)
+	{
+		((char *)dst)[i] = ((char *)src)[i];
+		i++;
+	}
 }

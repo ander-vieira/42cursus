@@ -6,11 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:44:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:44:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:46:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static size_t	ft_parsenum_validbase(char *base)
 {

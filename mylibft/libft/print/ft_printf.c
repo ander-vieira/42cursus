@@ -6,11 +6,11 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:18:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 17:50:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:43:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
 static int	ft_printf_printptr(t_fd fd, void *ptr)
 {

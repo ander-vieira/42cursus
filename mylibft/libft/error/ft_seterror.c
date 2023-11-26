@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_seterror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:26:32 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/24 16:15:23 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/24 17:24:55 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 13:46:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-ssize_t	ft_strchr(char *str, char c)
+void	ft_seterror(t_error *error, t_error value)
 {
-	ssize_t	i;
-
-	i = 0;
-	while (str[i] != '\0' && str[i] != c)
-		i++;
-	if (str[i] != c)
-		return (-1);
-	return (i);
+	if (error != NULL)
+		*error = value;
 }

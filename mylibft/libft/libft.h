@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:17:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 13:22:31 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_memcpy(void *dst, void *src, size_t len);
 int		ft_parsenum(char *str, char *base, t_error *error);
 
 /* ************************************************************************** */
-/* String handling functions                                                  */
+/* Functions for handling strings                                             */
 
 ssize_t	ft_strchr(char *str, char c);
 t_bool	ft_strcmp(char *str1, char *str2);
@@ -69,6 +69,11 @@ char	*ft_strdup(char *str);
 char	*ft_strjoin(char *str1, char *str2);
 size_t	ft_strlen(char *str);
 t_bool	ft_strprefix(char *str, char *prefix);
+
+/* ************************************************************************** */
+/* Functions for handling pathnames                                           */
+
+char	*ft_trimname(char *name);
 
 /* ************************************************************************** */
 /* Get next line                                                              */
