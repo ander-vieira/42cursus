@@ -6,12 +6,23 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:34:48 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:43:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 16:54:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
+/*
+ *	Print a string to a file descriptor
+ *	Prints "(null)" if the string is a null pointer
+ *
+ *	Arguments:
+ *	- fd: the file descriptor
+ *	- str: the string
+ *
+ *	Return value:
+ *	- The number of bytes written, or -1 if write error
+ */
 int	ft_printstr(t_fd fd, char *str)
 {
 	if (str == NULL)

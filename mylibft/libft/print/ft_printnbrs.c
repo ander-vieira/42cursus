@@ -6,12 +6,23 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:39:35 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:43:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 16:54:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
+/*
+ *	Print a signed (+/-) number to a file descriptor using a given base
+ *
+ *	Arguments:
+ *	- fd: the file descriptor
+ *	- num: the signed number
+ *	- base: the base to write the number in (see libft.h for possible bases)
+ *
+ *	Return value:
+ *	- The number of bytes written, or -1 if write error
+ */
 int	ft_printnbrs(t_fd fd, long num, char *base)
 {
 	int	result;

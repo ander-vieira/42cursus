@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:51:44 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/25 16:17:16 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:16:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_fd	av_heredoc(t_pipex *px)
 	t_fd	fd[2];
 	t_error	error;
 
-	delim = ft_strjoin(px->infile, "\n");
+	delim = ft_strjoin(2, px->infile, "\n");
 	if (delim == NULL)
 		return (av_printerror(px->pname, "malloc", NULL), -1);
 	if (pipe(fd) == -1)

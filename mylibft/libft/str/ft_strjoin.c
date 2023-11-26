@@ -6,25 +6,61 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:19:52 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:21:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:16:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*ft_strjoin(char *str1, char *str2)
+static char	**ft_strjoin_strs(size_t n, va_list args, size_t *len)
 {
-	char	*result;
-	size_t	len1;
-	size_t	len2;
+	char	**strs;
+	size_t	i;
 
-	len1 = ft_strlen(str1);
-	len2 = ft_strlen(str2);
-	result = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (result == NULL)
+	strs = (char **)malloc(sizeof(char *) * n);
+	if (strs == NULL)
 		return (NULL);
-	ft_memcpy(result, str1, len1);
-	ft_memcpy(result + len1, str2, len2);
-	result[len1 + len2] = '\0';
-	return (result);
+	*len = 0;
+	i = 0;
+	while (i < n)
+	{
+		strs[i] = va_arg(args, char *);
+		*len += ft_strlen(strs[i]);
+		i++;
+	}
+	return (strs);
+}
+
+static void	ft_strjoin_copy(char *result, size_t n, char **strs)
+{
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		len = ft_strlen(strs[i]);
+		ft_memcpy(result, strs[i], len);
+		result += len;
+		i++;
+	}
+	result[0] = '\0';
+}
+
+char	*ft_strjoin(size_t n, ...)
+{
+	va_list	args;
+	char	*result;
+	size_t	len;
+	char	**strs;
+
+	va_start(args, n);
+	strs = ft_strjoin_strs(n, args, &len);
+	if (strs == NULL)
+		return (NULL);
+	result = (char *)malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (free(strs), NULL);
+	ft_strjoin_copy(result, n, strs);
+	return (free(strs), result);
 }

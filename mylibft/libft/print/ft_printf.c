@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:18:09 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:43:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 16:58:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_printf_printptr(t_fd fd, void *ptr)
 	ft_print_addwrite(&result, ft_printstr(fd, PRINT_PTR_PREF));
 	if (result == -1)
 		return (-1);
-	ft_print_addwrite(&result, ft_printnbru(fd, (t_ulong)ptr, PRINT_BASE_HXL));
+	ft_print_addwrite(&result, ft_printnbru(fd, (t_ulong)ptr, BASE_HXL));
 	return (result);
 }
 
@@ -33,13 +33,13 @@ static int	ft_printf_direc(t_fd fd, char **format, va_list args)
 	else if ((*format)[1] == 's')
 		result = ft_printstr(fd, va_arg(args, char *));
 	else if ((*format)[1] == 'd' || (*format)[1] == 'i')
-		result = ft_printnbrs(fd, va_arg(args, int), PRINT_BASE_DEC);
+		result = ft_printnbrs(fd, va_arg(args, int), BASE_DEC);
 	else if ((*format)[1] == 'u')
-		result = ft_printnbru(fd, va_arg(args, t_uint), PRINT_BASE_DEC);
+		result = ft_printnbru(fd, va_arg(args, t_uint), BASE_DEC);
 	else if ((*format)[1] == 'x')
-		result = ft_printnbru(fd, va_arg(args, t_uint), PRINT_BASE_HXL);
+		result = ft_printnbru(fd, va_arg(args, t_uint), BASE_HXL);
 	else if ((*format)[1] == 'X')
-		result = ft_printnbru(fd, va_arg(args, t_uint), PRINT_BASE_HXU);
+		result = ft_printnbru(fd, va_arg(args, t_uint), BASE_HXU);
 	else if ((*format)[1] == 'p')
 		result = ft_printf_printptr(fd, va_arg(args, void *));
 	else if ((*format)[1] == '%')
@@ -66,6 +66,27 @@ static int	ft_printf_text(t_fd fd, char **format)
 	return (result);
 }
 
+/*
+ *	Print to a file descriptor using a format string and the passed args
+ *	Format string works like regular printf, with limited conversions.
+ *
+ *	Arguments:
+ *	- fd: the file descriptor
+ *	- format: the format string, using printf notation
+ *	- ...: other arguments required by the format string
+ *
+ *	Valid conversions:
+ *	- %c: print a character
+ *	- %s: print a string
+ *	- %d or %i: print a signed decimal number (int)
+ *	- %u: print an unsigned decimal number (unsigned int)
+ *	- %x: print an unsigned hexadecimal number in lowercase
+ *	- %X: print an unsigned hexadecimal number in uppercase
+ *	- %p: print a pointer/memory address in hexadecimal lowercase
+ *
+ *	Return value:
+ *	- The number of bytes written, or -1 if write error
+ */
 int	ft_printf(t_fd fd, char *format, ...)
 {
 	int		result;
