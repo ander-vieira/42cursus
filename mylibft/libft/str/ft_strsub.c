@@ -6,18 +6,21 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:20:10 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 15:04:16 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:06:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
 /*
- *	Returns a freeable substring of the given size from the given string
+ *	Returns a substring of the given size from the given string
  *
  *	Arguments:
  *	- str: the given string (substring is taken from the beginning)
  *	- len: the size of the substring
+ *
+ *	Return value:
+ *	- The substring as a FREEABLE string
  */
 char	*ft_strsub(char *str, size_t len)
 {

@@ -6,17 +6,20 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:41:19 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 15:02:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:06:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
 /*
- *	Get the path to the directory containing the given pathname
+ *	Get the path to the directory containing the given pathname.
  *
  *	Arguments:
  *	- name: the pathname
+ *
+ *	Return value.
+ *	- The directory path as a FREEABLE string
  *
  *	Examples:
  *	- "/home/user/" returns "/home"

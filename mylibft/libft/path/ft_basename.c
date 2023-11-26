@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:46:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 15:02:19 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 15:06:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
  *
  *	Arguments:
  *	- name: the pathname
+ *
+ *	Return value:
+ *	- The base name as a FREEABLE string
  *
  *	Examples:
  *	- "/home/user/" returns "user"
