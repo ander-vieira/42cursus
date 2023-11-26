@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 14:26:11 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 14:48:25 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ char	*ft_strsub(char *str, size_t len);
 
 /* ************************************************************************** */
 /* path: Functions for handling pathnames                                     */
+
+# define PATH_DELIM '/'
+# define PATH_CURRENT	"."
+# define PATH_ROOT		"/"
 
 char	*ft_basename(char *name);
 char	*ft_dirname(char *name);
