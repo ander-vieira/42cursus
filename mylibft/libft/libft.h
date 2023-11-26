@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:22:31 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 14:26:11 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef unsigned char	t_error;
 void	ft_seterror(t_error *error, t_error value);
 
 /* ************************************************************************** */
-/* Miscellaneous functions                                                    */
+/* misc: Miscellaneous functions                                              */
 
 t_ulong	ft_abs(long num);
 void	ft_free(void *ptr);
@@ -61,7 +61,7 @@ void	ft_memcpy(void *dst, void *src, size_t len);
 int		ft_parsenum(char *str, char *base, t_error *error);
 
 /* ************************************************************************** */
-/* Functions for handling strings                                             */
+/* str: Functions for handling strings                                        */
 
 ssize_t	ft_strchr(char *str, char c);
 t_bool	ft_strcmp(char *str1, char *str2);
@@ -69,14 +69,18 @@ char	*ft_strdup(char *str);
 char	*ft_strjoin(char *str1, char *str2);
 size_t	ft_strlen(char *str);
 t_bool	ft_strprefix(char *str, char *prefix);
+ssize_t	ft_strrchr(char *str, char c);
+char	*ft_strsub(char *str, size_t len);
 
 /* ************************************************************************** */
-/* Functions for handling pathnames                                           */
+/* path: Functions for handling pathnames                                     */
 
+char	*ft_basename(char *name);
+char	*ft_dirname(char *name);
 char	*ft_trimname(char *name);
 
 /* ************************************************************************** */
-/* Get next line                                                              */
+/* gnl: Get next line                                                         */
 
 # define GNL_FDLIMIT	4096
 # define GNL_BUFSIZE	64
@@ -84,7 +88,7 @@ char	*ft_trimname(char *name);
 char	*ft_gnl(t_fd fd, t_error *error);
 
 /* ************************************************************************** */
-/* Print functions                                                            */
+/* print: Print functions                                                     */
 
 # define PRINT_NULL		"(null)"
 # define PRINT_PTR_PREF	"0x"

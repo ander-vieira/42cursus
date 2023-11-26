@@ -1,0 +1,10 @@
+1: / has dirname /
+2: /boot has dirname /
+3: /home/ander has dirname /home
+4: // has dirname /
+5: //a//b has dirname //a/
+6: //a//b/ has dirname //a/
+7: libft has dirname .
+8: libft/ has dirname .
+9: libft// has dirname .
+10: a/b/c/d/ has dirname a/b/c

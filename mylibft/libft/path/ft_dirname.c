@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_dirname.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:26:32 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:51:56 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/26 12:41:19 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 14:28:11 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-ssize_t	ft_strchr(char *str, char c)
+char	*ft_dirname(char *name)
 {
-	ssize_t	i;
+	char	*trimname;
+	ssize_t	slash_len;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
+	trimname = ft_trimname(name);
+	if (trimname == NULL)
+		return (NULL);
+	slash_len = ft_strrchr(trimname, '/');
+	if (slash_len == -1)
+		return (ft_strdup("."));
+	if (slash_len == 0)
+		return (ft_strdup("/"));
+	return (ft_strsub(trimname, slash_len));
 }

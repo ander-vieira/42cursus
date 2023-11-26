@@ -22,16 +22,36 @@ else
 	echo "Decimal test OK"
 fi
 
-echo "---- PRINTF ----"
+echo "---- PRINT ----"
 
 tests/printf_tester > printf_output.out
 diff tests/printf_output.txt printf_output.out > /dev/null
 if [ $? -ne 0 ]
 then
-	echo "Test KO"
+	echo "Printf: Test KO"
 else
-	echo "Test OK"
+	echo "Printf: Test OK"
+fi
+
+echo "---- PATH ----"
+
+tests/basename_tester / /boot /home/ander // //a//b //a//b/ libft libft/ libft// a/b/c/d/ > basename_output.out
+diff tests/basename_output.txt basename_output.out > /dev/null
+if [ $? -ne 0 ]
+then
+	echo "Basename: Test KO"
+else
+	echo "Basename: Test OK"
+fi
+
+tests/dirname_tester / /boot /home/ander // //a//b //a//b/ libft libft/ libft// a/b/c/d/ > dirname_output.out
+diff tests/dirname_output.txt dirname_output.out > /dev/null
+if [ $? -ne 0 ]
+then
+	echo "Dirname: Test KO"
+else
+	echo "Dirname: Test OK"
 fi
 
 make -s -C tests/ fclean
-rm -f parsenum_output_binary.out parsenum_output_decimal.out printf_output.out
+rm -f basename_output.out dirname_output.out parsenum_output_binary.out parsenum_output_decimal.out printf_output.out

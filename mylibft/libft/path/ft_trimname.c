@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_trimname.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:26:32 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:51:56 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/26 12:55:42 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 14:25:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-ssize_t	ft_strchr(char *str, char c)
+/*
+ *	Trim path name to remove unnecessary slashes
+ */
+char	*ft_trimname(char *name)
 {
-	ssize_t	i;
+	size_t	trim_len;
 
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
+	trim_len = ft_strlen(name);
+	while (trim_len > 1 && name[trim_len - 1] == '/')
+		trim_len--;
+	return (ft_strsub(name, trim_len));
 }

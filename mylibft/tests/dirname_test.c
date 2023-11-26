@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   dirname_test.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/24 14:26:32 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:51:56 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/26 14:31:13 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/26 14:44:01 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include <stdio.h>
 
-ssize_t	ft_strchr(char *str, char c)
+#include "../libft/libft.h"
+
+int main(int argc, char **argv)
 {
-	ssize_t	i;
+	int	i;
 
-	i = 0;
-	while (str[i] != '\0')
+	i = 1;
+	while (i < argc)
 	{
-		if (str[i] == c)
-			return (i);
+		printf("%d: %s has dirname %s\n", i, argv[i], ft_dirname(argv[i]));
 		i++;
 	}
-	return (-1);
 }

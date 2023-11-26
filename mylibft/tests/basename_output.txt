@@ -1,0 +1,10 @@
+1: / has basename /
+2: /boot has basename boot
+3: /home/ander has basename ander
+4: // has basename /
+5: //a//b has basename b
+6: //a//b/ has basename b
+7: libft has basename libft
+8: libft/ has basename libft
+9: libft// has basename libft
+10: a/b/c/d/ has basename d
