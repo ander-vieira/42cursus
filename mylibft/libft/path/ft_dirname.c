@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:41:19 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:19:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:29:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
  */
 char	*ft_dirname(char *name)
 {
+	char	*dirname;
 	char	*trimname;
 	ssize_t	slash_len;
 
@@ -34,8 +35,9 @@ char	*ft_dirname(char *name)
 		return (NULL);
 	slash_len = ft_strrchr(trimname, PATH_DELIM);
 	if (slash_len == -1)
-		return (ft_strjoin(1, PATH_CURRENT));
+		return (free(trimname), ft_strjoin(1, PATH_CURRENT));
 	if (slash_len == 0)
-		return (ft_strjoin(1, PATH_ROOT));
-	return (ft_strsub(trimname, slash_len));
+		return (free(trimname), ft_strjoin(1, PATH_ROOT));
+	dirname = ft_strsub(trimname, slash_len);
+	return (free(trimname), dirname);
 }

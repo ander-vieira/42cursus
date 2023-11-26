@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:31:13 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 14:43:44 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:22:33 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@
 
 int main(int argc, char **argv)
 {
-	int	i;
+	int		i;
+	char	*basename;
 
 	i = 1;
 	while (i < argc)
 	{
-		printf("%d: %s has basename %s\n", i, argv[i], ft_basename(argv[i]));
+		basename = ft_basename(argv[i]);
+		printf("%d: %s has basename %s\n", i, argv[i], basename);
+		free(basename);
 		i++;
 	}
 }

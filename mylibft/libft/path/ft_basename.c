@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:46:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:17:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/26 17:29:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@
  */
 char	*ft_basename(char *name)
 {
+	char	*basename;
 	char	*trimname;
 
 	trimname = ft_trimname(name);
 	if (trimname == NULL)
 		return (NULL);
 	if (ft_strcmp(trimname, PATH_ROOT))
-		return (ft_strjoin(1, PATH_ROOT));
-	return (ft_strjoin(1, trimname + ft_strrchr(trimname, '/') + 1));
+		return (free(trimname), ft_strjoin(1, PATH_ROOT));
+	basename = ft_strjoin(1, trimname + ft_strrchr(trimname, '/') + 1);
+	return (free(trimname), basename);
 }

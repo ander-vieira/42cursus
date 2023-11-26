@@ -4,7 +4,7 @@ make -s -C tests/ all clean
 
 echo "---- PARSENUM ----"
 
-tests/parsenum_tester "01" "0" "1" "101011" "-111" "   +1011" "++1" "55" "10151" "10 01 10 01" > parsenum_output_binary.out
+valgrind --log-fd=10 tests/parsenum_tester "01" "0" "1" "101011" "-111" "   +1011" "++1" "55" "10151" "10 01 10 01" > parsenum_output_binary.out 10>>valgrind.out
 diff tests/parsenum_output_binary.txt parsenum_output_binary.out > /dev/null
 if [ $? -ne 0 ]
 then
@@ -13,7 +13,7 @@ else
 	echo "Binary test OK"
 fi
 
-tests/parsenum_tester "0123456789" "0" "5" "+0" "-0" "+5" "-5" "     500" "-432" "  -6" "+-7" "kkk" "1k23j" "2147483647" "2147483648" "-2147483648" "-2147483647" "-2147483649" > parsenum_output_decimal.out
+valgrind --log-fd=10 tests/parsenum_tester "0123456789" "0" "5" "+0" "-0" "+5" "-5" "     500" "-432" "  -6" "+-7" "kkk" "1k23j" "2147483647" "2147483648" "-2147483648" "-2147483647" "-2147483649" > parsenum_output_decimal.out 10>>valgrind.out
 diff tests/parsenum_output_decimal.txt parsenum_output_decimal.out > /dev/null
 if [ $? -ne 0 ]
 then
@@ -24,7 +24,7 @@ fi
 
 echo "---- PRINT ----"
 
-tests/printf_tester > printf_output.out
+valgrind --log-fd=10 tests/printf_tester > printf_output.out 10>>valgrind.out
 diff tests/printf_output.txt printf_output.out > /dev/null
 if [ $? -ne 0 ]
 then
@@ -35,7 +35,7 @@ fi
 
 echo "---- PATH ----"
 
-tests/basename_tester / /boot /home/ander // //a//b //a//b/ libft libft/ libft// a/b/c/d/ > basename_output.out
+valgrind --log-fd=10 tests/basename_tester / /boot /home/ander // //a//b //a//b/ libft libft/ libft// a/b/c/d/ > basename_output.out 10>>valgrind.out
 diff tests/basename_output.txt basename_output.out > /dev/null
 if [ $? -ne 0 ]
 then
@@ -44,7 +44,7 @@ else
 	echo "Basename: Test OK"
 fi
 
-tests/dirname_tester / /boot /home/ander // //a//b //a//b/ libft libft/ libft// a/b/c/d/ > dirname_output.out
+valgrind --log-fd=10 tests/dirname_tester / /boot /home/ander // //a//b //a//b/ libft libft/ libft// a/b/c/d/ > dirname_output.out 10>>valgrind.out
 diff tests/dirname_output.txt dirname_output.out > /dev/null
 if [ $? -ne 0 ]
 then
