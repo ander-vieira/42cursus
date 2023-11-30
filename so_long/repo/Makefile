@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2023/11/09 15:41:16 by andeviei         ###   ########.fr        #
+#    Updated: 2023/11/30 16:30:56 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,17 +14,29 @@ NAME = so_long
 
 CFLAGS = -Wall -Wextra -Werror -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-SRCS = so_long.c display.c errors.c print.c readfile.c str.c validmap.c
-HDRS = so_long.h bool.h
+SRCS = so_long.c display.c error.c readfile.c validmap.c
+HDRS = so_long.h
+
+LIBFT_DIR = libft/
+LIBFT = $(LIBFT_DIR)libft.a
+
+MLX_DIR = mlx/
+MLX = $(MLX_DIR)libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(SRCS) $(HDRS)
-	make -C mlx/
-	gcc $(CFLAGS) $(SRCS) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(SRCS) $(HDRS)
+	gcc $(CFLAGS) $(SRCS) $(LIBFT) $(MLX) -o $(NAME)
+
+$(LIBFT):
+	make -C $(LIBFT_DIR) all clean
+
+$(MLX):
+	make -C $(MLX_DIR) all
 
 clean:
-	make clean -C mlx/
+	make -C $(LIBFT_DIR) fclean
+	make -C $(MLX_DIR) clean
 	rm -f $(NAME)
 
 fclean: clean

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bool.h                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 15:16:30 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 15:17:07 by andeviei         ###   ########.fr       */
+/*   Created: 2023/11/09 15:36:56 by andeviei          #+#    #+#             */
+/*   Updated: 2023/11/30 16:50:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BOOL_H
-# define BOOL_H
+#include "so_long.h"
 
-# define TRUE		1
-# define FALSE		0
-
-typedef unsigned char	t_bool;
-
-#endif
+void	av_printerror(char *pname, char *func, char *msg)
+{
+	ft_printstr(STDERR_FILENO, "Error\n");
+	if (pname != NULL)
+		ft_printf(STDERR_FILENO, "%s: ", pname);
+	if (func != NULL)
+		ft_printf(STDERR_FILENO, "%s: ", func);
+	if (msg == NULL)
+		msg = strerror(errno);
+	ft_printf(STDERR_FILENO, "%s\n", msg);
+}

@@ -2,5 +2,11 @@
 !Makefile
 !*.c
 !*.h
+!libft/
+!libft/**
+!mlx/
+!mlx/**
 !maps/
+!maps/**
 !textures/
+!textures/**

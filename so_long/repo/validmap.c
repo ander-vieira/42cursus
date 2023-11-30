@@ -6,12 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:55:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 17:53:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:36:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
 t_bool	sl_validchars(t_map	*map)
 {
 	size_t	p_num;
@@ -50,3 +51,4 @@ t_bool	sl_validmap(t_map *map)
 	(void)map;
 	return (TRUE);
 }
+*/

@@ -6,12 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 20:14:27 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/09 17:43:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:35:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*
 static t_bool	sl_readx(int fd, t_map *map, t_buf *buf)
 {
 	map->w = 0;
@@ -111,3 +112,4 @@ t_bool	sl_readfile(char *file, t_map *map)
 		return (free(map->m), FALSE);
 	return (TRUE);
 }
+*/
