@@ -1,0 +1,42 @@
+#!/bin/bash
+
+red="\033[0;31m"
+green="\033[0;32m"
+nocolor="\033[0m"
+
+# Go to script's location
+cd $(dirname $0)
+
+if [ $# -ge 1 ]
+then
+	repo="$1"
+else
+	repo="repo/"
+fi
+
+../util/printtitle "NORMINETTE"
+../util/normcheck "$repo/libft/ $repo/*.c $repo/*.h"
+
+../util/printtitle "COMPILE"
+make -C repo/ -s all 2> compile.out
+
+../util/printtitle "TESTS: INCORRECT PARAMS 1"
+repo/so_long
+../util/printtitle "TESTS: INCORRECT PARAMS 2"
+repo/so_long a b
+../util/printtitle "TESTS: WRONG FILE EXTENSION"
+repo/so_long a
+../util/printtitle "TESTS: FILE NOT FOUND"
+repo/so_long a.ber
+../util/printtitle "TESTS: BAD MAP FORMAT 1 (map_f1.ber)"
+repo/so_long repo/maps/map_f1.ber
+../util/printtitle "TESTS: BAD MAP FORMAT 2 (map_f2.ber)"
+repo/so_long repo/maps/map_f2.ber
+../util/printtitle "TESTS: INCORRECT MAP 1 (map_b1.ber)"
+repo/so_long repo/maps/map_b1.ber
+../util/printtitle "TESTS: INCORRECT MAP 2 (map_b2.ber)"
+repo/so_long repo/maps/map_b2.ber
+../util/printtitle "TESTS: CORRECT MAP (map_g1.ber)"
+repo/so_long repo/maps/map_g1.ber
+
+make -C repo/ -s fclean
