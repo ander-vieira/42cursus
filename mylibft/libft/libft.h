@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 15:17:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:00:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*ft_strnbru(t_ulong num, char *base);
 t_bool	ft_strprefix(char *str, char *prefix);
 ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);
+t_bool	ft_strsuffix(char *str, char *suffix);
 
 /* ************************************************************************** */
 /* path: Functions for handling pathnames                                     */
