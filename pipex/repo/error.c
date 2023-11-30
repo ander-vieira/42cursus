@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 14:53:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:38:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	av_printusage(char *pname)
 {
 	av_putstr("Usage: \n", STDOUT_FILENO);
 	av_putstr(pname, STDOUT_FILENO);
-	av_putstr(" <infile> <cmd1> <...> <cmdN> <outfile>\n",
+	av_putstr(" <infile> <cmd1> <cmd2> <outfile>\n",
 		STDOUT_FILENO);
 }
 
