@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:01:46 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 18:12:57 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:17:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,15 @@
 # define PATH_DELIM	'/'
 # define ENV_DELIM	':'
 
-typedef struct s_cmd {
+typedef struct s_cmd
+{
 	char	*cmd;
 	int		fd_in;
 	int		fd_out;
 }	t_cmd;
 
-typedef struct s_pipex {
+typedef struct s_pipex
+{
 	char	*pname;
 	char	*infile;
 	size_t	cmd_num;

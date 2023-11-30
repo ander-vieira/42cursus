@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:33:34 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 11:59:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:18:26 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static char	*ft_gnl_readline(t_fd fd, char *buf, t_error *error)
 	{
 		bytes_read = read(fd, buf, GNL_BUFSIZE);
 		if (bytes_read == -1)
-			return (buf[0] = '\0', ft_seterror(error, ERR_READ), free(line), NULL);
+			return (buf[0] = '\0', ft_seterror(error, ERR_READ),
+				free(line), NULL);
 		if (bytes_read == 0 && ft_strlen(line) == 0)
 			return (ft_seterror(error, ERR_OK), free(line), NULL);
 		buf[bytes_read] = '\0';
