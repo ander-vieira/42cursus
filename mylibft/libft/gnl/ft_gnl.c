@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:33:34 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 15:18:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:00:44 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ static char	*ft_gnl_joinline(char *line, char *buf)
 		buf_len += 1;
 	result = (char *)malloc(sizeof(char) * (line_len + buf_len + 1));
 	if (result == NULL)
-		return (ft_free(line), NULL);
+		return (free(line), NULL);
 	ft_memcpy(result, line, line_len);
 	ft_memcpy(result + line_len, buf, buf_len);
 	result[line_len + buf_len] = '\0';
-	ft_free(line);
+	free(line);
 	return (result);
 }
 
