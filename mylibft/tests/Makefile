@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 18:58:01 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/05 16:59:42 by andeviei         ###   ########.fr        #
+#    Updated: 2023/12/05 20:31:17 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = tester
 
 SRC = tester.c tester_utils.c test_misc.c test_str1.c test_str2.c test_str3.c \
-test_gnl.c
+test_gnl.c test_print.c test_printf.c
 HDR = tester.h
 
 BASENAME_NAME = basename_tester
