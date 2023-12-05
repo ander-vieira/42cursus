@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 16:02:48 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 17:26:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/11/30 17:27:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_bool	av_getmap(t_sl *sl)
 	{
 		line = ft_gnl(fd, &error);
 		if (line == NULL)
-			return ();
+			return (FALSE);
 		free(line);
 		i++;
 	}
