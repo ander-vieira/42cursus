@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 20:00:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:15:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 # define FT_INT_MAX 2147483647
 
+# define BASE_BIN	"01"
+# define BASE_OCT	"01234567"
 # define BASE_DEC	"0123456789"
 # define BASE_HXL	"0123456789abcdef"
 # define BASE_HXU	"0123456789ABCDEF"
