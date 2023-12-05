@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 20:28:35 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 20:38:44 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/05 20:41:37 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,22 @@ static void	test_printf3(void)
 	t_fd	fd[2];
 
 	pipe(fd);
-	print_test("7", ft_printf(fd[1], "%i + 0X%X + %d = %u (0x%x)", -33, 30, 33, 30, 30) == 27, FALSE);
+	print_test("7", ft_printf(fd[1], "%i + 0X%X + %d = %u%% (0x%x)", -33, 30, 33, 30, 30) == 28, FALSE);
 	close(fd[1]);
-	print_test("8", read(fd[0], buf, 50) == 27, FALSE);
+	print_test("8", read(fd[0], buf, 50) == 28, FALSE);
 	close(fd[0]);
-	print_test("9", !memcmp(buf, "-33 + 0X1E + 33 = 30 (0x1e)", 27), TRUE);
+	print_test("9", !memcmp(buf, "-33 + 0X1E + 33 = 30% (0x1e)", 28), FALSE);
+}
+
+static void	test_printf4(void)
+{
+	t_fd	fd[2];
+
+	pipe(fd);
+	close(fd[0]);
+	close(fd[1]);
+	print_test("10", ft_printf(fd[1], "AAA") == -1, FALSE);
+	print_test("11", ft_printf(-1, "AAA") == -1, TRUE);
 }
 
 void	test_printf(void)
@@ -57,4 +68,5 @@ void	test_printf(void)
 	test_printf1();
 	test_printf2();
 	test_printf3();
+	test_printf4();
 }
