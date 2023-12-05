@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 19:02:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 19:14:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/05 16:39:45 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	*ft_strnbru(t_ulong num, char *base)
 	{
 		result[len - i - 1] = base[num % base_len];
 		num /= base_len;
+		i++;
 	}
 	result[len] = '\0';
 	return (result);
