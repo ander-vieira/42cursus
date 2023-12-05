@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:06:28 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 16:39:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:05:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ static void	test_strformat(void)
 	str = ft_strformat("abs(%d) == %u, or in hex 0X%X", -57, 57, 57);
 	print_test("2", !strcmp(str, "abs(-57) == 57, or in hex 0X39"), FALSE);
 	free(str);
-	str = ft_strformat("HOL%i, TEN %x AMIG%d\n", 111, 254, 0);
-	print_test("3", !strcmp(str, "HOL111, TEN fe AMIG0\n"), TRUE);
+	str = ft_strformat("HOL%i, TEN %x AMIG%d %%\n", 111, 254, 0);
+	print_test("3", !strcmp(str, "HOL111, TEN fe AMIG0 %\n"), FALSE);
+	free(str);
+	str = ft_strformat("%h OLA");
+	print_test("4", !strcmp(str, "%h OLA"), TRUE);
 	free(str);
 }
 
