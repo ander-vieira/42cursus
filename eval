@@ -3,15 +3,15 @@
 # Go to script's location
 cd $(dirname $0)
 
-if [ $# -lt 2 ]
+if [ $# -lt 1 ]
 then
-	echo "Usage: $(basename $0) <project> <git repo>"
+	echo "Usage: $(basename $0) <git repo>"
 	exit
 fi
 
 util/printtitle "CLONING REPOSITORY"
 rm -rf ~/42eval
-git clone $2 ~/42eval
+git clone $1 ~/42eval
 if [ $? -eq 0 ]
 then
 	util/printtitle "REPOSITORY CLONED SUCCESSFULLY"
