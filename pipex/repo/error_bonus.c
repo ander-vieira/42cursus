@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 16:48:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2023/12/11 14:36:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	av_printusage(char *pname)
 
 void	av_printerror(char *pname, char *func, char *msg)
 {
-	ft_printstr(STDERR_FILENO, "Error\n");
 	if (pname != NULL)
 		ft_printf(STDERR_FILENO, "%s: ", pname);
 	if (func != NULL)
