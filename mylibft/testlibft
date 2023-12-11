@@ -31,7 +31,7 @@ fi
 
 echo "----   TESTS   ----"
 
-valgrind --xml-fd=10 --show-leak-kinds=all --xml=yes tests/tester 10>valgrind.out
+valgrind --log-fd=10 -s --show-leak-kinds=all tests/tester 10>valgrind.out
 if [ $? -ne 0 ]
 then
 	result=1
