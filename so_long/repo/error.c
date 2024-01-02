@@ -6,20 +6,15 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:36:56 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 16:50:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:50:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	av_printerror(char *pname, char *func, char *msg)
+void	av_printerror(t_sl *sl, char *msg)
 {
-	ft_printstr(STDERR_FILENO, "Error\n");
-	if (pname != NULL)
-		ft_printf(STDERR_FILENO, "%s: ", pname);
-	if (func != NULL)
-		ft_printf(STDERR_FILENO, "%s: ", func);
 	if (msg == NULL)
 		msg = strerror(errno);
-	ft_printf(STDERR_FILENO, "%s\n", msg);
+	ft_printf(STDERR_FILENO, "Error\n%s: %s\n", sl->pname, msg);
 }

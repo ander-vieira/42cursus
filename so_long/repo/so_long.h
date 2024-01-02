@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 17:06:08 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/02 16:28:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,32 +42,17 @@
 # define KEY_S		1
 # define KEY_D		2
 
-# define NEWLINE		"\n"
-# define COLON			": "
-
-# ifdef PEPIPO
-#  define ERR_MAPSTR		"Map doesn't have the correct file structure\n"
-#  define ERR_OPEN		"open: cannot access file "
-# endif
-
-typedef struct s_map
-{
-	char	*map;
-	size_t	x;
-	size_t	y;
-}	t_map;
-
 typedef struct s_sl
 {
 	char	*pname;
 	char	*mapname;
-	t_map	map;
 }	t_sl;
 
-void	av_printerror(char *pname, char *func, char *msg);
+void	av_printerror(t_sl *sl, char *msg);
 
-t_bool	av_readmap(t_sl *sl);
-void	av_freemap(t_sl *sl);
+t_bool	av_validargs(int argc, char **argv, t_sl *sl);
+
+t_bool	read_map(t_sl *sl);
 
 void	av_initmlx(t_sl *sl);
 

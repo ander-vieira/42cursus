@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   validate_args.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:28:48 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/02 16:32:05 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/02 15:48:56 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/02 15:56:01 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+t_bool	av_validargs(int argc, char **argv, t_sl *sl)
 {
-	t_sl	sl;
-
-	if (av_validargs(argc, argv, &sl) && read_map(&sl))
-		av_initmlx(&sl);
-	return (EXIT_FAILURE);
+	sl->pname = argv[0];
+	if (argc != 2)
+		return (av_printerror(sl,
+				"Program must have exactly one argument"), FALSE);
+	sl->mapname = argv[1];
+	if (!ft_strsuffix(sl->mapname, MAP_SUFFIX))
+		return (av_printerror(sl,
+				"Filename must have the .ber extension"), FALSE);
+	return (TRUE);
 }
