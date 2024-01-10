@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:51:44 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:16:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:40:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-t_fd	av_gnlerror(t_fd fd, t_error error, t_pipex *px)
+t_fd	av_readerror(t_fd fd, t_error error, t_pipex *px)
 {
 	if (error == ERR_MALLOC)
 		return (av_printerror(px->pname, "malloc", NULL), close(fd), -1);
@@ -37,9 +37,9 @@ t_fd	av_heredoc(t_pipex *px)
 		return (av_printerror(px->pname, "pipe", NULL), free(delim), -1);
 	while (1)
 	{
-		line = ft_gnl(STDIN_FILENO, &error);
+		line = ft_readline(STDIN_FILENO, &error);
 		if (line == NULL)
-			return (free(delim), close(fd[1]), av_gnlerror(fd[0], error, px));
+			return (free(delim), close(fd[1]), av_readerror(fd[0], error, px));
 		if (ft_strcmp(line, delim))
 			return (free(delim), close(fd[1]), fd[0]);
 		if (write(fd[1], line, ft_strlen(line)) == -1)

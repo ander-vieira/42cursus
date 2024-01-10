@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 18:58:01 by andeviei          #+#    #+#              #
-#    Updated: 2023/12/05 21:06:28 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/10 16:40:12 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS = -Wall -Wextra -Werror
 NAME = tester
 
 SRC = tester.c tester_utils.c test_misc.c test_str1.c test_str2.c test_str3.c \
-test_gnl.c test_print.c test_printf.c test_path.c
+test_read.c test_print.c test_printf.c test_path.c
 HDR = tester.h
 
 LIBFT_DIR = ../libft/

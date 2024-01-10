@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 20:15:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:40:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef int				t_fd;
 # define ERR_PARSENUM_BADCHAR	102
 # define ERR_PARSENUM_OVERFLOW	103
 
-# define ERR_GNL_BADFD	101
+# define ERR_READ_BADFD	101
 
 typedef unsigned char	t_error;
 
@@ -94,12 +94,12 @@ char	*ft_dirname(char *name);
 char	*ft_trimname(char *name);
 
 /* ************************************************************************** */
-/* gnl: Get next line                                                         */
+/* read: Read from file descriptors                                           */
 
-# define GNL_FDLIMIT	4096
-# define GNL_BUFSIZE	64
+# define READ_FDLIMIT	4096
+# define READ_BUFSIZE	64
 
-char	*ft_gnl(t_fd fd, t_error *error);
+char	*ft_readline(t_fd fd, t_error *error);
 
 /* ************************************************************************** */
 /* print: Print functions                                                     */

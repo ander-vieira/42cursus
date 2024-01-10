@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_gnl.c                                           :+:      :+:    :+:   */
+/*   ft_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:33:34 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 20:00:44 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 16:41:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-static char	*ft_gnl_joinline(char *line, char *buf)
+static char	*ft_readline_join(char *line, char *buf)
 {
 	char	*result;
 	size_t	line_len;
@@ -34,32 +34,32 @@ static char	*ft_gnl_joinline(char *line, char *buf)
 	return (result);
 }
 
-static char	*ft_gnl_readline(t_fd fd, char *buf, t_error *error)
+static char	*ft_readline_read(t_fd fd, char *buf, t_error *error)
 {
 	char	*line;
 	ssize_t	bytes_read;
 
-	line = ft_gnl_joinline(NULL, buf);
+	line = ft_readline_join(NULL, buf);
 	if (line == NULL)
 		return (ft_seterror(error, ERR_MALLOC), NULL);
 	bytes_read = 1;
 	while (bytes_read > 0 && ft_strchr(line, '\n') == -1)
 	{
-		bytes_read = read(fd, buf, GNL_BUFSIZE);
+		bytes_read = read(fd, buf, READ_BUFSIZE);
 		if (bytes_read == -1)
 			return (buf[0] = '\0', ft_seterror(error, ERR_READ),
 				free(line), NULL);
 		if (bytes_read == 0 && ft_strlen(line) == 0)
 			return (ft_seterror(error, ERR_OK), free(line), NULL);
 		buf[bytes_read] = '\0';
-		line = ft_gnl_joinline(line, buf);
+		line = ft_readline_join(line, buf);
 		if (line == NULL)
 			return (ft_seterror(error, ERR_MALLOC), NULL);
 	}
 	return (ft_seterror(error, ERR_OK), line);
 }
 
-static void	ft_gnl_remainder(char *buf)
+static void	ft_readline_rest(char *buf)
 {
 	size_t	buf_len;
 	size_t	rest_len;
@@ -78,14 +78,14 @@ static void	ft_gnl_remainder(char *buf)
 		buf[0] = '\0';
 }
 
-char	*ft_gnl(t_fd fd, t_error *error)
+char	*ft_readline(t_fd fd, t_error *error)
 {
-	static char	buf[GNL_FDLIMIT][GNL_BUFSIZE + 1];
+	static char	buf[READ_FDLIMIT][READ_BUFSIZE + 1];
 	char		*line;
 
 	if (fd < 0)
-		return (ft_seterror(error, ERR_GNL_BADFD), NULL);
-	line = ft_gnl_readline(fd, buf[fd], error);
-	ft_gnl_remainder(buf[fd]);
+		return (ft_seterror(error, ERR_READ_BADFD), NULL);
+	line = ft_readline_read(fd, buf[fd], error);
+	ft_readline_rest(buf[fd]);
 	return (line);
 }
