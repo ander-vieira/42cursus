@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:53:52 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 17:02:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:22:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ void	test_readfull(void)
 	write(fd[1], "HOLA\nSOY ANDER\nY TU?", 20);
 	close(fd[1]);
 	full = ft_readfull(fd[0], &error);
-	print_test("1", !strcmp(full, "HOLA\nSOY ANDER\nY TU?") && error == ERR_OK, FALSE);
+	print_test("1", !strcmp(full, "HOLA\nSOY ANDER\nY TU?")
+		&& error == ERR_OK, FALSE);
 	free(full);
 	full = ft_readfull(fd[0], &error);
 	print_test("2", !strcmp(full, "") && error == ERR_OK, FALSE);
