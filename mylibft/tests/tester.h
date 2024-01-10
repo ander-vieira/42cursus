@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:10:24 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 16:40:31 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 18:33:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	test_misc(void);
 void	test_str1(void);
 void	test_str2(void);
 void	test_str3(void);
+void	test_str4(void);
 void	test_read(void);
 void	test_print(void);
 void	test_printf(void);

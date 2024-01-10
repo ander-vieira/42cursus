@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester.c                                           :+:      :+:    :+:   */
+/*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:09:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 18:33:13 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/10 17:19:57 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/10 17:37:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "../libft.h"
 
-int	main(void)
+static t_bool	ft_strsplit_ischar(char c, void *ctx)
 {
-	test_misc();
-	test_str1();
-	test_str2();
-	test_str3();
-	test_str4();
-	test_read();
-	test_print();
-	test_printf();
-	test_path();
-	return (print_all_tests());
+	return (c == *((char *)ctx));
+}
+
+char	**ft_strsplit(char *str, char c)
+{
+	return (ft_strsplit_magic(str, &ft_strsplit_ischar, &c));
 }

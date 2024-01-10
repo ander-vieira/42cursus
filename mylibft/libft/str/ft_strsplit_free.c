@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester.c                                           :+:      :+:    :+:   */
+/*   ft_strsplit_free.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/05 15:09:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 18:33:13 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/10 17:36:44 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/10 18:36:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tester.h"
+#include "../libft.h"
 
-int	main(void)
+void	ft_strsplit_free(char **split)
 {
-	test_misc();
-	test_str1();
-	test_str2();
-	test_str3();
-	test_str4();
-	test_read();
-	test_print();
-	test_printf();
-	test_path();
-	return (print_all_tests());
+	size_t	i;
+
+	i = 0;
+	while (split[i] != NULL)
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }
