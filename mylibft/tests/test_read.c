@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 16:53:52 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 16:42:26 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:02:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	test_readline1(void)
 	char	*line;
 	t_error	error;
 
+	print_title("READLINE");
 	pipe(fd);
 	write(fd[1], "HOLA\nSOY ANDER\nY TU?", 20);
 	close(fd[1]);
@@ -39,8 +40,30 @@ void	test_readline1(void)
 	print_test("6", line == NULL && error == ERR_READ_BADFD, TRUE);
 }
 
+void	test_readfull(void)
+{
+	t_fd	fd[2];
+	char	*full;
+	t_error	error;
+
+	print_title("READFULL");
+	pipe(fd);
+	write(fd[1], "HOLA\nSOY ANDER\nY TU?", 20);
+	close(fd[1]);
+	full = ft_readfull(fd[0], &error);
+	print_test("1", !strcmp(full, "HOLA\nSOY ANDER\nY TU?") && error == ERR_OK, FALSE);
+	free(full);
+	full = ft_readfull(fd[0], &error);
+	print_test("2", !strcmp(full, "") && error == ERR_OK, FALSE);
+	close(fd[0]);
+	full = ft_readfull(fd[0], &error);
+	print_test("3", full == NULL && error == ERR_READ, FALSE);
+	full = ft_readfull(-1, &error);
+	print_test("4", full == NULL && error == ERR_READ_BADFD, TRUE);
+}
+
 void	test_read(void)
 {
-	print_title("READLINE");
 	test_readline1();
+	test_readfull();
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 16:40:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:03:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char	*ft_trimname(char *name);
 # define READ_BUFSIZE	64
 
 char	*ft_readline(t_fd fd, t_error *error);
+char	*ft_readfull(t_fd fd, t_error *error);
 
 /* ************************************************************************** */
 /* print: Print functions                                                     */

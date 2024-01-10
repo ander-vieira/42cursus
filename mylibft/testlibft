@@ -25,8 +25,8 @@ then
 	echo -e "${COLOR_GREEN}Compilation successful!${COLOR_NONE}"
 else
 	echo -e "${COLOR_RED}Compilation failed...${COLOR_NONE}"
-	result=1
-	exit $result
+	make -s -C tests/ fclean
+	exit 1
 fi
 
 echo "----   TESTS   ----"
