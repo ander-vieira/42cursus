@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/02 16:28:08 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/16 19:06:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,18 @@
 # define KEY_S		1
 # define KEY_D		2
 
+typedef struct s_vec2
+{
+	t_uint	x;
+	t_uint	y;
+}	t_vec2;
+
 typedef struct s_sl
 {
 	char	*pname;
 	char	*mapname;
+	char	**map;
+	t_vec2	dims;
 }	t_sl;
 
 void	av_printerror(t_sl *sl, char *msg);

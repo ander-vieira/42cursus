@@ -18,7 +18,13 @@ fi
 ../util/normcheck "$repo/libft/ $repo/*.c $repo/*.h"
 
 ../util/printtitle "COMPILE"
-make -C repo/ -s all 2> compile.out
+make -C repo/ -s all
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	make -C repo/ -s fclean
+	exit 1
+fi
 
 ../util/printtitle "TESTS: INCORRECT PARAMS 1"
 repo/so_long
