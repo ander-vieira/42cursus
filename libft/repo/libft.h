@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 00:44:51 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:58:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	*ft_calloc(size_t count, size_t size);
 
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *str);
-void	ft_striteri(const char *str, void (*fun)(unsigned int, char*));
+void	ft_striteri(char *str, void (*fun)(unsigned int, char*));
 char	*ft_strjoin(const char *str1, const char *str2);
-size_t	ft_strlcat(const char *dest, const char *src, size_t len);
-size_t	ft_strlcpy(const char *dest, const char *src, size_t len);
+size_t	ft_strlcat(char *dest, const char *src, size_t len);
+size_t	ft_strlcpy(char *dest, const char *src, size_t len);
 size_t	ft_strlen(const char *str);
 char	*ft_strmapi(const char *str, char (*fun)(unsigned int, char));
 int		ft_strncmp(const char *str1, const char *str2, size_t len);

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/11 12:17:31 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/16 20:38:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/17 16:42:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlen_null(const char *str, size_t len)
 	return (ft_strlen(str));
 }
 
-size_t	ft_strlcat(const char *dest, const char *src, size_t len)
+size_t	ft_strlcat(char *dest, const char *src, size_t len)
 {
 	size_t	i;
 	size_t	dest_len;
