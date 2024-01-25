@@ -6,24 +6,22 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:23:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/02 15:50:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:22:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	av_closewindow(void *p)
+static int	close_window(void *p)
 {
 	(void)p;
 	exit(EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
 
-static int	av_handlekey(int keycode, void *p)
+static int	handle_key(int keycode, void *p)
 {
-	t_sl	*sl;
-
-	sl = (t_sl *)p;
+	(void)p;
 	ft_printf(STDOUT_FILENO, "%d\n", keycode);
 	if (keycode == KEY_ESC)
 		exit(0);
@@ -38,14 +36,14 @@ static int	av_handlekey(int keycode, void *p)
 	return (0);
 }
 
-void	av_initmlx(t_sl *sl)
+void	init_mlx(void)
 {
 	void	*mlx;
 	void	*win;
 
 	mlx = mlx_init();
 	win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
-	mlx_hook(win, EVT_KEYDN, 0, (void *)&av_handlekey, &sl);
-	mlx_hook(win, EVT_DSTRY, 0, (void *)&av_closewindow, &sl);
+	mlx_hook(win, EVT_KEYDN, 0, (void *)&handle_key, NULL);
+	mlx_hook(win, EVT_DSTRY, 0, (void *)&close_window, NULL);
 	mlx_loop(mlx);
 }

@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   vec2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:28:48 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 17:23:52 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/25 16:50:18 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/25 17:04:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_sl	*g_sl(void)
+t_vec2	vec2_new(t_uint x, t_uint y)
 {
-	static t_sl	sl;
+	t_vec2	vec;
 
-	return (&sl);
+	vec.x = x;
+	vec.y = y;
+	return (vec);
 }
 
-int	main(int argc, char **argv)
+t_vec2	vec2_add(t_vec2 v1, t_vec2 v2)
 {
-	if (validate_args(argc, argv) && read_map() && validate_map())
-		init_mlx();
-	return (EXIT_FAILURE);
+	t_vec2	result;
+
+	result.x = v1.x + v2.x;
+	result.y = v1.y + v2.y;
+	return (result);
 }

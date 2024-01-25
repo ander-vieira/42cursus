@@ -6,21 +6,19 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 15:48:56 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/02 15:56:01 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:34:22 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_bool	av_validargs(int argc, char **argv, t_sl *sl)
+t_bool	validate_args(int argc, char **argv)
 {
-	sl->pname = argv[0];
+	g_sl()->pname = argv[0];
 	if (argc != 2)
-		return (av_printerror(sl,
-				"Program must have exactly one argument"), FALSE);
-	sl->mapname = argv[1];
-	if (!ft_strsuffix(sl->mapname, MAP_SUFFIX))
-		return (av_printerror(sl,
-				"Filename must have the .ber extension"), FALSE);
+		return (print_error("Program must have exactly one argument"), FALSE);
+	g_sl()->mapname = argv[1];
+	if (!ft_strsuffix(g_sl()->mapname, MAP_SUFFIX))
+		return (print_error("Filename must have the .ber extension"), FALSE);
 	return (TRUE);
 }

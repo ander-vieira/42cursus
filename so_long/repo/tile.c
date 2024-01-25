@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   tile.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/04 18:28:48 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 17:23:52 by andeviei         ###   ########.fr       */
+/*   Created: 2024/01/25 16:15:45 by andeviei          #+#    #+#             */
+/*   Updated: 2024/01/25 16:53:09 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_sl	*g_sl(void)
+char	tile_get(t_vec2 pos)
 {
-	static t_sl	sl;
-
-	return (&sl);
+	return (g_sl()->map[g_sl()->dims.x * pos.y + pos.x]);
 }
 
-int	main(int argc, char **argv)
+void	tile_set(t_vec2 pos, char c)
 {
-	if (validate_args(argc, argv) && read_map() && validate_map())
-		init_mlx();
-	return (EXIT_FAILURE);
+	g_sl()->map[g_sl()->dims.x * pos.y + pos.x] = c;
 }

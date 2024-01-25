@@ -14,7 +14,7 @@ CFLAGS+= -DSTRINGPUTX11 -w
 all: $(NOM)
 
 $(NOM):	$(OBJ)
-	ar -rs $(NOM) $(OBJ)
+	ar -rcs $(NOM) $(OBJ)
 	ranlib $(NOM)
 
 clean:

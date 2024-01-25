@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/16 19:06:07 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/25 17:23:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,27 @@ typedef struct s_sl
 {
 	char	*pname;
 	char	*mapname;
-	char	**map;
+	char	*map;
 	t_vec2	dims;
 }	t_sl;
 
-void	av_printerror(t_sl *sl, char *msg);
+t_sl	*g_sl(void);
 
-t_bool	av_validargs(int argc, char **argv, t_sl *sl);
+void	print_error(char *msg);
 
-t_bool	read_map(t_sl *sl);
+t_vec2	vec2_new(t_uint x, t_uint y);
+t_vec2	vec2_add(t_vec2 v1, t_vec2 v2);
 
-void	av_initmlx(t_sl *sl);
+char	tile_get(t_vec2 pos);
+void	tile_set(t_vec2 pos, char c);
+
+void	map_print(void);
+size_t	map_count(char c);
+
+t_bool	validate_args(int argc, char **argv);
+t_bool	read_map(void);
+t_bool	validate_map(void);
+
+void	init_mlx(void);
 
 #endif
