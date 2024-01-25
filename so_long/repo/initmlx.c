@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:23:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 17:22:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/25 19:14:48 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static int	close_window(void *p)
 {
 	(void)p;
+	map_free(g_sl()->map);
 	exit(EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 17:23:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/25 19:15:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/errno.h>
-# include <mlx.h>
 
+# include "mlx/mlx.h"
 # include "libft/libft.h"
 
 # define MAP_SUFFIX	".ber"
@@ -42,18 +42,30 @@
 # define KEY_S		1
 # define KEY_D		2
 
+# define TILE_FLOOR		'0'
+# define TILE_WALL		'1'
+# define TILE_PLAYER	'P'
+# define TILE_ITEM		'C'
+# define TILE_EXIT		'E'
+# define TILE_FLOOD		'F'
+
 typedef struct s_vec2
 {
 	t_uint	x;
 	t_uint	y;
 }	t_vec2;
 
+typedef struct s_map
+{
+	char	*t;
+	t_vec2	d;
+}	t_map;
+
 typedef struct s_sl
 {
 	char	*pname;
 	char	*mapname;
-	char	*map;
-	t_vec2	dims;
+	t_map	map;
 }	t_sl;
 
 t_sl	*g_sl(void);
@@ -61,13 +73,18 @@ t_sl	*g_sl(void);
 void	print_error(char *msg);
 
 t_vec2	vec2_new(t_uint x, t_uint y);
-t_vec2	vec2_add(t_vec2 v1, t_vec2 v2);
+t_vec2	vec2_move(t_vec2 v, t_uint x, t_uint y);
 
-char	tile_get(t_vec2 pos);
-void	tile_set(t_vec2 pos, char c);
-
-void	map_print(void);
-size_t	map_count(char c);
+char	map_gettile(t_map map, t_vec2 pos);
+void	map_settile(t_map map, t_vec2 pos, char c);
+void	map_print(t_map map);
+size_t	map_count(t_map map, char c);
+void	map_alloc(t_map *map);
+t_map	map_duplicate(t_map map);
+t_vec2	map_find(t_map map, char c);
+void	map_flood(t_map map, t_vec2 pos);
+size_t	map_countedges(t_map map, char c);
+void	map_free(t_map map);
 
 t_bool	validate_args(int argc, char **argv);
 t_bool	read_map(void);
