@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 15:39:38 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/18 17:46:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/27 00:52:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ char	**ft_split(const char *str, char c)
 	size_t	i;
 	size_t	pos;
 
+	if (str == NULL)
+		return (NULL);
 	split_n = count_splits(str, c);
 	split = (char **)malloc(sizeof(char *) * (split_n + 1));
 	if (split == NULL)
