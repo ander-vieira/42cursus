@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 20:27:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:04:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,25 @@
 # define TILE_FLOOR		'0'
 # define TILE_WALL		'1'
 # define TILE_PLAYER	'P'
+# define TILE_EPLAYER	'Q'
 # define TILE_ITEM		'C'
 # define TILE_EXIT		'E'
 # define TILE_FLOOD		'F'
 
-# define IMG_FLOOR	"textures/floor.xpm"
-# define IMG_WALL	"textures/wall.xpm"
-# define IMG_PLAYER	"textures/player.xpm"
-# define IMG_ITEM	"textures/item.xpm"
-# define IMG_EXIT	"textures/exit.xpm"
+# define IMG_FLOOR			"textures/floor.xpm"
+# define IMG_WALL			"textures/wall.xpm"
+# define IMG_PLAYER			"textures/player.xpm"
+# define IMG_ITEM			"textures/item.xpm"
+# define IMG_EXIT			"textures/exit.xpm"
+# define IMG_EXIT_ACTIVE	"textures/exit_active.xpm"
 
 /*
  *	Represents a two-dimensional vector with fields x and y
  */
 typedef struct s_vec2
 {
-	t_uint	x;
-	t_uint	y;
+	int	x;
+	int	y;
 }	t_vec2;
 
 /*
@@ -115,14 +117,16 @@ typedef struct s_sl
 	t_image	img_player;
 	t_image	img_item;
 	t_image	img_exit;
+	t_image	img_exit_active;
+	t_uint	moves;
 }	t_sl;
 
 t_sl	*g_sl(void);
 
 void	print_error(char *msg);
 
-t_vec2	vec2_new(t_uint x, t_uint y);
-t_vec2	vec2_move(t_vec2 v, t_uint x, t_uint y);
+t_vec2	vec2_new(int x, int y);
+t_vec2	vec2_move(t_vec2 v, int x, int y);
 
 char	map_gettile(t_map map, t_vec2 pos);
 void	map_settile(t_map map, t_vec2 pos, char c);
@@ -130,10 +134,12 @@ void	map_print(t_map map);
 size_t	map_count(t_map map, char c);
 void	map_alloc(t_map *map);
 t_map	map_duplicate(t_map map);
-t_vec2	map_find(t_map map, char c);
+t_bool	map_find(t_map map, t_vec2 *pos, char c);
 void	map_flood(t_map map, t_vec2 pos);
 size_t	map_countedges(t_map map, char c);
 void	map_free(t_map map);
+void	map_drawtile(t_map map, t_vec2 pos);
+void	map_moveplayer(t_map map, int x, int y);
 
 t_image	image_load(char *path);
 void	image_draw(t_image img, t_vec2 pos);

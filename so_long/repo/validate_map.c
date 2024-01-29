@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:45:05 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 19:15:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:49:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,15 @@ static t_bool	count_tiles(void)
 static t_bool	validate_path(void)
 {
 	t_map	map;
+	t_vec2	pos;
 
 	map = map_duplicate(g_sl()->map);
 	if (map.t == NULL)
 		return (print_error(NULL), FALSE);
-	map_flood(map, map_find(map, TILE_PLAYER));
+	if (!map_find(map, &pos, TILE_PLAYER))
+		return (map_free(map),
+			print_error("Something went very wrong"), FALSE);
+	map_flood(map, pos);
 	if (map_count(map, TILE_ITEM) != 0)
 		return (map_free(map),
 			print_error("There is no valid path to all items"), FALSE);

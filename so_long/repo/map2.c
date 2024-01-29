@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:27:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 19:22:43 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:06:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,27 @@ t_map	map_duplicate(t_map map)
 	return (result);
 }
 
-t_vec2	map_find(t_map map, char c)
+t_bool	map_find(t_map map, t_vec2 *pos, char c)
 {
-	t_vec2	pos;
+	t_vec2	p;
 
-	pos.y = 0;
-	while (pos.y < map.d.y)
+	p.y = 0;
+	while (p.y < map.d.y)
 	{
-		pos.x = 0;
-		while (pos.x < map.d.x)
+		p.x = 0;
+		while (p.x < map.d.x)
 		{
-			if (map_gettile(map, pos) == c)
-				return (pos);
-			pos.x++;
+			if (map_gettile(map, p) == c)
+			{
+				if (pos != NULL)
+					*pos = p;
+				return (TRUE);
+			}
+			p.x++;
 		}
-		pos.y++;
+		p.y++;
 	}
-	return (pos);
+	return (FALSE);
 }
 
 void	map_flood(t_map map, t_vec2 pos)
@@ -63,7 +67,7 @@ void	map_flood(t_map map, t_vec2 pos)
 
 size_t	map_countedges(t_map map, char c)
 {
-	t_uint	i;
+	int		i;
 	size_t	count;
 
 	count = 0;

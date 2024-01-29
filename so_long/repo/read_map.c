@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:02:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 19:28:32 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:43:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static char	*read_file(void)
 
 static t_bool	get_dims(char *file)
 {
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;

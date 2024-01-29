@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:50:18 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/25 18:44:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:44:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_vec2	vec2_new(t_uint x, t_uint y)
+t_vec2	vec2_new(int x, int y)
 {
 	t_vec2	vec;
 
@@ -21,7 +21,7 @@ t_vec2	vec2_new(t_uint x, t_uint y)
 	return (vec);
 }
 
-t_vec2	vec2_move(t_vec2 v, t_uint x, t_uint y)
+t_vec2	vec2_move(t_vec2 v, int x, int y)
 {
 	v.x += x;
 	v.y += y;
