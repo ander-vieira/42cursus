@@ -6,11 +6,17 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:04:51 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:41:31 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	draw_image(t_image img, t_vec2 pos)
+{
+	mlx_put_image_to_window(g_sl()->mlx, g_sl()->win, img.i,
+		pos.x * TILE_WIDTH, pos.y * TILE_HEIGHT);
+}
 
 void	map_drawtile(t_map map, t_vec2 pos)
 {
@@ -19,20 +25,20 @@ void	map_drawtile(t_map map, t_vec2 pos)
 	c = map_gettile(map, pos);
 	if (c == TILE_FLOOR || c == TILE_PLAYER || c == TILE_EPLAYER
 		|| c == TILE_ITEM || c == TILE_EXIT)
-		image_draw(g_sl()->img_floor, pos);
+		draw_image(g_sl()->img_floor, pos);
 	if (c == TILE_WALL)
-		image_draw(g_sl()->img_wall, pos);
+		draw_image(g_sl()->img_wall, pos);
 	if (c == TILE_EXIT || c == TILE_EPLAYER)
 	{
 		if (map_count(map, TILE_ITEM) == 0)
-			image_draw(g_sl()->img_exit_active, pos);
+			draw_image(g_sl()->img_exit_active, pos);
 		else
-			image_draw(g_sl()->img_exit, pos);
+			draw_image(g_sl()->img_exit, pos);
 	}
 	if (c == TILE_ITEM)
-		image_draw(g_sl()->img_item, pos);
+		draw_image(g_sl()->img_item, pos);
 	if (c == TILE_PLAYER || c == TILE_EPLAYER)
-		image_draw(g_sl()->img_player, pos);
+		draw_image(g_sl()->img_player, pos);
 }
 
 void	map_moveplayer(t_map map, int x, int y)
@@ -54,5 +60,6 @@ void	map_moveplayer(t_map map, int x, int y)
 	else
 		map_settile(map, pos_old, TILE_FLOOR);
 	g_sl()->moves += 1;
-	ft_printf(STDOUT_FILENO, "Moves: %d\n", g_sl()->moves);
+	ft_printf(STDOUT_FILENO,
+		"YOU HAVE MOVED %d TIMES... WHY NOT GIVE UP NOW?\n", g_sl()->moves);
 }

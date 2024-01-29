@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:04:30 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:36:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@
 # define IMG_ITEM			"textures/item.xpm"
 # define IMG_EXIT			"textures/exit.xpm"
 # define IMG_EXIT_ACTIVE	"textures/exit_active.xpm"
+
+# define END_CLOSE	0
+# define END_WIN	1
 
 /*
  *	Represents a two-dimensional vector with fields x and y
@@ -141,12 +144,12 @@ void	map_free(t_map map);
 void	map_drawtile(t_map map, t_vec2 pos);
 void	map_moveplayer(t_map map, int x, int y);
 
-t_image	image_load(char *path);
-void	image_draw(t_image img, t_vec2 pos);
-
 t_bool	validate_args(int argc, char **argv);
 t_bool	read_map(void);
 t_bool	validate_map(void);
+
+t_bool	load_images(void);
+void	end_game(t_uint	status);
 
 void	init_mlx(void);
 

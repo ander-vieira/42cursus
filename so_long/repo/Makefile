@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/29 17:32:45 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/29 18:36:24 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = so_long
 CFLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -framework OpenGL -framework AppKit
 
-SRCS = so_long.c error.c image.c initmlx.c map.c map2.c map3.c read_map.c tile.c validate_args.c validate_map.c vec2.c
+SRCS = so_long.c end_game.c error.c initmlx.c load_images.c map.c map2.c map3.c read_map.c tile.c validate_args.c validate_map.c vec2.c
 HDRS = so_long.h
 
 LIBFT_DIR = libft/
