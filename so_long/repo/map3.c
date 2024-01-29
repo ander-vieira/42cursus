@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:41:31 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:50:14 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	map_moveplayer(t_map map, int x, int y)
 
 	if (!map_find(map, &pos_old, TILE_PLAYER))
 		map_find(map, &pos_old, TILE_EPLAYER);
-	pos_new = vec2_move(pos_old, x, y);
+	pos_new = (t_vec2){pos_old.x + x, pos_old.y + y};
 	if (map_gettile(map, pos_new) == TILE_WALL)
 		return ;
 	if (map_gettile(map, pos_new) == TILE_EXIT)

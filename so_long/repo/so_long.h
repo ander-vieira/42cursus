@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:36:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:50:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,9 +128,6 @@ t_sl	*g_sl(void);
 
 void	print_error(char *msg);
 
-t_vec2	vec2_new(int x, int y);
-t_vec2	vec2_move(t_vec2 v, int x, int y);
-
 char	map_gettile(t_map map, t_vec2 pos);
 void	map_settile(t_map map, t_vec2 pos, char c);
 void	map_print(t_map map);
@@ -144,7 +141,6 @@ void	map_free(t_map map);
 void	map_drawtile(t_map map, t_vec2 pos);
 void	map_moveplayer(t_map map, int x, int y);
 
-t_bool	validate_args(int argc, char **argv);
 t_bool	read_map(void);
 t_bool	validate_map(void);
 

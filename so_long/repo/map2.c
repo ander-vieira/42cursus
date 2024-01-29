@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:27:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:06:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:50:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	map_flood(t_map map, t_vec2 pos)
 		return ;
 	map_settile(map, pos, TILE_FLOOD);
 	if (pos.x > 0)
-		map_flood(map, vec2_move(pos, -1, 0));
+		map_flood(map, (t_vec2){pos.x - 1, pos.y});
 	if (pos.x < map.d.x - 1)
-		map_flood(map, vec2_move(pos, 1, 0));
+		map_flood(map,(t_vec2){pos.x + 1, pos.y});
 	if (pos.y > 0)
-		map_flood(map, vec2_move(pos, 0, -1));
+		map_flood(map, (t_vec2){pos.x, pos.y - 1});
 	if (pos.y < map.d.y - 1)
-		map_flood(map, vec2_move(pos, 0, 1));
+		map_flood(map, (t_vec2){pos.x, pos.y + 1});
 }
 
 size_t	map_countedges(t_map map, char c)
@@ -74,18 +74,18 @@ size_t	map_countedges(t_map map, char c)
 	i = 0;
 	while (i < map.d.x)
 	{
-		if (map_gettile(map, vec2_new(i, 0)) == c)
+		if (map_gettile(map, (t_vec2){i, 0}) == c)
 			count++;
-		if (map_gettile(map, vec2_new(i, map.d.y - 1)) == c)
+		if (map_gettile(map, (t_vec2){i, map.d.y - 1}) == c)
 			count++;
 		i++;
 	}
 	i = 0;
 	while (i < map.d.y)
 	{
-		if (map_gettile(map, vec2_new(0, i)) == c)
+		if (map_gettile(map, (t_vec2){0, i}) == c)
 			count++;
-		if (map_gettile(map, vec2_new(map.d.x - 1, i)) == c)
+		if (map_gettile(map, (t_vec2){map.d.x - 1, i}) == c)
 			count++;
 		i++;
 	}

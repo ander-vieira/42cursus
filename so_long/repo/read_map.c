@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:02:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 17:43:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:50:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_bool	get_dims(char *file)
 
 	i = 0;
 	j = 0;
-	(g_sl())->map.d = vec2_new(0, 0);
+	(g_sl())->map.d = (t_vec2){0, 0};
 	while (file[i] != '\0')
 	{
 		if (file[i] == '\n')
