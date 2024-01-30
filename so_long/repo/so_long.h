@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:50:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:34:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ void	print_error(char *msg);
 
 char	map_gettile(t_map map, t_vec2 pos);
 void	map_settile(t_map map, t_vec2 pos, char c);
-void	map_print(t_map map);
 size_t	map_count(t_map map, char c);
 void	map_alloc(t_map *map);
 t_map	map_duplicate(t_map map);
