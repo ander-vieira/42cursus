@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:27:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:50:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:31:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	map_flood(t_map map, t_vec2 pos)
 	if (pos.x > 0)
 		map_flood(map, (t_vec2){pos.x - 1, pos.y});
 	if (pos.x < map.d.x - 1)
-		map_flood(map,(t_vec2){pos.x + 1, pos.y});
+		map_flood(map, (t_vec2){pos.x + 1, pos.y});
 	if (pos.y > 0)
 		map_flood(map, (t_vec2){pos.x, pos.y - 1});
 	if (pos.y < map.d.y - 1)
