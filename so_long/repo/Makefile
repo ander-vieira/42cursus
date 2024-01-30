@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/29 18:50:48 by andeviei         ###   ########.fr        #
+#    Updated: 2024/01/30 17:41:00 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,10 @@ MLXFLAGS = -framework OpenGL -framework AppKit
 SRCS = so_long.c end_game.c error.c initmlx.c load_images.c map.c map2.c map3.c read_map.c validate_map.c
 HDRS = so_long.h
 
+SRCS_BONUS = so_long_bonus.c end_game_bonus.c error_bonus.c initmlx_bonus.c load_images_bonus.c \
+map_bonus.c map2_bonus.c map3_bonus.c read_map_bonus.c validate_map_bonus.c
+HDRS_BONUS = so_long_bonus.h
+
 LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
@@ -28,6 +32,9 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(SRCS) $(HDRS)
 	gcc $(CFLAGS) $(MLXFLAGS) $(SRCS) $(LIBFT) $(MLX) -o $(NAME)
+
+bonus: $(LIBFT) $(MLX) $(SRCS_BONUS) $(HDRS_BONUS)
+	gcc $(CFLAGS) $(MLXFLAGS) $(SRCS_BONUS) $(LIBFT) $(MLX) -o $(NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR) all clean
@@ -45,6 +52,6 @@ fclean: clean
 re: fclean all
 
 norm:
-	norminette $(LIBFT_DIR) $(SRCS) $(HDRS)
+	norminette $(LIBFT_DIR) $(SRCS) $(SRCS_BONUS) $(HDRS) $(HDRS_BONUS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
