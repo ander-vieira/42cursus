@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:11 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:29:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,13 @@ static void	draw_image(t_image img, t_vec2 pos)
 		pos.x * TILE_WIDTH, pos.y * TILE_HEIGHT);
 }
 
-void	map_drawtile(t_map map, t_vec2 pos)
+static void	draw_anim(t_anim anim, t_vec2 pos, t_uint frame)
+{
+	mlx_put_image_to_window(g_sl()->mlx, g_sl()->win, anim.i[frame * anim.n / 60].i,
+		pos.x * TILE_WIDTH, pos.y * TILE_HEIGHT);
+}
+
+void	map_drawtile(t_map map, t_vec2 pos, t_uint frame)
 {
 	char	c;
 
@@ -31,14 +37,14 @@ void	map_drawtile(t_map map, t_vec2 pos)
 	if (c == TILE_EXIT || c == TILE_EPLAYER)
 	{
 		if (map_count(map, TILE_ITEM) == 0)
-			draw_image(g_sl()->img_exit_active, pos);
+			draw_image(g_sl()->img_exit[1], pos);
 		else
-			draw_image(g_sl()->img_exit, pos);
+			draw_image(g_sl()->img_exit[0], pos);
 	}
 	if (c == TILE_ITEM)
 		draw_image(g_sl()->img_item, pos);
 	if (c == TILE_PLAYER || c == TILE_EPLAYER)
-		draw_image(g_sl()->img_player, pos);
+		draw_anim(g_sl()->anim_player, pos, frame);
 }
 
 void	map_moveplayer(t_map map, int x, int y)

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:25 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:48:24 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,6 @@
 # define TILE_EXIT		'E'
 # define TILE_FLOOD		'F'
 
-# define IMG_FLOOR			"textures/floor.xpm"
-# define IMG_WALL			"textures/wall.xpm"
-# define IMG_PLAYER			"textures/player.xpm"
-# define IMG_ITEM			"textures/item.xpm"
-# define IMG_EXIT			"textures/exit.xpm"
-# define IMG_EXIT_ACTIVE	"textures/exit_active.xpm"
-
 # define END_CLOSE	0
 # define END_WIN	1
 
@@ -95,6 +88,12 @@ typedef struct s_image
 	int		h;
 }	t_image;
 
+typedef struct s_anim
+{
+	t_image	*i;
+	t_uint	n;
+}	t_anim;
+
 /*
  *	This structure is used to hold all of the game's metadata
  *	- pname: the program's name as given by argv[0]
@@ -117,10 +116,9 @@ typedef struct s_sl
 	void	*win;
 	t_image	img_floor;
 	t_image	img_wall;
-	t_image	img_player;
+	t_anim	anim_player;
 	t_image	img_item;
-	t_image	img_exit;
-	t_image	img_exit_active;
+	t_image	img_exit[2];
 	t_uint	moves;
 }	t_sl;
 
@@ -137,7 +135,7 @@ t_bool	map_find(t_map map, t_vec2 *pos, char c);
 void	map_flood(t_map map, t_vec2 pos);
 size_t	map_countedges(t_map map, char c);
 void	map_free(t_map map);
-void	map_drawtile(t_map map, t_vec2 pos);
+void	map_drawtile(t_map map, t_vec2 pos, t_uint frame);
 void	map_moveplayer(t_map map, int x, int y);
 
 t_bool	read_map(void);

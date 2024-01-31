@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:23:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/31 20:03:08 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	draw_map(void *p)
 {
-	t_vec2	pos;
+	static t_uint	frame;
+	t_vec2			pos;
 
 	(void)p;
 	pos.y = 0;
@@ -23,11 +24,12 @@ static int	draw_map(void *p)
 		pos.x = 0;
 		while (pos.x < g_sl()->map.d.x)
 		{
-			map_drawtile(g_sl()->map, pos);
+			map_drawtile(g_sl()->map, pos, frame);
 			pos.x++;
 		}
 		pos.y++;
 	}
+	frame = (frame + 1) % 60;
 	return (0);
 }
 

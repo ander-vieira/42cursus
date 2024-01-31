@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:33:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/31 19:40:29 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,32 +19,53 @@ static t_image	load_image(char *path)
 	t_image	img;
 
 	dirname = ft_dirname(g_sl()->pname);
-	fullpath = ft_strjoin(3, dirname, "/", path);
+	fullpath = ft_strformat("%s/textures/%s.xpm", dirname, path);
 	free(dirname);
 	img.i = mlx_xpm_file_to_image(g_sl()->mlx, fullpath, &(img.w), &(img.h));
 	free(fullpath);
 	return (img);
 }
 
+static t_anim	load_animation(char *path, t_uint n)
+{
+	char	*framepath;
+	t_anim	anim;
+	t_uint	i;
+
+	anim.n = n;
+	anim.i = (t_image *)malloc(sizeof(t_image) * n);
+	if (anim.i == NULL)
+		return (anim);
+	i = 0;
+	while (i < n)
+	{
+		framepath = ft_strformat("%s%u", path, i);
+		anim.i[i] = load_image(framepath);
+		free(framepath);
+		i++;
+	}
+	return (anim);
+}
+
 t_bool	load_images(void)
 {
-	g_sl()->img_floor = load_image(IMG_FLOOR);
+	g_sl()->img_floor = load_image("floor");
 	if (g_sl()->img_floor.i == NULL)
 		return (print_error("Error loading floor texture"), FALSE);
-	g_sl()->img_wall = load_image(IMG_WALL);
+	g_sl()->img_wall = load_image("wall");
 	if (g_sl()->img_wall.i == NULL)
 		return (print_error("Error loading wall texture"), FALSE);
-	g_sl()->img_player = load_image(IMG_PLAYER);
-	if (g_sl()->img_player.i == NULL)
-		return (print_error("Error loading player texture"), FALSE);
-	g_sl()->img_item = load_image(IMG_ITEM);
+	g_sl()->anim_player = load_animation("player", 2);
+	if (g_sl()->anim_player.i == NULL)
+		return (print_error("Error loading player textures"), FALSE);
+	g_sl()->img_item = load_image("item");
 	if (g_sl()->img_item.i == NULL)
 		return (print_error("Error loading item texture"), FALSE);
-	g_sl()->img_exit = load_image(IMG_EXIT);
-	if (g_sl()->img_exit.i == NULL)
+	g_sl()->img_exit[0] = load_image("exit0");
+	if (g_sl()->img_exit[0].i == NULL)
 		return (print_error("Error loading exit texture 1"), FALSE);
-	g_sl()->img_exit_active = load_image(IMG_EXIT_ACTIVE);
-	if (g_sl()->img_exit_active.i == NULL)
+	g_sl()->img_exit[1] = load_image("exit1");
+	if (g_sl()->img_exit[1].i == NULL)
 		return (print_error("Error loading exit texture 2"), FALSE);
 	return (TRUE);
 }

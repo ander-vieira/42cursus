@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:34:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:29:38 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@
 # define TILE_ITEM		'C'
 # define TILE_EXIT		'E'
 # define TILE_FLOOD		'F'
-
-# define IMG_FLOOR			"textures/floor.xpm"
-# define IMG_WALL			"textures/wall.xpm"
-# define IMG_PLAYER			"textures/player.xpm"
-# define IMG_ITEM			"textures/item.xpm"
-# define IMG_EXIT			"textures/exit.xpm"
-# define IMG_EXIT_ACTIVE	"textures/exit_active.xpm"
 
 # define END_CLOSE	0
 # define END_WIN	1
