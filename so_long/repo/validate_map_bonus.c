@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:45:05 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:26:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static t_bool	no_bad_tiles(void)
 		{
 			tile = map_gettile(g_sl()->map, pos);
 			if (tile != TILE_FLOOR && tile != TILE_WALL && tile != TILE_PLAYER
-				&& tile != TILE_ITEM && tile != TILE_EXIT)
+				&& tile != TILE_ITEM && tile != TILE_EXIT && tile != TILE_ENEMY)
 				return (print_error("Map contains invalid tiles"), FALSE);
 			pos.x++;
 		}

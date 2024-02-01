@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 16:27:51 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:47:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	map_drawtile(t_map map, t_vec2 pos, t_uint frame)
 
 	c = map_gettile(map, pos);
 	if (c == TILE_FLOOR || c == TILE_PLAYER || c == TILE_EPLAYER
-		|| c == TILE_ITEM || c == TILE_EXIT)
+		|| c == TILE_ITEM || c == TILE_EXIT || c == TILE_ENEMY)
 		draw_image(g_sl()->img_floor, pos);
 	if (c == TILE_WALL)
 		draw_image(g_sl()->img_wall, pos);
@@ -46,6 +46,8 @@ void	map_drawtile(t_map map, t_vec2 pos, t_uint frame)
 		draw_anim(g_sl()->anim_item, pos, frame);
 	if (c == TILE_PLAYER || c == TILE_EPLAYER)
 		draw_anim(g_sl()->anim_player, pos, frame);
+	if (c == TILE_ENEMY)
+		draw_anim(g_sl()->anim_enemy, pos, frame);
 }
 
 void	map_moveplayer(t_map map, int x, int y)
@@ -58,6 +60,8 @@ void	map_moveplayer(t_map map, int x, int y)
 	pos_new = (t_vec2){pos_old.x + x, pos_old.y + y};
 	if (map_gettile(map, pos_new) == TILE_WALL)
 		return ;
+	if (map_gettile(map, pos_new) == TILE_ENEMY)
+		end_game(END_LOSE);
 	if (map_gettile(map, pos_new) == TILE_EXIT)
 		map_settile(map, pos_new, TILE_EPLAYER);
 	else

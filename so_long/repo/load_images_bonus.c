@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:33:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 16:19:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 18:57:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ t_bool	load_images(void)
 	g_sl()->img_exit[1] = load_image("exit1");
 	if (g_sl()->img_exit[1].i == NULL)
 		return (print_error("Error loading exit texture 2"), FALSE);
+	g_sl()->anim_enemy = load_animation("enemy", 2);
+	if (g_sl()->anim_enemy.i == NULL)
+		return (print_error("Error loading enemy textures"), FALSE);
 	return (TRUE);
 }

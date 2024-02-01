@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 16:12:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:35:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@
 # define TILE_EPLAYER	'Q'
 # define TILE_ITEM		'C'
 # define TILE_EXIT		'E'
+# define TILE_ENEMY		'X'
 # define TILE_FLOOD		'F'
 
 # define END_CLOSE	0
 # define END_WIN	1
+# define END_LOSE	2
 
 /*
  *	Represents a two-dimensional vector with fields x and y
@@ -121,6 +123,7 @@ typedef struct s_sl
 	t_image	img_wall;
 	t_anim	anim_player;
 	t_anim	anim_item;
+	t_anim	anim_enemy;
 	t_image	img_exit[2];
 	t_uint	moves;
 }	t_sl;
