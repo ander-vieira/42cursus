@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:33:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/31 18:29:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:11:48 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_bool	load_images(void)
 	g_sl()->img_player = load_image("player0");
 	if (g_sl()->img_player.i == NULL)
 		return (print_error("Error loading player texture"), FALSE);
-	g_sl()->img_item = load_image("item");
+	g_sl()->img_item = load_image("item0");
 	if (g_sl()->img_item.i == NULL)
 		return (print_error("Error loading item texture"), FALSE);
 	g_sl()->img_exit = load_image("exit0");

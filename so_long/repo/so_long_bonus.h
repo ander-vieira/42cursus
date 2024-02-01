@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/31 18:48:24 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:12:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/errno.h>
+# include <sys/time.h>
 
 # include "mlx/mlx.h"
 # include "libft/libft.h"
@@ -31,6 +32,8 @@
 
 # define TILE_WIDTH		32
 # define TILE_HEIGHT	32
+
+# define FPS 20
 
 # define EVT_KEYDN	2
 # define EVT_DSTRY	17
@@ -117,7 +120,7 @@ typedef struct s_sl
 	t_image	img_floor;
 	t_image	img_wall;
 	t_anim	anim_player;
-	t_image	img_item;
+	t_anim	anim_item;
 	t_image	img_exit[2];
 	t_uint	moves;
 }	t_sl;
@@ -137,6 +140,8 @@ size_t	map_countedges(t_map map, char c);
 void	map_free(t_map map);
 void	map_drawtile(t_map map, t_vec2 pos, t_uint frame);
 void	map_moveplayer(t_map map, int x, int y);
+
+t_uint	get_frame(void);
 
 t_bool	read_map(void);
 t_bool	validate_map(void);

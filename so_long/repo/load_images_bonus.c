@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:33:50 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/31 19:40:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:19:20 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ t_bool	load_images(void)
 	g_sl()->anim_player = load_animation("player", 2);
 	if (g_sl()->anim_player.i == NULL)
 		return (print_error("Error loading player textures"), FALSE);
-	g_sl()->img_item = load_image("item");
-	if (g_sl()->img_item.i == NULL)
-		return (print_error("Error loading item texture"), FALSE);
+	g_sl()->anim_item = load_animation("item", 4);
+	if (g_sl()->anim_item.i == NULL)
+		return (print_error("Error loading item textures"), FALSE);
 	g_sl()->img_exit[0] = load_image("exit0");
 	if (g_sl()->img_exit[0].i == NULL)
 		return (print_error("Error loading exit texture 1"), FALSE);

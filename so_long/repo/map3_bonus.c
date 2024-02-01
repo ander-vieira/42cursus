@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/31 19:29:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:13:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	draw_image(t_image img, t_vec2 pos)
 
 static void	draw_anim(t_anim anim, t_vec2 pos, t_uint frame)
 {
-	mlx_put_image_to_window(g_sl()->mlx, g_sl()->win, anim.i[frame * anim.n / 60].i,
+	mlx_put_image_to_window(g_sl()->mlx, g_sl()->win, anim.i[frame * anim.n / FPS].i,
 		pos.x * TILE_WIDTH, pos.y * TILE_HEIGHT);
 }
 
@@ -42,7 +42,7 @@ void	map_drawtile(t_map map, t_vec2 pos, t_uint frame)
 			draw_image(g_sl()->img_exit[0], pos);
 	}
 	if (c == TILE_ITEM)
-		draw_image(g_sl()->img_item, pos);
+		draw_anim(g_sl()->anim_item, pos, frame);
 	if (c == TILE_PLAYER || c == TILE_EPLAYER)
 		draw_anim(g_sl()->anim_player, pos, frame);
 }
