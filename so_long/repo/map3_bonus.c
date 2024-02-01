@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 16:13:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:27:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	draw_image(t_image img, t_vec2 pos)
 
 static void	draw_anim(t_anim anim, t_vec2 pos, t_uint frame)
 {
-	mlx_put_image_to_window(g_sl()->mlx, g_sl()->win, anim.i[frame * anim.n / FPS].i,
+	mlx_put_image_to_window(g_sl()->mlx, g_sl()->win,
+		anim.i[frame * anim.n / FPS].i,
 		pos.x * TILE_WIDTH, pos.y * TILE_HEIGHT);
 }
 
