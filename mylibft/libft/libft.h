@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 18:06:36 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/03 16:59:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ typedef enum e_bool
 	FALSE = 0,
 	TRUE = 1
 }						t_bool;
+typedef unsigned char	t_byte;
 typedef unsigned int	t_uint;
 typedef unsigned long	t_ulong;
 typedef int				t_fd;
 
-typedef t_bool			(*t_f_char)(char, void *);
+typedef t_bool			(*t_splitfun)(char, void *);
 
 /* ************************************************************************** */
 /* Error handling functions and macros                                        */
@@ -84,7 +85,7 @@ ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);
 t_bool	ft_strsuffix(char *str, char *suffix);
 char	**ft_strsplit(char *str, char c);
-char	**ft_strsplit_magic(char *str, t_f_char fun, void *ctx);
+char	**ft_strsplit_magic(char *str, t_splitfun fun, void *ctx);
 void	ft_strsplit_free(char **split);
 
 /* ************************************************************************** */
