@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:23:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 15:56:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:26:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,13 @@ static int	handle_key(int keycode, void *p)
 	if (keycode == KEY_ESC)
 		end_game(END_CLOSE);
 	else if (keycode == KEY_UP || keycode == KEY_W)
-		map_moveplayer(g_sl()->map, 0, -1);
+		do_turn(0, -1);
 	else if (keycode == KEY_LEFT || keycode == KEY_A)
-		map_moveplayer(g_sl()->map, -1, 0);
+		do_turn(-1, 0);
 	else if (keycode == KEY_DOWN || keycode == KEY_S)
-		map_moveplayer(g_sl()->map, 0, 1);
+		do_turn(0, 1);
 	else if (keycode == KEY_RIGHT || keycode == KEY_D)
-		map_moveplayer(g_sl()->map, 1, 0);
-	if (map_count(g_sl()->map, TILE_ITEM) == 0
-		&& map_find(g_sl()->map, NULL, TILE_EPLAYER))
-		end_game(END_WIN);
+		do_turn(1, 0);
 	return (0);
 }
 
@@ -61,7 +58,6 @@ static int	close_window(void *p)
 
 void	init_mlx(void)
 {
-	g_sl()->moves = 0;
 	g_sl()->mlx = mlx_init();
 	if (!load_images())
 		return ;

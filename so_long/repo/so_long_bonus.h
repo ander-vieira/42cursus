@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 17:35:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:33:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ typedef struct s_sl
 	t_anim	anim_item;
 	t_anim	anim_enemy;
 	t_image	img_exit[2];
-	t_uint	moves;
 }	t_sl;
 
 t_sl	*g_sl(void);
@@ -142,7 +141,8 @@ void	map_flood(t_map map, t_vec2 pos);
 size_t	map_countedges(t_map map, char c);
 void	map_free(t_map map);
 void	map_drawtile(t_map map, t_vec2 pos, t_uint frame);
-void	map_moveplayer(t_map map, int x, int y);
+t_bool	map_moveplayer(t_map map, int x, int y);
+void	map_moveenemy(t_map map);
 
 t_uint	get_frame(void);
 
@@ -151,6 +151,7 @@ t_bool	validate_map(void);
 
 t_bool	load_images(void);
 void	end_game(t_uint	status);
+void	do_turn(int x, int y);
 
 void	init_mlx(void);
 

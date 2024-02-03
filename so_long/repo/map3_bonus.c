@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 17:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 18:47:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/03 19:37:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	map_drawtile(t_map map, t_vec2 pos, t_uint frame)
 		draw_anim(g_sl()->anim_enemy, pos, frame);
 }
 
-void	map_moveplayer(t_map map, int x, int y)
+t_bool	map_moveplayer(t_map map, int x, int y)
 {
 	t_vec2	pos_old;
 	t_vec2	pos_new;
@@ -59,7 +59,7 @@ void	map_moveplayer(t_map map, int x, int y)
 		map_find(map, &pos_old, TILE_EPLAYER);
 	pos_new = (t_vec2){pos_old.x + x, pos_old.y + y};
 	if (map_gettile(map, pos_new) == TILE_WALL)
-		return ;
+		return (FALSE);
 	if (map_gettile(map, pos_new) == TILE_ENEMY)
 		end_game(END_LOSE);
 	if (map_gettile(map, pos_new) == TILE_EXIT)
@@ -70,7 +70,27 @@ void	map_moveplayer(t_map map, int x, int y)
 		map_settile(map, pos_old, TILE_EXIT);
 	else
 		map_settile(map, pos_old, TILE_FLOOR);
-	g_sl()->moves += 1;
-	ft_printf(STDOUT_FILENO,
-		"YOU HAVE MOVED %d TIMES... WHY NOT GIVE UP NOW?\n", g_sl()->moves);
+	return (TRUE);
+}
+
+void	map_moveenemy(t_map map)
+{
+	t_vec2	pos_old;
+	int		randvalue;
+	t_vec2	pos_new;
+
+	if (!map_find(map, &pos_old, TILE_ENEMY))
+		return ;
+	randvalue = rand() % 4;
+	pos_new = (t_vec2){pos_old.x + (2 * (randvalue % 2) - 1) * (randvalue / 2),
+		pos_old.y + (2 * (randvalue % 2) - 1) * !(randvalue / 2)};
+	if (map_gettile(map, pos_new) == TILE_WALL
+		|| map_gettile(map, pos_new) == TILE_EXIT
+		|| map_gettile(map, pos_new) == TILE_ITEM)
+		return ;
+	if (map_gettile(map, pos_new) == TILE_PLAYER
+		|| map_gettile(map, pos_new) == TILE_EPLAYER)
+		end_game(END_LOSE);
+	map_settile(map, pos_new, TILE_ENEMY);
+	map_settile(map, pos_old, TILE_FLOOR);
 }
