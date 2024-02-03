@@ -6,13 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:21:19 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 18:36:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/03 16:59:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-static size_t	ft_strsplit_count(char *s, t_f_char fun, void *ctx)
+static size_t	ft_strsplit_count(char *s, t_splitfun fun, void *ctx)
 {
 	size_t	count;
 	size_t	i;
@@ -28,7 +28,7 @@ static size_t	ft_strsplit_count(char *s, t_f_char fun, void *ctx)
 	return (count);
 }
 
-static char	*ft_strsplit_get(char *s, size_t *i, t_f_char fun, void *ctx)
+static char	*ft_strsplit_get(char *s, size_t *i, t_splitfun fun, void *ctx)
 {
 	char	*word;
 	size_t	len;
@@ -45,7 +45,7 @@ static char	*ft_strsplit_get(char *s, size_t *i, t_f_char fun, void *ctx)
 	return (word);
 }
 
-char	**ft_strsplit_magic(char *str, t_f_char fun, void *ctx)
+char	**ft_strsplit_magic(char *str, t_splitfun fun, void *ctx)
 {
 	char	**split;
 	size_t	count;
