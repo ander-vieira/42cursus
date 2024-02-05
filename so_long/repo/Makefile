@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/05 15:26:54 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/05 16:34:12 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,9 @@ $(MLX):
 clean:
 	make -C $(LIBFT_DIR) fclean
 	make -C $(MLX_DIR) clean
-	rm -f $(NAME)
 
 fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
