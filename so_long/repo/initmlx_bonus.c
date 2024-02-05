@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 15:23:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/03 19:26:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:52:27 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static int	draw_map(void *p)
 		}
 		pos.y++;
 	}
+	draw_moves();
 	return (0);
 }
 
@@ -38,14 +39,14 @@ static int	handle_key(int keycode, void *p)
 	(void)p;
 	if (keycode == KEY_ESC)
 		end_game(END_CLOSE);
-	else if (keycode == KEY_UP || keycode == KEY_W)
-		do_turn(0, -1);
 	else if (keycode == KEY_LEFT || keycode == KEY_A)
-		do_turn(-1, 0);
-	else if (keycode == KEY_DOWN || keycode == KEY_S)
-		do_turn(0, 1);
+		do_turn(MOVE_LEFT);
 	else if (keycode == KEY_RIGHT || keycode == KEY_D)
-		do_turn(1, 0);
+		do_turn(MOVE_RIGHT);
+	else if (keycode == KEY_UP || keycode == KEY_W)
+		do_turn(MOVE_UP);
+	else if (keycode == KEY_DOWN || keycode == KEY_S)
+		do_turn(MOVE_DOWN);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 16:45:05 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/01 17:26:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:23:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static t_bool	count_tiles(void)
 		return (print_error("Map must contain exactly one exit"), FALSE);
 	if (map_count(g_sl()->map, TILE_ITEM) == 0)
 		return (print_error("Map must contain at least one item"), FALSE);
+	if (map_count(g_sl()->map, TILE_ENEMY) > 1)
+		return (print_error("Map must contain at most one enemy"), FALSE);
 	return (TRUE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 18:27:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/30 17:39:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/05 16:24:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	map_flood(t_map map, t_vec2 pos)
 
 	tile = map_gettile(map, pos);
 	if (tile != TILE_FLOOR && tile != TILE_PLAYER
-		&& tile != TILE_ITEM && tile != TILE_EXIT)
+		&& tile != TILE_ITEM && tile != TILE_EXIT && tile != TILE_ENEMY)
 		return ;
 	map_settile(map, pos, TILE_FLOOD);
 	if (pos.x > 0)

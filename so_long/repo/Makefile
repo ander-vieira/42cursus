@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/03 19:27:27 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/05 15:26:54 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = so_long.c end_game.c error.c initmlx.c load_images.c map.c map2.c map3.c 
 HDRS = so_long.h
 
 SRCS_BONUS = so_long_bonus.c do_turn_bonus.c end_game_bonus.c error_bonus.c get_frame_bonus.c initmlx_bonus.c load_images_bonus.c \
-map_bonus.c map2_bonus.c map3_bonus.c read_map_bonus.c validate_map_bonus.c
+map_bonus.c map2_bonus.c map3_bonus.c moves_bonus.c read_map_bonus.c validate_map_bonus.c
 HDRS_BONUS = so_long_bonus.h
 
 LIBFT_DIR = libft/

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 18:29:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/03 19:33:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/05 15:26:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,15 @@ typedef struct s_anim
 	t_uint	n;
 }	t_anim;
 
+typedef enum e_move
+{
+	MOVE_NONE,
+	MOVE_LEFT,
+	MOVE_RIGHT,
+	MOVE_UP,
+	MOVE_DOWN
+}	t_move;
+
 /*
  *	This structure is used to hold all of the game's metadata
  *	- pname: the program's name as given by argv[0]
@@ -141,8 +150,12 @@ void	map_flood(t_map map, t_vec2 pos);
 size_t	map_countedges(t_map map, char c);
 void	map_free(t_map map);
 void	map_drawtile(t_map map, t_vec2 pos, t_uint frame);
-t_bool	map_moveplayer(t_map map, int x, int y);
-void	map_moveenemy(t_map map);
+t_bool	map_moveplayer(t_map map, t_vec2 move);
+void	map_moveenemy(t_map map, t_vec2 move);
+
+void	increment_moves(void);
+t_uint	get_moves(void);
+void	draw_moves(void);
 
 t_uint	get_frame(void);
 
@@ -151,7 +164,7 @@ t_bool	validate_map(void);
 
 t_bool	load_images(void);
 void	end_game(t_uint	status);
-void	do_turn(int x, int y);
+void	do_turn(t_move move);
 
 void	init_mlx(void);
 
