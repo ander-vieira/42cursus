@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:36:44 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 18:36:08 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 void	ft_strsplit_free(char **split)
 {

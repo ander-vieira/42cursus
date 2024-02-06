@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:52:17 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 19:24:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:37 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 static char	*ft_strformat_joinstr(char *old, char *add)
 {

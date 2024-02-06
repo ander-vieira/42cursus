@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:58:42 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/30 16:00:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:02:04 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 t_bool	ft_strsuffix(char *str, char *suffix)
 {

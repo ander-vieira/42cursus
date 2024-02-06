@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:29:25 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 16:57:37 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Check if a string starts with a given prefix

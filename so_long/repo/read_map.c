@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 16:02:23 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/29 18:50:36 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:08:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*read_file(void)
 	fd = open(g_sl()->mapname, O_RDONLY);
 	if (fd == -1)
 		return (print_error(NULL), NULL);
-	file = ft_readfull(fd, NULL);
+	file = ft_readfull(fd);
 	close(fd);
 	if (file == NULL)
 		return (print_error(NULL), NULL);

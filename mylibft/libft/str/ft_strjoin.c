@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:19:52 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:16:24 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 static char	**ft_strjoin_strs(size_t n, va_list args, size_t *len)
 {

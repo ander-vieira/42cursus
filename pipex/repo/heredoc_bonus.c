@@ -6,17 +6,17 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 11:51:44 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 16:40:46 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:05:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex_bonus.h"
 
-t_fd	av_readerror(t_fd fd, t_error error, t_pipex *px)
+static t_fd	av_readerror(t_fd fd, t_pipex *px)
 {
-	if (error == ERR_MALLOC)
+	if (ft_geterror() == FTERR_MALLOC)
 		return (av_printerror(px->pname, "malloc", NULL), close(fd), -1);
-	else if (error == ERR_READ)
+	else if (ft_geterror() == FTERR_READ)
 		return (av_printerror(px->pname, "read", NULL), close(fd), -1);
 	else
 		return (av_printerror(px->pname, "warning",
@@ -28,7 +28,6 @@ t_fd	av_heredoc(t_pipex *px)
 	char	*line;
 	char	*delim;
 	t_fd	fd[2];
-	t_error	error;
 
 	delim = ft_strjoin(2, px->infile, "\n");
 	if (delim == NULL)
@@ -37,9 +36,9 @@ t_fd	av_heredoc(t_pipex *px)
 		return (av_printerror(px->pname, "pipe", NULL), free(delim), -1);
 	while (1)
 	{
-		line = ft_readline(STDIN_FILENO, &error);
+		line = ft_readline(STDIN_FILENO);
 		if (line == NULL)
-			return (free(delim), close(fd[1]), av_readerror(fd[0], error, px));
+			return (free(delim), close(fd[1]), av_readerror(fd[0], px));
 		if (ft_strcmp(line, delim))
 			return (free(delim), close(fd[1]), fd[0]);
 		if (write(fd[1], line, ft_strlen(line)) == -1)

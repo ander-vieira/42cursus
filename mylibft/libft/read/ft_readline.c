@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 23:33:34 by andeviei          #+#    #+#             */
-/*   Updated: 2024/01/10 16:41:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 static char	*ft_readline_join(char *line, char *buf)
 {
@@ -34,29 +35,29 @@ static char	*ft_readline_join(char *line, char *buf)
 	return (result);
 }
 
-static char	*ft_readline_read(t_fd fd, char *buf, t_error *error)
+static char	*ft_readline_read(t_fd fd, char *buf)
 {
 	char	*line;
 	ssize_t	bytes_read;
 
 	line = ft_readline_join(NULL, buf);
 	if (line == NULL)
-		return (ft_seterror(error, ERR_MALLOC), NULL);
+		return (ft_seterror(FTERR_MALLOC), NULL);
 	bytes_read = 1;
 	while (bytes_read > 0 && ft_strchr(line, '\n') == -1)
 	{
 		bytes_read = read(fd, buf, READ_BUFSIZE);
 		if (bytes_read == -1)
-			return (buf[0] = '\0', ft_seterror(error, ERR_READ),
+			return (buf[0] = '\0', ft_seterror(FTERR_READ),
 				free(line), NULL);
 		if (bytes_read == 0 && ft_strlen(line) == 0)
-			return (ft_seterror(error, ERR_OK), free(line), NULL);
+			return (ft_seterror(FTERR_OK), free(line), NULL);
 		buf[bytes_read] = '\0';
 		line = ft_readline_join(line, buf);
 		if (line == NULL)
-			return (ft_seterror(error, ERR_MALLOC), NULL);
+			return (ft_seterror(FTERR_MALLOC), NULL);
 	}
-	return (ft_seterror(error, ERR_OK), line);
+	return (ft_seterror(FTERR_OK), line);
 }
 
 static void	ft_readline_rest(char *buf)
@@ -78,14 +79,14 @@ static void	ft_readline_rest(char *buf)
 		buf[0] = '\0';
 }
 
-char	*ft_readline(t_fd fd, t_error *error)
+char	*ft_readline(t_fd fd)
 {
 	static char	buf[READ_FDLIMIT][READ_BUFSIZE + 1];
 	char		*line;
 
 	if (fd < 0)
-		return (ft_seterror(error, ERR_READ_BADFD), NULL);
-	line = ft_readline_read(fd, buf[fd], error);
+		return (ft_seterror(FTERR_BADFD), NULL);
+	line = ft_readline_read(fd, buf[fd]);
 	ft_readline_rest(buf[fd]);
 	return (line);
 }

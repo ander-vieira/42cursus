@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:34:00 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 16:54:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:12 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Print a character to a file descriptor

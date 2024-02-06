@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   libft_int.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 16:32:03 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/06 16:00:51 by andeviei         ###   ########.fr       */
+/*   Created: 2024/02/06 15:31:41 by andeviei          #+#    #+#             */
+/*   Updated: 2024/02/06 16:00:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
-#include "../libft_int.h"
+#ifndef LIBFT_INT_H
+# define LIBFT_INT_H
 
-t_ulong	ft_abs(long num)
-{
-	if (num < 0)
-		return (-num);
-	else
-		return (num);
-}
+# define FT_INT_INTMAX 2147483647
+
+void	ft_seterror(t_byte error);
+
+#endif

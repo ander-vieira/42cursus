@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:18:07 by andeviei          #+#    #+#              #
-#    Updated: 2024/01/10 18:07:30 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/06 15:37:00 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libft.a
 CFLAGS = -c -Wall -Wextra -Werror
 
 SRCS = \
-error/ft_seterror.c \
+error/ft_error.c \
 misc/ft_abs.c misc/ft_isspace.c misc/ft_memcpy.c misc/ft_parsenum.c \
 str/ft_strbuild.c str/ft_strchr.c str/ft_strcmp.c str/ft_strformat.c str/ft_strjoin.c str/ft_strlen.c str/ft_strnbrs.c \
 str/ft_strnbru.c str/ft_strprefix.c str/ft_strrchr.c str/ft_strsub.c str/ft_strsuffix.c \

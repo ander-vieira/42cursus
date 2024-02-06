@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:39:35 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 16:54:38 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Print a positive number to a file descriptor using a given base

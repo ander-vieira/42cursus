@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:21:19 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/03 16:59:43 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 static size_t	ft_strsplit_count(char *s, t_splitfun fun, void *ctx)
 {

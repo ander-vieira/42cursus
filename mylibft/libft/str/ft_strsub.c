@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 14:20:10 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 15:06:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:02:01 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Returns a substring of the given size from the given string

@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:44:37 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:46:42 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:45:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 static size_t	ft_parsenum_validbase(char *base)
 {
@@ -45,12 +46,12 @@ static t_bool	ft_parsenum_overflow(long result,
 	long pos, long base_len, t_bool sign)
 {
 	if (sign)
-		return (result > ((long)FT_INT_MAX + 1 - pos) / base_len);
+		return (result > ((long)FT_INT_INTMAX + 1 - pos) / base_len);
 	else
-		return (result > ((long)FT_INT_MAX - pos) / base_len);
+		return (result > ((long)FT_INT_INTMAX - pos) / base_len);
 }
 
-int	ft_parsenum(char *str, char *base, t_error *error)
+int	ft_parsenum(char *str, char *base)
 {
 	int		result;
 	int		base_len;
@@ -60,20 +61,20 @@ int	ft_parsenum(char *str, char *base, t_error *error)
 
 	base_len = (int)ft_parsenum_validbase(base);
 	if (base_len < 2)
-		return (ft_seterror(error, ERR_PARSENUM_BADBASE), 0);
+		return (ft_seterror(FTERR_PARSENUM_BADBASE), 0);
 	result = 0;
 	sign = ft_parsenum_getsign(str, &i);
 	while (str[i] != '\0')
 	{
 		pos = ft_strchr(base, str[i]);
 		if (pos == -1)
-			return (ft_seterror(error, ERR_PARSENUM_BADCHAR), result);
+			return (ft_seterror(FTERR_PARSENUM_BADCHAR), result);
 		if (ft_parsenum_overflow(result, pos, base_len, sign))
-			return (ft_seterror(error, ERR_PARSENUM_OVERFLOW), 0);
+			return (ft_seterror(FTERR_PARSENUM_OVERFLOW), 0);
 		result = result * base_len + pos;
 		i++;
 	}
 	if (sign)
 		result *= -1;
-	return (ft_seterror(error, ERR_OK), result);
+	return (ft_seterror(FTERR_OK), result);
 }

@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 19:08:29 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 19:14:04 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 char	*ft_strnbrs(long num, char *base)
 {

@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:46:49 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:29:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:05 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Get the base name (without the directory part) of the given pathname

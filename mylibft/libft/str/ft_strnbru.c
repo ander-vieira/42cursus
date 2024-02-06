@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 19:02:21 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 16:39:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:48 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 static size_t	ft_strnbru_len(t_ulong num, size_t base_len)
 {

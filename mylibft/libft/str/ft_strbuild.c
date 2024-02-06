@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 18:47:06 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 18:50:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Returns a string comprised of the same character repeated a number of times.

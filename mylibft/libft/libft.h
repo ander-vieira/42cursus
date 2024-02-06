@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/03 16:59:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:45:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 /* ************************************************************************** */
 /* General use types and macros                                               */
 
-# define FT_INT_MAX 2147483647
-
 # define BASE_BIN	"01"
 # define BASE_OCT	"01234567"
 # define BASE_DEC	"0123456789"
@@ -39,27 +37,25 @@ typedef enum e_bool
 typedef unsigned char	t_byte;
 typedef unsigned int	t_uint;
 typedef unsigned long	t_ulong;
+
 typedef int				t_fd;
 
 typedef t_bool			(*t_splitfun)(char, void *);
 
 /* ************************************************************************** */
-/* Error handling functions and macros                                        */
+/* error: handling libft internal errors                                      */
 
-# define ERR_OK		0
-# define ERR_READ	1
-# define ERR_WRITE	2
-# define ERR_MALLOC	3
+# define FTERR_OK		0
+# define FTERR_READ		1
+# define FTERR_WRITE	2
+# define FTERR_MALLOC	3
+# define FTERR_BADFD	4
 
-# define ERR_PARSENUM_BADBASE	101
-# define ERR_PARSENUM_BADCHAR	102
-# define ERR_PARSENUM_OVERFLOW	103
+# define FTERR_PARSENUM_BADBASE		101
+# define FTERR_PARSENUM_BADCHAR		102
+# define FTERR_PARSENUM_OVERFLOW	103
 
-# define ERR_READ_BADFD	101
-
-typedef unsigned char	t_error;
-
-void	ft_seterror(t_error *error, t_error value);
+t_byte	ft_geterror(void);
 
 /* ************************************************************************** */
 /* misc: Miscellaneous functions                                              */
@@ -67,7 +63,7 @@ void	ft_seterror(t_error *error, t_error value);
 t_ulong	ft_abs(long num);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
-int		ft_parsenum(char *str, char *base, t_error *error);
+int		ft_parsenum(char *str, char *base);
 
 /* ************************************************************************** */
 /* str: Functions for handling strings                                        */
@@ -105,8 +101,8 @@ char	*ft_trimname(char *name);
 # define READ_FDLIMIT	4096
 # define READ_BUFSIZE	64
 
-char	*ft_readline(t_fd fd, t_error *error);
-char	*ft_readfull(t_fd fd, t_error *error);
+char	*ft_readline(t_fd fd);
+char	*ft_readfull(t_fd fd);
 
 /* ************************************************************************** */
 /* print: Print functions                                                     */

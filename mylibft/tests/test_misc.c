@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:53:02 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/05 16:27:14 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 15:58:42 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	test_abs(void)
 	print_test("1", ft_abs(500) == 500, FALSE);
 	print_test("2", ft_abs(-500) == 500, FALSE);
 	print_test("3", ft_abs(0) == 0, FALSE);
-	print_test("4", ft_abs(FT_INT_MAX) == FT_INT_MAX, TRUE);
+	print_test("4", ft_abs(2147483647) == 2147483647, TRUE);
 }
 
 static void	test_isspace(void)
@@ -50,26 +50,25 @@ static void	test_memcpy(void)
 
 static void	test_parsenum(void)
 {
-	int		num;
-	t_error	error;
+	int	num;
 
 	print_title("PARSENUM");
-	num = ft_parsenum("500", BASE_DEC, &error);
-	print_test("1", num == 500 && error == ERR_OK, FALSE);
-	num = ft_parsenum("-88", BASE_DEC, &error);
-	print_test("2", num == -88 && error == ERR_OK, FALSE);
-	num = ft_parsenum("5f", BASE_HXL, &error);
-	print_test("3", num == 95 && error == ERR_OK, FALSE);
-	num = ft_parsenum("1A8", BASE_HXU, &error);
-	print_test("4", num == 424 && error == ERR_OK, FALSE);
-	num = ft_parsenum("555", "0", &error);
-	print_test("5", num == 0 && error == ERR_PARSENUM_BADBASE, FALSE);
-	num = ft_parsenum("A0", BASE_DEC, &error);
-	print_test("5", num == 0 && error == ERR_PARSENUM_BADCHAR, FALSE);
-	num = ft_parsenum("1.8", BASE_DEC, &error);
-	print_test("6", num == 1 && error == ERR_PARSENUM_BADCHAR, FALSE);
-	num = ft_parsenum("200000000000", BASE_DEC, &error);
-	print_test("7", num == 0 && error == ERR_PARSENUM_OVERFLOW, TRUE);
+	num = ft_parsenum("500", BASE_DEC);
+	print_test("1", num == 500 && ft_geterror() == FTERR_OK, FALSE);
+	num = ft_parsenum("-88", BASE_DEC);
+	print_test("2", num == -88 && ft_geterror() == FTERR_OK, FALSE);
+	num = ft_parsenum("5f", BASE_HXL);
+	print_test("3", num == 95 && ft_geterror() == FTERR_OK, FALSE);
+	num = ft_parsenum("1A8", BASE_HXU);
+	print_test("4", num == 424 && ft_geterror() == FTERR_OK, FALSE);
+	num = ft_parsenum("555", "0");
+	print_test("5", num == 0 && ft_geterror() == FTERR_PARSENUM_BADBASE, FALSE);
+	num = ft_parsenum("A0", BASE_DEC);
+	print_test("5", num == 0 && ft_geterror() == FTERR_PARSENUM_BADCHAR, FALSE);
+	num = ft_parsenum("1.8", BASE_DEC);
+	print_test("6", num == 1 && ft_geterror() == FTERR_PARSENUM_BADCHAR, FALSE);
+	num = ft_parsenum("200000000000", BASE_DEC);
+	print_test("7", num == 0 && ft_geterror() == FTERR_PARSENUM_OVERFLOW, TRUE);
 }
 
 void	test_misc(void)

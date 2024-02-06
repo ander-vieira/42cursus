@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/26 12:41:19 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 17:29:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:01:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 /*
  *	Get the path to the directory containing the given pathname.

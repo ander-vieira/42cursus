@@ -6,11 +6,12 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:54:22 by andeviei          #+#    #+#             */
-/*   Updated: 2023/11/26 13:46:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/06 16:00:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include "../libft_int.h"
 
 void	ft_memcpy(void *dst, void *src, size_t len)
 {
