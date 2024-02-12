@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/12 16:03:34 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:32:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef enum e_op
 
 typedef struct s_oper
 {
-	t_op			v;
+	t_op			o;
 	struct s_oper	*n;
 }	t_oper;
 

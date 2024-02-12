@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:06 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/12 19:23:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:48:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_stack	**g_a(void)
 
 t_stack	**g_b(void)
 {
-	static t_stack	*a;
+	static t_stack	*b;
 
-	return (&a);
+	return (&b);
 }
 
 void	do_oper(t_op op)
