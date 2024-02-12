@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/09 19:00:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/12 16:03:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,12 @@ typedef struct s_stack
 	struct s_stack	*n;
 }	t_stack;
 
-void	stack_insert(t_stack **stack, int num);
+void	stack_push(t_stack **stack, int num);
+int		stack_pop(t_stack **stack);
 void	stack_free(t_stack *stack);
+t_uint	stack_length(t_stack *stack);
+void	stack_rotate(t_stack **stack);
+void	stack_rrotate(t_stack **stack);
 void	stack_print(t_stack *stack);
 
 #endif
