@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/11 14:36:52 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:30:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	av_printusage(char *pname)
 {
-	ft_printstr(STDOUT_FILENO, "Usage: \n");
-	ft_printstr(STDOUT_FILENO, pname);
-	ft_printstr(STDOUT_FILENO, " <infile> <cmd1> <...> <cmdN> <outfile>\n");
-	ft_printstr(STDOUT_FILENO, pname);
-	ft_printstr(STDOUT_FILENO, \
-		" here_doc <end sequence> <cmd1> <...> <cmdN> <outfile>\n");
+	ft_printf(STDOUT_FILENO, "Usage: \n");
+	ft_printf(STDOUT_FILENO,
+		"%s <infile> <cmd1> <...> <cmdN> <outfile>\n", pname);
+	ft_printf(STDOUT_FILENO,
+		"%s here_doc <end sequence> <cmd1> <...> <cmdN> <outfile>\n", pname);
 }
 
 void	av_printerror(char *pname, char *func, char *msg)

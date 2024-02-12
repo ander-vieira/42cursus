@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 17:21:26 by andeviei          #+#    #+#             */
-/*   Updated: 2023/12/11 14:36:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:29:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 void	av_printusage(char *pname)
 {
-	ft_printstr(STDOUT_FILENO, "Usage: \n");
-	ft_printstr(STDOUT_FILENO, pname);
-	ft_printstr(STDOUT_FILENO, " <infile> <cmd1> <cmd2> <outfile>\n");
+	ft_printf(STDOUT_FILENO,
+		"Usage: \n%s <infile> <cmd1> <cmd2> <outfile>\n", pname);
 }
 
 void	av_printerror(char *pname, char *func, char *msg)

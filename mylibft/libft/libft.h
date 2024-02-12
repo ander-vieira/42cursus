@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:45:17 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/12 19:26:35 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,6 @@ char	*ft_readfull(t_fd fd);
 # define PRINT_NULL		"(null)"
 # define PRINT_PTR_PREF	"0x"
 
-void	ft_print_addwrite(int *result, ssize_t bytes_write);
-
-int		ft_printchar(t_fd fd, char c);
 int		ft_printf(t_fd fd, char *format, ...);
-int		ft_printnbrs(t_fd fd, long num, char *base);
-int		ft_printnbru(t_fd fd, t_ulong num, char *base);
-int		ft_printstr(t_fd fd, char *str);
 
 #endif
