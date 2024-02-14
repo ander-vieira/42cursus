@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/12 19:26:35 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:18:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef t_bool			(*t_splitfun)(char, void *);
 # define FTERR_PARSENUM_BADBASE		101
 # define FTERR_PARSENUM_BADCHAR		102
 # define FTERR_PARSENUM_OVERFLOW	103
+# define FTERR_PARSENUM_EMPTY		104
 
 t_byte	ft_geterror(void);
 

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 14:44:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:45:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/13 15:54:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,18 @@ static t_bool	ft_parsenum_overflow(long result,
 		return (result > ((long)FT_INT_INTMAX - pos) / base_len);
 }
 
-int	ft_parsenum(char *str, char *base)
+static int	ft_parsenum_getnum(char *str, char *base, size_t i, t_bool sign)
 {
 	int		result;
 	int		base_len;
 	int		pos;
-	size_t	i;
-	t_bool	sign;
+	t_bool	empty;
 
 	base_len = (int)ft_parsenum_validbase(base);
 	if (base_len < 2)
 		return (ft_seterror(FTERR_PARSENUM_BADBASE), 0);
+	empty = TRUE;
 	result = 0;
-	sign = ft_parsenum_getsign(str, &i);
 	while (str[i] != '\0')
 	{
 		pos = ft_strchr(base, str[i]);
@@ -72,9 +71,23 @@ int	ft_parsenum(char *str, char *base)
 		if (ft_parsenum_overflow(result, pos, base_len, sign))
 			return (ft_seterror(FTERR_PARSENUM_OVERFLOW), 0);
 		result = result * base_len + pos;
+		empty = FALSE;
 		i++;
 	}
-	if (sign)
-		result *= -1;
+	if (empty)
+		return (ft_seterror(FTERR_PARSENUM_EMPTY), 0);
 	return (ft_seterror(FTERR_OK), result);
+}
+
+int	ft_parsenum(char *str, char *base)
+{
+	int		result;
+	t_bool	sign;
+	size_t	i;
+
+	sign = ft_parsenum_getsign(str, &i);
+	result = ft_parsenum_getnum(str, base, i, sign);
+	if (sign)
+		return (-result);
+	return (result);
 }
