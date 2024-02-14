@@ -6,51 +6,57 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:25:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/12 16:07:16 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:05:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_rotate(t_stack **stack)
+t_uint	stack_length(t_stack *stack)
 {
-	t_stack	*first;
-	t_stack	*second;
-	t_stack	*last;
-
-	if (stack == NULL || stack_length(*stack) < 2)
-		return ;
-	first = *stack;
-	second = first->n;
-	last = second;
-	while (last->n != NULL)
-		last = last->n;
-	first->n = NULL;
-	last->n = first;
-	*stack = second;
+	if (stack == NULL)
+		return (0);
+	else
+		return (1 + stack_length(stack->n));
 }
 
-void	stack_rrotate(t_stack **stack)
+int	stack_get(t_stack *stack, t_uint i)
 {
-	t_stack	*first;
-	t_stack	*before_last;
-	t_stack	*last;
+	t_uint	j;
 
-	if (stack == NULL || stack_length(*stack) < 2)
-		return ;
-	first = *stack;
-	before_last = *stack;
-	while (before_last->n->n != NULL)
-		before_last = before_last->n;
-	last = before_last->n;
-	before_last->n = NULL;
-	last->n = first;
-	*stack = last;
+	j = 0;
+	while (stack != NULL && j < i)
+	{
+		stack = stack->n;
+		j++;
+	}
+	if (stack == NULL)
+		return (0);
+	return (stack->i);
 }
 
-void	stack_print(t_stack *stack)
+t_bool	stack_find(t_stack *stack, t_uint *i, int num)
 {
-	ft_printf(STDOUT_FILENO, "PRINTING STACK\n");
+	t_uint	j;
+
+	j = 0;
+	while (stack != NULL)
+	{
+		if (stack->i == num)
+		{
+			if (i != NULL)
+				*i = j;
+			return (TRUE);
+		}
+		stack = stack->n;
+		j++;
+	}
+	return (FALSE);
+}
+
+void	stack_print(t_stack *stack, char *name)
+{
+	ft_printf(STDOUT_FILENO, "PRINTING %s\n", name);
 	while (stack != NULL)
 	{
 		ft_printf(STDOUT_FILENO, "%d\n", stack->i);

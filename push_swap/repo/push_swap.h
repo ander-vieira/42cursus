@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/12 19:32:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/13 18:14:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 typedef enum e_op
 {
 	OP_PA,
+	OP_SA,
 	OP_RA,
 	OP_RRA,
 	OP_PB,
+	OP_SB,
 	OP_RB,
 	OP_RRB
 }	t_op;
@@ -40,12 +42,30 @@ typedef struct s_stack
 	struct s_stack	*n;
 }	t_stack;
 
+void	op_print(t_op op);
+void	op_do(t_op op);
+
+void	oper_add(t_oper **oper, t_op op);
+void	oper_print(t_oper *oper);
+void	oper_do(t_oper *oper);
+void	oper_free(t_oper **oper);
+
 void	stack_push(t_stack **stack, int num);
 int		stack_pop(t_stack **stack);
-void	stack_free(t_stack *stack);
+int		stack_peek(t_stack *stack);
+void	stack_free(t_stack **stack);
 t_uint	stack_length(t_stack *stack);
+int		stack_get(t_stack *stack, t_uint i);
+t_bool	stack_find(t_stack *stack, t_uint *i, int num);
+void	stack_print(t_stack *stack, char *name);
 void	stack_rotate(t_stack **stack);
 void	stack_rrotate(t_stack **stack);
-void	stack_print(t_stack *stack);
+void	stack_swap(t_stack **stack);
+void	stack_move(t_stack **stack1, t_stack **stack2);
+
+void	read_args(int argc, char **argv);
+
+t_stack	**g_a(void);
+t_stack	**g_b(void);
 
 #endif

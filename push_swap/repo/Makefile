@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/12 16:03:52 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/13 17:43:27 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = push_swap.c stack.c stack2.c
+SRCS = push_swap.c op.c oper.c read_args.c stack.c stack2.c stack3.c
 HDRS = push_swap.h
 
 LIBFT_DIR = libft/
