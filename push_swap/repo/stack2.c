@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:25:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/13 18:05:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:39:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,13 @@ void	stack_print(t_stack *stack, char *name)
 		ft_printf(STDOUT_FILENO, "%d\n", stack->i);
 		stack = stack->n;
 	}
+}
+
+void	stack_free(t_stack **stack)
+{
+	if (stack == NULL || *stack == NULL)
+		return ;
+	stack_free(&((*stack)->n));
+	free(*stack);
+	*stack = NULL;
 }

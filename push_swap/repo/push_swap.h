@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/13 18:14:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/14 19:46:07 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,15 @@ void	oper_print(t_oper *oper);
 void	oper_do(t_oper *oper);
 void	oper_free(t_oper **oper);
 
+t_stack	*stack_clone(t_stack *stack);
 void	stack_push(t_stack **stack, int num);
 int		stack_pop(t_stack **stack);
 int		stack_peek(t_stack *stack);
-void	stack_free(t_stack **stack);
 t_uint	stack_length(t_stack *stack);
 int		stack_get(t_stack *stack, t_uint i);
 t_bool	stack_find(t_stack *stack, t_uint *i, int num);
 void	stack_print(t_stack *stack, char *name);
+void	stack_free(t_stack **stack);
 void	stack_rotate(t_stack **stack);
 void	stack_rrotate(t_stack **stack);
 void	stack_swap(t_stack **stack);
