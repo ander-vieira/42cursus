@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:25:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/14 19:39:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:35:03 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 
 t_uint	stack_length(t_stack *stack)
 {
-	if (stack == NULL)
-		return (0);
-	else
-		return (1 + stack_length(stack->n));
+	t_uint	len;
+
+	len = 0;
+	while (stack == NULL)
+	{
+		len++;
+		stack = stack->n;
+	}
 }
 
 int	stack_get(t_stack *stack, t_uint i)
