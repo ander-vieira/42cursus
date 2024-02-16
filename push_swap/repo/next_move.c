@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_steps.c                                      :+:      :+:    :+:   */
+/*   next_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 16:01:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/15 20:54:54 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:15:19 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,40 +34,47 @@ static void	add_steps_b(t_oper **oper, t_uint target_b)
 		oper_add_n(oper, OP_RB, target_b);
 }
 
-t_oper	*get_steps(t_uint target_a)
+static t_oper	*get_steps(t_uint target_a)
 {
 	t_oper	*oper;
 	t_uint	target_b;
 
 	oper = NULL;
 	add_steps_a(&oper, target_a);
-	oper_add(&oper, OP_PB);
+	target_b = stack_target(*g_b(), stack_get(*g_a(), target_a));
 	add_steps_b(&oper, target_b);
+	oper_add(&oper, OP_PB);
 	return (oper);
 }
 
-t_oper	*find_best_target(void)
+t_oper	*next_move(void)
 {
 	t_uint	len_a;
 	t_uint	i;
 	t_oper	*oper_min;
-	t_uint	steps;
 	t_oper	*oper;
 
 	len_a = stack_length(*g_a());
+	oper_min = NULL;
 	i = 0;
 	while (i < len_a)
 	{
 		oper = get_steps(i);
-		steps = oper_length(oper);
-		if (i == 0 || steps < oper_length(oper_min))
+		if (i == 0 || oper_length(oper) < oper_length(oper_min))
 		{
-			oper_free(oper_min);
+			oper_free(&oper_min);
 			oper_min = oper;
 		}
 		else
-			oper_free(oper);
+			oper_free(&oper);
 		i++;
 	}
-	return (oper);
+	oper_do(oper_min);
+	return (oper_min);
+}
+
+void	order_b(t_oper **oper)
+{
+	add_steps_b(oper, stack_max(*g_b()));
+	oper_add_n(oper, OP_PA, stack_length(*g_b()));
 }

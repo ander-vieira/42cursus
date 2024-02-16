@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:28:21 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:36:20 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:15:52 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ t_uint	oper_length(t_oper *oper)
 	t_uint	len;
 
 	len = 0;
-	while (oper == NULL)
+	while (oper != NULL)
 	{
 		len++;
 		oper = oper->n;
 	}
+	return (len);
 }
 
 void	oper_add_n(t_oper **oper, t_op op, t_uint n)

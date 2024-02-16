@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:06 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:18:19 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:16:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,13 @@ t_stack	**g_b(void)
 
 int	main(int argc, char **argv)
 {
+	t_oper	*oper;
+
 	read_args(argc, argv);
-	stack_print(*g_a(), "A");
-	stack_print(*g_b(), "B");
-	op_do(OP_PB);
-	op_do(OP_PB);
-	op_do(OP_PB);
-	stack_print(*g_a(), "A");
-	stack_print(*g_b(), "B");
-	op_do(OP_PA);
-	stack_print(*g_a(), "A");
-	stack_print(*g_b(), "B");
+	while (*g_a() != NULL)
+		oper_join(&oper, next_move());
+	order_b(&oper);
+	oper_print(oper);
 	stack_free(g_a());
 	stack_free(g_b());
 	return (EXIT_SUCCESS);

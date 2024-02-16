@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:45:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:13:48 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,18 @@ int		stack_peek(t_stack *stack);
 t_uint	stack_length(t_stack *stack);
 int		stack_get(t_stack *stack, t_uint i);
 t_bool	stack_find(t_stack *stack, t_uint *i, int num);
-void	stack_print(t_stack *stack, char *name);
+void	stack_print(t_stack *stack);
 void	stack_free(t_stack **stack);
 void	stack_rotate(t_stack **stack);
 void	stack_rrotate(t_stack **stack);
 void	stack_swap(t_stack **stack);
 void	stack_move(t_stack **stack1, t_stack **stack2);
+t_uint	stack_max(t_stack *stack);
 t_uint	stack_target(t_stack *stack, int num);
 
 void	read_args(int argc, char **argv);
+t_oper	*next_move(void);
+void	order_b(t_oper **oper);
 
 t_stack	**g_a(void);
 t_stack	**g_b(void);

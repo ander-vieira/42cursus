@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:25:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:35:03 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:15:50 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ t_uint	stack_length(t_stack *stack)
 	t_uint	len;
 
 	len = 0;
-	while (stack == NULL)
+	while (stack != NULL)
 	{
 		len++;
 		stack = stack->n;
 	}
+	return (len);
 }
 
 int	stack_get(t_stack *stack, t_uint i)
@@ -58,9 +59,8 @@ t_bool	stack_find(t_stack *stack, t_uint *i, int num)
 	return (FALSE);
 }
 
-void	stack_print(t_stack *stack, char *name)
+void	stack_print(t_stack *stack)
 {
-	ft_printf(STDOUT_FILENO, "PRINTING %s\n", name);
 	while (stack != NULL)
 	{
 		ft_printf(STDOUT_FILENO, "%d\n", stack->i);

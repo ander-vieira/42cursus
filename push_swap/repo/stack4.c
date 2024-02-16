@@ -6,29 +6,30 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:05:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/15 18:15:47 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 14:52:29 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_uint	stack_min(t_stack *stack)
+t_uint	stack_max(t_stack *stack)
 {
 	t_uint	i;
-	t_uint	i_min;
-	int		num_min;
+	t_uint	i_max;
+	int		num_max;
 
 	i = 0;
 	while (stack != NULL)
 	{
-		if (i == 0 || stack->i < num_min)
+		if (i == 0 || stack->i > num_max)
 		{
-			i_min = i;
-			num_min = stack->i;
+			i_max = i;
+			num_max = stack->i;
 		}
+		i++;
 		stack = stack->n;
 	}
-	return (i_min);
+	return (i_max);
 }
 
 t_uint	stack_target(t_stack *stack, int num)
@@ -46,11 +47,11 @@ t_uint	stack_target(t_stack *stack, int num)
 	i = 0;
 	while (current != NULL)
 	{
-		if (num > prev->i && (num < current->i || prev->i > current->i))
+		if (num < prev->i && (num > current->i || prev->i < current->i))
 			return (i);
 		i++;
 		prev = current;
 		current = current->n;
 	}
-	return (stack_min(stack));
+	return (stack_max(stack));
 }
