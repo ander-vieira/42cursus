@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 09:40:30 by andeviei          #+#    #+#             */
-/*   Updated: 2023/09/16 20:46:35 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:33:00 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strtrim(const char *str, const char *charset)
 	size_t	start;
 	size_t	end;
 
-	if (str == NULL)
+	if (str == NULL || charset == NULL)
 		return (NULL);
 	str_len = ft_strlen(str);
 	start = 0;
