@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:14:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/13 17:46:35 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:58:28 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	oper_print(t_oper *oper)
 	}
 }
 
-void	oper_do(t_oper *oper)
+void	oper_do(t_algo *algo, t_oper *oper)
 {
 	while (oper != NULL)
 	{
-		op_do(oper->o);
+		op_do(algo, oper->o);
 		oper = oper->n;
 	}
 }

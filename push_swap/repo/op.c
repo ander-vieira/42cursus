@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:39:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/13 17:43:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:58:09 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ void	op_print(t_op op)
 		ft_printf(STDOUT_FILENO, "rrb\n");
 }
 
-void	op_do(t_op op)
+void	op_do(t_algo *algo, t_op op)
 {
 	if (op == OP_PA)
-		stack_move(g_b(), g_a());
+		stack_move(&(algo->b), &(algo->a));
 	else if (op == OP_SA)
-		stack_swap(g_a());
+		stack_swap(&(algo->a));
 	else if (op == OP_RA)
-		stack_rotate(g_a());
+		stack_rotate(&(algo->a));
 	else if (op == OP_RRA)
-		stack_rrotate(g_a());
+		stack_rrotate(&(algo->a));
 	else if (op == OP_PB)
-		stack_move(g_a(), g_b());
+		stack_move(&(algo->a), &(algo->b));
 	else if (op == OP_SB)
-		stack_swap(g_b());
+		stack_swap(&(algo->b));
 	else if (op == OP_RB)
-		stack_rotate(g_b());
+		stack_rotate(&(algo->b));
 	else if (op == OP_RRB)
-		stack_rrotate(g_b());
+		stack_rrotate(&(algo->b));
 }

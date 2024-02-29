@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:05:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/16 14:52:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:20:15 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,15 @@ t_uint	stack_target(t_stack *stack, int num)
 		current = current->n;
 	}
 	return (stack_max(stack));
+}
+
+t_bool	stack_ordered(t_stack *stack)
+{
+	while (stack != NULL && stack->n != NULL)
+	{
+		if (stack->i > stack->n->i)
+			return (FALSE);
+		stack = stack->n;
+	}
+	return (TRUE);
 }
