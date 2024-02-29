@@ -1,50 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oper2.c                                            :+:      :+:    :+:   */
+/*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 18:28:21 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 18:02:14 by andeviei         ###   ########.fr       */
+/*   Created: 2024/02/29 18:04:06 by andeviei          #+#    #+#             */
+/*   Updated: 2024/02/29 18:09:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_uint	oper_length(t_oper *oper)
+t_algo	algo_init(t_stack *a)
 {
-	t_uint	len;
+	t_algo	algo;
 
-	len = 0;
-	while (oper != NULL)
-	{
-		len++;
-		oper = oper->n;
-	}
-	return (len);
+	algo.a = stack_clone(a);
+	algo.b = NULL;
+	algo.oper = NULL;
+	return (algo);
 }
 
-t_oper	*oper_get_n(t_op op, t_uint n)
+void	algo_free(t_algo algo)
 {
-	t_oper	*oper;
-	t_uint	i;
-
-	oper = NULL;
-	i = 0;
-	while (i < n)
-	{
-		oper_add(&oper, op);
-		i++;
-	}
-	return (oper);
+	stack_free(&(algo.a));
+	stack_free(&(algo.b));
 }
 
-void	oper_join(t_oper **oper, t_oper *new)
+void	algo_add(t_algo *algo, t_oper *oper)
 {
-	if (oper == NULL)
-		return ;
-	while (*oper != NULL)
-		oper = &((*oper)->n);
-	*oper = new;
+	oper_do(algo, oper);
+	oper_join(&(algo->oper), oper);
 }

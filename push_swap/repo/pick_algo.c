@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:31:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 17:39:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:11:22 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_oper	*pick_algo(t_stack *a)
 {
 	*g_min() = NULL;
 	check_algo(&aries, a);
+	check_algo(&ursa, a);
 	check_algo(&orion, a);
 	return (*g_min());
 }

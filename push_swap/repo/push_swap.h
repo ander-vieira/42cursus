@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 17:38:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:09:12 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ typedef struct s_algo
 	t_oper	*oper;
 }	t_algo;
 
+t_algo	algo_init(t_stack *a);
+void	algo_free(t_algo algo);
+void	algo_add(t_algo *algo, t_oper *oper);
+
 void	op_print(t_op op);
 void	op_do(t_algo *algo, t_op op);
 
@@ -57,7 +61,7 @@ void	oper_print(t_oper *oper);
 void	oper_do(t_algo *algo, t_oper *oper);
 void	oper_free(t_oper **oper);
 t_uint	oper_length(t_oper *oper);
-void	oper_add_n(t_oper **oper, t_op op, t_uint n);
+t_oper	*oper_get_n(t_op op, t_uint n);
 void	oper_join(t_oper **oper, t_oper *new);
 
 t_stack	*stack_clone(t_stack *stack);
@@ -79,6 +83,7 @@ t_bool	stack_ordered(t_stack *stack);
 
 t_oper	*aries(t_stack *a);
 t_oper	*orion(t_stack *a);
+t_oper	*ursa(t_stack *a);
 
 t_stack	*read_args(int argc, char **argv);
 t_oper	*pick_algo(t_stack *a);

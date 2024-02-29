@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:01:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 17:02:15 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:07:12 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ static t_oper	*get_steps(t_algo *algo, t_uint target_a)
 	oper = NULL;
 	len_a = stack_length(algo->a);
 	if (2 * target_a > len_a)
-		oper_add_n(&oper, OP_RRA, len_a - target_a);
+		oper_join(&oper, oper_get_n(OP_RRA, len_a - target_a));
 	else
-		oper_add_n(&oper, OP_RA, target_a);
+		oper_join(&oper, oper_get_n(OP_RA, target_a));
 	target_b = stack_target(algo->b, stack_get(algo->a, target_a));
 	len_b = stack_length(algo->b);
 	if (2 * target_b > len_b)
-		oper_add_n(&oper, OP_RRB, len_b - target_b);
+		oper_join(&oper, oper_get_n(OP_RRB, len_b - target_b));
 	else
-		oper_add_n(&oper, OP_RB, target_b);
+		oper_join(&oper, oper_get_n(OP_RB, target_b));
 	oper_add(&oper, OP_PB);
 	return (oper);
 }
@@ -57,8 +57,7 @@ static void	next_move(t_algo *algo)
 			oper_free(&oper);
 		i++;
 	}
-	oper_do(algo, oper_min);
-	oper_join(&(algo->oper), oper_min);
+	algo_add(algo, oper_min);
 }
 
 static void	order_b(t_algo *algo)
@@ -69,19 +68,17 @@ static void	order_b(t_algo *algo)
 	target_b = stack_max(algo->b);
 	len_b = stack_length(algo->b);
 	if (2 * target_b > len_b)
-		oper_add_n(&(algo->oper), OP_RRB, len_b - target_b);
+		algo_add(algo, oper_get_n(OP_RRB, len_b - target_b));
 	else
-		oper_add_n(&(algo->oper), OP_RB, target_b);
-	oper_add_n(&(algo->oper), OP_PA, stack_length(algo->b));
+		algo_add(algo, oper_get_n(OP_RB, target_b));
+	algo_add(algo, oper_get_n(OP_PA, stack_length(algo->b)));
 }
 
 t_oper	*orion(t_stack *a)
 {
 	t_algo	algo;
 
-	algo.a = stack_clone(a);
-	algo.b = NULL;
-	algo.oper = NULL;
+	algo = algo_init(a);
 	while (algo.a != NULL)
 		next_move(&algo);
 	order_b(&algo);
