@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:19:10 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 18:14:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:02:56 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ static t_oper	*order_three(int num0, int num1, int num2)
 	return (oper);
 }
 
-t_oper	*aries(t_stack *a)
+t_oper	*aries(t_stack a)
 {
-	if (stack_length(a) != 3)
+	if (a.l != 3)
 		return (NULL);
 	return (order_three(stack_get(a, 0), stack_get(a, 1), stack_get(a, 2)));
 }

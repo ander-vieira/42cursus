@@ -6,64 +6,52 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:46:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/14 19:43:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:08:06 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_stack	*stack_new(int num, t_stack *next)
+t_stack	stack_init(size_t s)
 {
-	t_stack	*stack;
-
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	if (stack == NULL)
-		return (NULL);
-	stack->i = num;
-	stack->n = next;
+	t_stack	stack;
+	
+	stack.n = (int *)malloc(sizeof(int) * s);
+	stack.s = s;
+	stack.i = 0;
+	stack.l = 0;
 	return (stack);
 }
 
-t_stack	*stack_clone(t_stack *stack)
+void	stack_free(t_stack *stack)
 {
-	t_stack	*new;
-	t_stack	**current;
+	free(stack->n);
+	stack->n = NULL;
+}
 
-	new = NULL;
-	current = &new;
-	while (stack != NULL)
-	{
-		*current = stack_new(stack->i, NULL);
-		current = &((*current)->n);
-		stack = stack->n;
-	}
+t_stack	stack_clone(t_stack stack)
+{
+	t_stack	new;
+
+	new = stack_init(stack.s);
+	ft_memcpy(new.n, stack.n, sizeof(int) * stack.s);
+	new.i = stack.i;
+	new.l = stack.l;
 	return (new);
 }
 
-void	stack_push(t_stack **stack, int num)
+void	stack_push(t_stack *stack, int num)
 {
-	if (stack == NULL)
+	if (stack->l == stack->s)
 		return ;
-	*stack = stack_new(num, *stack);
+	stack->n[wrap_add(stack->i, stack->l, stack->s)] = num;
+	stack->l += 1;
 }
 
-int	stack_pop(t_stack **stack)
+int	stack_pop(t_stack *stack)
 {
-	t_stack	*elem;
-	int		num;
-
-	if (stack == NULL || *stack == NULL)
+	if (stack->l == 0)
 		return (0);
-	elem = *stack;
-	*stack = elem->n;
-	num = elem->i;
-	free(elem);
-	return (num);
-}
-
-int	stack_peek(t_stack *stack)
-{
-	if (stack == NULL)
-		return (0);
-	return (stack->i);
+	stack->l -= 1;
+	return (stack->n[wrap_add(stack->i, stack->l, stack->s)]);
 }

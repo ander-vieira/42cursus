@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:55:47 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 19:08:31 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:47:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,33 @@ static t_oper	*order_three(int num0, int num1, int num2)
 static void	return_two(t_algo *algo)
 {
 	t_uint	i;
-	t_uint	last_a;
 
 	if (stack_get(algo->b, 1) < stack_get(algo->b, 0))
 		algo_add(algo, oper_get_n(OP_SB, 1));
 	i = 0;
-	last_a = 2;
 	while (i < 3)
 	{
-		while (algo->b != NULL
+		while (algo->b.l != 0
 			&& (stack_get(algo->b, 0) < stack_get(algo->a, 0)))
 		{
 			algo_add(algo, oper_get_n(OP_PA, 1));
 			algo_add(algo, oper_get_n(OP_RA, 1));
-			last_a++;
 		}
 		algo_add(algo, oper_get_n(OP_RA, 1));
 		i++;
 	}
-	while (algo->b != NULL)
+	while (algo->b.l != 0)
 	{
 		algo_add(algo, oper_get_n(OP_PA, 1));
 		algo_add(algo, oper_get_n(OP_RA, 1));
 	}
 }
 
-t_oper	*ursa(t_stack *a)
+t_oper	*ursa(t_stack a)
 {
 	t_algo	algo;
 
-	if (stack_length(a) != 5)
+	if (a.l != 5)
 		return (NULL);
 	algo = algo_init(a);
 	algo_add(&algo, oper_get_n(OP_PB, 2));

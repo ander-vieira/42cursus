@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   wrap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 18:04:06 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 20:01:12 by andeviei         ###   ########.fr       */
+/*   Created: 2024/02/29 19:30:52 by andeviei          #+#    #+#             */
+/*   Updated: 2024/02/29 20:31:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_algo	algo_init(t_stack a)
+size_t	wrap_add(size_t a, size_t b, size_t max)
 {
-	t_algo	algo;
-
-	algo.a = stack_clone(a);
-	algo.b = stack_init(a.s);
-	algo.oper = NULL;
-	return (algo);
+	if (a + b >= max)
+		return (a + b - max);
+	return (a + b);
 }
 
-void	algo_free(t_algo algo)
+size_t	wrap_sub(size_t a, size_t b, size_t max)
 {
-	stack_free(&(algo.a));
-	stack_free(&(algo.b));
-}
-
-void	algo_add(t_algo *algo, t_oper *oper)
-{
-	oper_do(algo, oper);
-	oper_join(&(algo->oper), oper);
+	if (a < b)
+		return (a + max - b);
+	return (a - b);
 }

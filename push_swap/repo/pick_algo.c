@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:31:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 18:11:22 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:09:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_oper	**g_min(void)
 	return (&min);
 }
 
-static void	check_algo(t_oper *(*fun)(t_stack *), t_stack *a)
+static void	check_algo(t_oper *(*fun)(t_stack), t_stack a)
 {
 	t_oper			*oper;
 	t_uint			len;
@@ -39,7 +39,7 @@ static void	check_algo(t_oper *(*fun)(t_stack *), t_stack *a)
 		oper_free(&oper);
 }
 
-t_oper	*pick_algo(t_stack *a)
+t_oper	*pick_algo(t_stack a)
 {
 	*g_min() = NULL;
 	check_algo(&aries, a);

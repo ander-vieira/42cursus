@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:06 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 16:58:55 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:19:30 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack	*a;
+	t_stack	a;
 	t_oper	*oper;
 
 	a = read_args(argc, argv);
