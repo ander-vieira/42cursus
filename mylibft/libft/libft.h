@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/13 15:18:59 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:34:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ ssize_t	ft_strrchr(char *str, char c);
 char	*ft_strsub(char *str, size_t len);
 t_bool	ft_strsuffix(char *str, char *suffix);
 char	**ft_strsplit(char *str, char c);
+char	**ft_strsplit_space(char *str);
 char	**ft_strsplit_magic(char *str, t_splitfun fun, void *ctx);
 void	ft_strsplit_free(char **split);
 
