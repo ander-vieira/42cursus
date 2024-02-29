@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 20:06:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 00:35:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef enum e_op
 	OP_PB,
 	OP_SB,
 	OP_RB,
-	OP_RRB
+	OP_RRB,
+	OP_RR,
+	OP_RRR
 }	t_op;
 
 typedef struct s_oper
@@ -55,16 +57,21 @@ t_algo	algo_init(t_stack a);
 void	algo_free(t_algo algo);
 void	algo_add(t_algo *algo, t_oper *oper);
 
-void	op_print(t_op op);
+size_t	cmp_max(size_t a, size_t b);
+size_t	cmp_min(size_t a, size_t b);
+size_t	cmp_diff(size_t a, size_t b);
+
+void	op_print(t_op op, t_fd fd);
 void	op_do(t_algo *algo, t_op op);
+t_op	op_choose(t_bool b, t_op op1, t_op op2);
 
 void	oper_add(t_oper **oper, t_op op);
-void	oper_print(t_oper *oper);
+void	oper_print(t_oper *oper, t_fd fd);
 void	oper_do(t_algo *algo, t_oper *oper);
 void	oper_free(t_oper **oper);
 t_uint	oper_length(t_oper *oper);
 t_oper	*oper_get_n(t_op op, t_uint n);
-void	oper_join(t_oper **oper, t_oper *new);
+t_oper	**oper_join(t_oper **oper, t_oper *new);
 
 t_stack	stack_init(size_t s);
 void	stack_free(t_stack *stack);
@@ -74,7 +81,7 @@ int		stack_pop(t_stack *stack);
 int		stack_get(t_stack stack, size_t i);
 void	stack_set(t_stack stack, size_t i, int num);
 t_bool	stack_has(t_stack stack, int num);
-void	stack_print(t_stack stack);
+void	stack_print(t_stack stack, t_fd fd);
 size_t	stack_max(t_stack stack);
 size_t	stack_target(t_stack stack, int num);
 t_bool	stack_ordered(t_stack stack);
@@ -82,6 +89,9 @@ void	stack_move(t_stack *stack1, t_stack *stack2);
 void	stack_swap(t_stack *stack);
 void	stack_rotate(t_stack *stack);
 void	stack_rrotate(t_stack *stack);
+
+size_t	target_count_steps(t_algo algo, size_t target_a);
+t_oper	*target_get_steps(t_algo algo, size_t target_a);
 
 size_t	wrap_add(size_t a, size_t b, size_t max);
 size_t	wrap_sub(size_t a, size_t b, size_t max);

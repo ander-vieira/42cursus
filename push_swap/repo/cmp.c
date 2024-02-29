@@ -1,51 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   oper2.c                                            :+:      :+:    :+:   */
+/*   cmp.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 18:28:21 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:29:29 by andeviei         ###   ########.fr       */
+/*   Created: 2024/02/29 23:55:27 by andeviei          #+#    #+#             */
+/*   Updated: 2024/03/01 00:25:25 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_uint	oper_length(t_oper *oper)
+size_t	cmp_max(size_t a, size_t b)
 {
-	t_uint	len;
-
-	len = 0;
-	while (oper != NULL)
-	{
-		len++;
-		oper = oper->n;
-	}
-	return (len);
+	if (a > b)
+		return (a);
+	else
+		return (b);
 }
 
-t_oper	*oper_get_n(t_op op, t_uint n)
+size_t	cmp_min(size_t a, size_t b)
 {
-	t_oper	*oper;
-	t_uint	i;
-
-	oper = NULL;
-	i = 0;
-	while (i < n)
-	{
-		oper_add(&oper, op);
-		i++;
-	}
-	return (oper);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }
 
-t_oper	**oper_join(t_oper **oper, t_oper *new)
+size_t	cmp_diff(size_t a, size_t b)
 {
-	if (oper == NULL)
-		return (oper);
-	while (*oper != NULL)
-		oper = &((*oper)->n);
-	*oper = new;
-	return (oper);
+	if (a >= b)
+		return (a - b);
+	else
+		return (b - a);
 }

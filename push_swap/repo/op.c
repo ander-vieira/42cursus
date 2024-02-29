@@ -6,48 +6,60 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:39:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 16:58:09 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 00:34:16 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	op_print(t_op op)
+void	op_print(t_op op, t_fd fd)
 {
 	if (op == OP_PA)
-		ft_printf(STDOUT_FILENO, "pa\n");
-	else if (op == OP_SA)
-		ft_printf(STDOUT_FILENO, "sa\n");
-	else if (op == OP_RA)
-		ft_printf(STDOUT_FILENO, "ra\n");
-	else if (op == OP_RRA)
-		ft_printf(STDOUT_FILENO, "rra\n");
-	else if (op == OP_PB)
-		ft_printf(STDOUT_FILENO, "pb\n");
-	else if (op == OP_SB)
-		ft_printf(STDOUT_FILENO, "sb\n");
-	else if (op == OP_RB)
-		ft_printf(STDOUT_FILENO, "rb\n");
-	else if (op == OP_RRB)
-		ft_printf(STDOUT_FILENO, "rrb\n");
+		ft_printf(fd, "pa\n");
+	if (op == OP_SA)
+		ft_printf(fd, "sa\n");
+	if (op == OP_RA)
+		ft_printf(fd, "ra\n");
+	if (op == OP_RRA)
+		ft_printf(fd, "rra\n");
+	if (op == OP_PB)
+		ft_printf(fd, "pb\n");
+	if (op == OP_SB)
+		ft_printf(fd, "sb\n");
+	if (op == OP_RB)
+		ft_printf(fd, "rb\n");
+	if (op == OP_RRB)
+		ft_printf(fd, "rrb\n");
+	if (op == OP_RR)
+		ft_printf(fd, "rr\n");
+	if (op == OP_RRR)
+		ft_printf(fd, "rrr\n");
 }
 
 void	op_do(t_algo *algo, t_op op)
 {
 	if (op == OP_PA)
 		stack_move(&(algo->b), &(algo->a));
-	else if (op == OP_SA)
+	if (op == OP_SA)
 		stack_swap(&(algo->a));
-	else if (op == OP_RA)
+	if (op == OP_RA || op == OP_RR)
 		stack_rotate(&(algo->a));
-	else if (op == OP_RRA)
+	if (op == OP_RRA || op == OP_RRR)
 		stack_rrotate(&(algo->a));
-	else if (op == OP_PB)
+	if (op == OP_PB)
 		stack_move(&(algo->a), &(algo->b));
-	else if (op == OP_SB)
+	if (op == OP_SB)
 		stack_swap(&(algo->b));
-	else if (op == OP_RB)
+	if (op == OP_RB || op == OP_RR)
 		stack_rotate(&(algo->b));
-	else if (op == OP_RRB)
+	if (op == OP_RRB || op == OP_RRR)
 		stack_rrotate(&(algo->b));
+}
+
+t_op	op_choose(t_bool b, t_op op1, t_op op2)
+{
+	if (b)
+		return (op1);
+	else
+		return (op2);
 }

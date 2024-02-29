@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:46:32 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 20:08:06 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 23:33:57 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_stack	stack_init(size_t s)
 {
 	t_stack	stack;
-	
+
 	stack.n = (int *)malloc(sizeof(int) * s);
 	stack.s = s;
 	stack.i = 0;

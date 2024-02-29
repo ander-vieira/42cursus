@@ -13,10 +13,17 @@ then
 	exit 1
 fi
 
+if [ "$(uname)" == "Linux" ]
+then
+	CHECKER="./checkerL"
+else
+	CHECKER="./checkerM"
+fi
+
 RESULT1="$(repo/push_swap "$1"; echo x)"
 RESULT2="${RESULT1%x}"
 echo -n "$RESULT2"
 echo -n "$RESULT2" | wc -l | tr -d ' '
-echo -n "$RESULT2" | ./checker_Mac $1
+echo -n "$RESULT2" | $CHECKER $1
 
 make -s -C repo/ fclean

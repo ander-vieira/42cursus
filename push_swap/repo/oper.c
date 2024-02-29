@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:14:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 16:58:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 00:34:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	oper_add(t_oper **oper, t_op op)
 	*oper = oper_new(op);
 }
 
-void	oper_print(t_oper *oper)
+void	oper_print(t_oper *oper, t_fd fd)
 {
 	while (oper != NULL)
 	{
-		op_print(oper->o);
+		op_print(oper->o, fd);
 		oper = oper->n;
 	}
 }
