@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 16:58:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:38:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_uint	stack_max(t_stack *stack);
 t_uint	stack_target(t_stack *stack, int num);
 t_bool	stack_ordered(t_stack *stack);
 
+t_oper	*aries(t_stack *a);
 t_oper	*orion(t_stack *a);
 
 t_stack	*read_args(int argc, char **argv);

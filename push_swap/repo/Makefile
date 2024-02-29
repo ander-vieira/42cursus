@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/02/29 17:03:03 by andeviei         ###   ########.fr        #
+#    Updated: 2024/02/29 17:30:37 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = push_swap
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = push_swap.c op.c oper.c oper2.c orion.c pick_algo.c read_args.c stack.c stack2.c stack3.c stack4.c
+SRCS = push_swap.c aries.c op.c oper.c oper2.c orion.c pick_algo.c read_args.c stack.c stack2.c stack3.c stack4.c
 HDRS = push_swap.h
 
 LIBFT_DIR = libft/
