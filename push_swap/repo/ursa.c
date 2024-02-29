@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 17:55:47 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 18:36:57 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:08:31 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	return_two(t_algo *algo)
 		algo_add(algo, oper_get_n(OP_SB, 1));
 	i = 0;
 	last_a = 2;
-	while(i < 3)
+	while (i < 3)
 	{
 		while (algo->b != NULL
 			&& (stack_get(algo->b, 0) < stack_get(algo->a, 0)))
@@ -72,7 +72,8 @@ t_oper	*ursa(t_stack *a)
 		return (NULL);
 	algo = algo_init(a);
 	algo_add(&algo, oper_get_n(OP_PB, 2));
-	algo_add(&algo, order_three(stack_get(algo.a, 0), stack_get(algo.a, 1), stack_get(algo.a, 2)));
+	algo_add(&algo, order_three(stack_get(algo.a, 0),
+			stack_get(algo.a, 1), stack_get(algo.a, 2)));
 	return_two(&algo);
 	algo_free(algo);
 	return (algo.oper);
