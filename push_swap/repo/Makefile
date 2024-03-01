@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/03/01 21:27:25 by andeviei         ###   ########.fr        #
+#    Updated: 2024/03/01 22:26:36 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,4 +45,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
