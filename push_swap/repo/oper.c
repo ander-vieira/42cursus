@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:14:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 03:47:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:38:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,27 @@ static void	oper_realloc(t_oper *oper)
 {
 	size_t	s_old;
 	t_op	*o_old;
+	size_t	i;
 
 	s_old = oper->s;
 	oper->s += OPER_CHUNK;
 	o_old = oper->o;
 	oper->o = (t_op *)malloc(sizeof(t_op) * oper->s);
-	if (o_old != NULL)
+	i = 0;
+	while (i < s_old)
 	{
-		ft_memcpy(oper->o, o_old, sizeof(t_op) * s_old);
-		free(o_old);
+		oper->o[i] = o_old[i];
+		i++;
 	}
+	free(o_old);
 }
 
 t_oper	*oper_add(t_oper *oper, t_op op, size_t n)
 {
 	size_t	i;
 
+	if (n == 0)
+		return (oper);
 	while (oper->l + n > oper->s)
 		oper_realloc(oper);
 	i = 0;
@@ -56,9 +61,16 @@ t_oper	*oper_add(t_oper *oper, t_op op, size_t n)
 
 void	oper_join(t_oper *oper, t_oper new)
 {
+	size_t	i;
+
 	while (oper->l + new.l > oper->s)
 		oper_realloc(oper);
-	ft_memcpy(oper->o + oper->l, new.o, new.l);
+	i = 0;
+	while (i < new.l)
+	{
+		oper->o[oper->l + i] = new.o[i];
+		i++;
+	}
 	oper->l += new.l;
 }
 

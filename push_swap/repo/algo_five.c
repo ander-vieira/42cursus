@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ursa.c                                             :+:      :+:    :+:   */
+/*   algo_five.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	order_three(t_algo *algo)
+static void	sort_left_three(t_algo *algo)
 {
 	if (stack_get(algo->a, 0) < stack_get(algo->a, 2)
 		&& stack_get(algo->a, 2) < stack_get(algo->a, 1))
@@ -37,11 +37,11 @@ static void	order_three(t_algo *algo)
 	}
 }
 
-static void	return_two(t_algo *algo)
+static void	move_all_left(t_algo *algo)
 {
 	t_uint	i;
 
-	if (stack_get(algo->b, 1) < stack_get(algo->b, 0))
+	if (algo->b.l == 2 && stack_get(algo->b, 1) < stack_get(algo->b, 0))
 		algo_op_n(algo, OP_SB, 1);
 	i = 0;
 	while (i < 3)
@@ -62,17 +62,16 @@ static void	return_two(t_algo *algo)
 	}
 }
 
-t_oper	ursa(t_stack a)
+t_oper	algo_five(t_stack a)
 {
 	t_algo	algo;
 
+	if (a.l != 4 && a.l != 5)
+		return (oper_init());
 	algo = algo_init(a);
-	if (a.l == 5)
-	{
-		algo_op_n(&algo, OP_PB, 2);
-		order_three(&algo);
-		return_two(&algo);
-	}
+	algo_op_n(&algo, OP_PB, a.l - 3);
+	sort_left_three(&algo);
+	move_all_left(&algo);
 	algo_free(algo);
 	return (algo.oper);
 }

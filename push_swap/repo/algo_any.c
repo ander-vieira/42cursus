@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   orion.c                                            :+:      :+:    :+:   */
+/*   algo_any.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -45,10 +45,12 @@ static void	move_all_left(t_algo *algo)
 	algo_op_n(algo, OP_PA, algo->b.l);
 }
 
-t_oper	orion(t_stack a)
+t_oper	algo_any(t_stack a)
 {
 	t_algo	algo;
 
+	if (a.l <= 5)
+		return (oper_init());
 	algo = algo_init(a);
 	while (algo.a.l != 0)
 		move_one_right(&algo);

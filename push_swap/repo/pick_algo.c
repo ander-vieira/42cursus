@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:31:22 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 03:37:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:44:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ static void	check_algo(t_oper (*fun)(t_stack), t_stack a)
 
 t_oper	pick_algo(t_stack a)
 {
-	check_algo(&aries, a);
-	check_algo(&ursa, a);
-	check_algo(&orion, a);
+	check_algo(&algo_two, a);
+	check_algo(&algo_three, a);
+	check_algo(&algo_five, a);
+	check_algo(&algo_any, a);
 	return (*g_oper_min());
 }

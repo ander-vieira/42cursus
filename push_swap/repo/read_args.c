@@ -6,19 +6,13 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:15:41 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 01:38:23 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:20:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	exit_error(void)
-{
-	ft_printf(STDERR_FILENO, "Error\n");
-	exit(EXIT_FAILURE);
-}
-
-static void	read_nums(t_stack *a, char **strs)
+static t_bool	read_nums(t_stack *a, char **strs)
 {
 	int		num;
 	size_t	len;
@@ -33,16 +27,18 @@ static void	read_nums(t_stack *a, char **strs)
 	{
 		num = ft_parseint(strs[len - 1 - i], BASE_DEC);
 		if (ft_geterror() != FTERR_OK || stack_has(*a, num))
-			exit_error();
+			return (FALSE);
 		stack_push(a, num);
 		i++;
 	}
+	return (TRUE);
 }
 
 t_stack	read_args(int argc, char **argv)
 {
 	char	**strs;
 	t_stack	a;
+	t_bool	ok;
 
 	if (argc == 1)
 		exit(EXIT_SUCCESS);
@@ -50,8 +46,14 @@ t_stack	read_args(int argc, char **argv)
 		strs = ft_strsplit_space(argv[1]);
 	else
 		strs = argv + 1;
-	read_nums(&a, strs);
+	ok = read_nums(&a, strs);
 	if (argc == 2)
 		ft_strsplit_free(strs);
+	if (!ok)
+	{
+		stack_free(&a);
+		ft_printf(STDERR_FILENO, "Error\n");
+		exit(EXIT_FAILURE);
+	}
 	return (a);
 }

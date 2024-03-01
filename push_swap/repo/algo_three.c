@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aries.c                                            :+:      :+:    :+:   */
+/*   algo_three.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -37,7 +37,7 @@ static void	order_three(t_oper *oper, t_stack a)
 	}
 }
 
-t_oper	aries(t_stack a)
+t_oper	algo_three(t_stack a)
 {
 	t_oper	oper;
 

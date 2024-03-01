@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 03:34:53 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 13:50:17 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include "libft/libft.h"
 
-# define OPER_CHUNK	50
+# define OPER_CHUNK	15
 
 typedef enum e_op
 {
@@ -100,9 +100,10 @@ t_oper	target_get_steps(t_algo algo, size_t target_a);
 size_t	wrap_add(size_t a, size_t b, size_t max);
 size_t	wrap_sub(size_t a, size_t b, size_t max);
 
-t_oper	aries(t_stack a);
-t_oper	orion(t_stack a);
-t_oper	ursa(t_stack a);
+t_oper	algo_any(t_stack a);
+t_oper	algo_five(t_stack a);
+t_oper	algo_three(t_stack a);
+t_oper	algo_two(t_stack a);
 
 t_stack	read_args(int argc, char **argv);
 t_oper	pick_algo(t_stack a);
