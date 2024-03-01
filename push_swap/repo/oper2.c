@@ -6,46 +6,32 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:28:21 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:29:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 03:47:51 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_uint	oper_length(t_oper *oper)
+void	oper_do(t_oper oper, t_algo *algo)
 {
-	t_uint	len;
+	size_t	i;
 
-	len = 0;
-	while (oper != NULL)
-	{
-		len++;
-		oper = oper->n;
-	}
-	return (len);
-}
-
-t_oper	*oper_get_n(t_op op, t_uint n)
-{
-	t_oper	*oper;
-	t_uint	i;
-
-	oper = NULL;
 	i = 0;
-	while (i < n)
+	while (i < oper.l)
 	{
-		oper_add(&oper, op);
+		op_do(oper.o[i], algo);
 		i++;
 	}
-	return (oper);
 }
 
-t_oper	**oper_join(t_oper **oper, t_oper *new)
+void	oper_print(t_oper oper, t_fd fd)
 {
-	if (oper == NULL)
-		return (oper);
-	while (*oper != NULL)
-		oper = &((*oper)->n);
-	*oper = new;
-	return (oper);
+	size_t	i;
+
+	i = 0;
+	while (i < oper.l)
+	{
+		op_print(oper.o[i], fd);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:35:18 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 03:34:53 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 
 # include "libft/libft.h"
+
+# define OPER_CHUNK	50
 
 typedef enum e_op
 {
@@ -34,8 +36,9 @@ typedef enum e_op
 
 typedef struct s_oper
 {
-	t_op			o;
-	struct s_oper	*n;
+	t_op	*o;
+	size_t	l;
+	size_t	s;
 }	t_oper;
 
 typedef struct s_stack
@@ -50,28 +53,29 @@ typedef struct s_algo
 {
 	t_stack	a;
 	t_stack	b;
-	t_oper	*oper;
+	t_oper	oper;
 }	t_algo;
 
 t_algo	algo_init(t_stack a);
 void	algo_free(t_algo algo);
-void	algo_add(t_algo *algo, t_oper *oper);
+void	algo_oper(t_algo *algo, t_oper oper);
+void	algo_op_n(t_algo *algo, t_op op, size_t n);
 
 size_t	cmp_max(size_t a, size_t b);
 size_t	cmp_min(size_t a, size_t b);
 size_t	cmp_diff(size_t a, size_t b);
 
+void	op_do(t_op op, t_algo *algo);
+void	op_do_n(t_op op, size_t n, t_algo *algo);
 void	op_print(t_op op, t_fd fd);
-void	op_do(t_algo *algo, t_op op);
 t_op	op_choose(t_bool b, t_op op1, t_op op2);
 
-void	oper_add(t_oper **oper, t_op op);
-void	oper_print(t_oper *oper, t_fd fd);
-void	oper_do(t_algo *algo, t_oper *oper);
-void	oper_free(t_oper **oper);
-t_uint	oper_length(t_oper *oper);
-t_oper	*oper_get_n(t_op op, t_uint n);
-t_oper	**oper_join(t_oper **oper, t_oper *new);
+t_oper	oper_init(void);
+t_oper	*oper_add(t_oper *oper, t_op op, size_t n);
+void	oper_join(t_oper *oper, t_oper new);
+void	oper_free(t_oper *oper);
+void	oper_do(t_oper oper, t_algo *algo);
+void	oper_print(t_oper oper, t_fd fd);
 
 t_stack	stack_init(size_t s);
 void	stack_free(t_stack *stack);
@@ -91,16 +95,16 @@ void	stack_rotate(t_stack *stack);
 void	stack_rrotate(t_stack *stack);
 
 size_t	target_count_steps(t_algo algo, size_t target_a);
-t_oper	*target_get_steps(t_algo algo, size_t target_a);
+t_oper	target_get_steps(t_algo algo, size_t target_a);
 
 size_t	wrap_add(size_t a, size_t b, size_t max);
 size_t	wrap_sub(size_t a, size_t b, size_t max);
 
-t_oper	*aries(t_stack a);
-t_oper	*orion(t_stack a);
-t_oper	*ursa(t_stack a);
+t_oper	aries(t_stack a);
+t_oper	orion(t_stack a);
+t_oper	ursa(t_stack a);
 
 t_stack	read_args(int argc, char **argv);
-t_oper	*pick_algo(t_stack a);
+t_oper	pick_algo(t_stack a);
 
 #endif

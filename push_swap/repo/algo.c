@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 18:04:06 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 20:01:12 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 03:32:36 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_algo	algo_init(t_stack a)
 
 	algo.a = stack_clone(a);
 	algo.b = stack_init(a.s);
-	algo.oper = NULL;
+	algo.oper = oper_init();
 	return (algo);
 }
 
@@ -28,8 +28,15 @@ void	algo_free(t_algo algo)
 	stack_free(&(algo.b));
 }
 
-void	algo_add(t_algo *algo, t_oper *oper)
+void	algo_oper(t_algo *algo, t_oper oper)
 {
-	oper_do(algo, oper);
+	oper_do(oper, algo);
 	oper_join(&(algo->oper), oper);
+	oper_free(&oper);
+}
+
+void	algo_op_n(t_algo *algo, t_op op, size_t n)
+{
+	op_do_n(op, n, algo);
+	oper_add(&(algo->oper), op, n);
 }

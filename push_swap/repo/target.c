@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 23:35:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 01:09:41 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 03:41:11 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,29 @@ size_t	target_count_steps(t_algo algo, size_t target_a)
 		return (count_a + count_b + 1);
 }
 
-static t_oper	*target_get_ab(size_t target_a, size_t count_a,
+static t_oper	target_get_ab(size_t target_a, size_t count_a,
 		size_t target_b, size_t count_b)
 {
-	t_oper	*oper;
+	t_oper	oper;
 
-	oper = NULL;
+	oper = oper_init();
 	if (count_a != target_a && count_b != target_b)
-		oper_join(oper_join(&oper,
-				oper_get_n(OP_RRR, cmp_min(count_a, count_b))), oper_get_n(
-				op_choose(count_a >= count_b, OP_RRA, OP_RRB),
-				cmp_diff(count_a, count_b)));
+		oper_add(oper_add(&oper, OP_RRR, cmp_min(count_a, count_b)),
+			op_choose(count_a >= count_b, OP_RRA, OP_RRB),
+			cmp_diff(count_a, count_b));
 	else if (count_a != target_a && count_b == target_b)
-		oper_join(oper_join(&oper, oper_get_n(OP_RRA, count_a)),
-			oper_get_n(OP_RB, count_b));
+		oper_add(oper_add(&oper, OP_RRA, count_a), OP_RB, count_b);
 	else if (count_a == target_a && count_b != target_b)
-		oper_join(oper_join(&oper, oper_get_n(OP_RA, count_a)),
-			oper_get_n(OP_RRB, count_b));
+		oper_add(oper_add(&oper, OP_RA, count_a), OP_RRB, count_b);
 	else
-		oper_join(oper_join(&oper,
-				oper_get_n(OP_RR, cmp_min(count_a, count_b))), oper_get_n(
-				op_choose(count_a >= count_b, OP_RA, OP_RB),
-				cmp_diff(count_a, count_b)));
-	oper_add(&oper, OP_PB);
+		oper_add(oper_add(&oper, OP_RR, cmp_min(count_a, count_b)),
+			op_choose(count_a >= count_b, OP_RA, OP_RB),
+			cmp_diff(count_a, count_b));
+	oper_add(&oper, OP_PB, 1);
 	return (oper);
 }
 
-t_oper	*target_get_steps(t_algo algo, size_t target_a)
+t_oper	target_get_steps(t_algo algo, size_t target_a)
 {
 	size_t	target_b;
 

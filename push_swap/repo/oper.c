@@ -6,56 +6,66 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:14:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:34:36 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 03:47:49 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_oper	*oper_new(t_op op)
+t_oper	oper_init(void)
 {
-	t_oper	*oper;
+	t_oper	oper;
 
-	oper = (t_oper *)malloc(sizeof(t_oper));
-	if (oper == NULL)
-		return (NULL);
-	oper->o = op;
-	oper->n = NULL;
+	oper.o = NULL;
+	oper.l = 0;
+	oper.s = 0;
 	return (oper);
 }
 
-void	oper_add(t_oper **oper, t_op op)
+static void	oper_realloc(t_oper *oper)
 {
-	if (oper == NULL)
-		return ;
-	while (*oper != NULL)
-		oper = &((*oper)->n);
-	*oper = oper_new(op);
-}
+	size_t	s_old;
+	t_op	*o_old;
 
-void	oper_print(t_oper *oper, t_fd fd)
-{
-	while (oper != NULL)
+	s_old = oper->s;
+	oper->s += OPER_CHUNK;
+	o_old = oper->o;
+	oper->o = (t_op *)malloc(sizeof(t_op) * oper->s);
+	if (o_old != NULL)
 	{
-		op_print(oper->o, fd);
-		oper = oper->n;
+		ft_memcpy(oper->o, o_old, sizeof(t_op) * s_old);
+		free(o_old);
 	}
 }
 
-void	oper_do(t_algo *algo, t_oper *oper)
+t_oper	*oper_add(t_oper *oper, t_op op, size_t n)
 {
-	while (oper != NULL)
+	size_t	i;
+
+	while (oper->l + n > oper->s)
+		oper_realloc(oper);
+	i = 0;
+	while (i < n)
 	{
-		op_do(algo, oper->o);
-		oper = oper->n;
+		oper->o[oper->l + i] = op;
+		i++;
 	}
+	oper->l += n;
+	return (oper);
 }
 
-void	oper_free(t_oper **oper)
+void	oper_join(t_oper *oper, t_oper new)
 {
-	if (oper == NULL || *oper == NULL)
-		return ;
-	oper_free(&((*oper)->n));
-	free(*oper);
-	*oper = NULL;
+	while (oper->l + new.l > oper->s)
+		oper_realloc(oper);
+	ft_memcpy(oper->o + oper->l, new.o, new.l);
+	oper->l += new.l;
+}
+
+void	oper_free(t_oper *oper)
+{
+	free(oper->o);
+	oper->o = NULL;
+	oper->l = 0;
+	oper->s = 0;
 }
