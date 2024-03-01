@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 14:07:39 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:27:01 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@
 # include "libft/libft.h"
 
 # define OPER_CHUNK	15
+
+typedef enum e_rot
+{
+	ROT_NN,
+	ROT_NR,
+	ROT_RN,
+	ROT_RR
+}	t_rot;
 
 typedef enum e_op
 {
@@ -49,6 +57,14 @@ typedef struct s_stack
 	size_t	l;
 }	t_stack;
 
+typedef struct s_trgt
+{
+	size_t	ta;
+	size_t	la;
+	size_t	tb;
+	size_t	lb;
+}	t_trgt;
+
 typedef struct s_algo
 {
 	t_stack	a;
@@ -58,8 +74,7 @@ typedef struct s_algo
 
 t_algo	algo_init(t_stack a);
 void	algo_free(t_algo algo);
-void	algo_oper(t_algo *algo, t_oper oper);
-void	algo_op_n(t_algo *algo, t_op op, size_t n);
+t_algo	*algo_op_n(t_algo *algo, t_op op, size_t n);
 
 size_t	cmp_max(size_t a, size_t b);
 size_t	cmp_min(size_t a, size_t b);
@@ -71,10 +86,8 @@ void	op_print(t_op op, t_fd fd);
 t_op	op_choose(t_bool b, t_op op1, t_op op2);
 
 t_oper	oper_init(void);
-t_oper	*oper_add(t_oper *oper, t_op op, size_t n);
-void	oper_join(t_oper *oper, t_oper new);
+void	oper_add(t_oper *oper, t_op op, size_t n);
 void	oper_free(t_oper *oper);
-void	oper_do(t_oper oper, t_algo *algo);
 void	oper_print(t_oper oper, t_fd fd);
 
 t_stack	stack_init(size_t s);
@@ -94,7 +107,7 @@ void	stack_rotate(t_stack *stack);
 void	stack_rrotate(t_stack *stack);
 
 size_t	target_count_steps(t_algo algo, size_t target_a);
-t_oper	target_get_steps(t_algo algo, size_t target_a);
+void	target_do_steps(t_algo *algo, size_t target_a);
 
 size_t	wrap_add(size_t a, size_t b, size_t max);
 size_t	wrap_sub(size_t a, size_t b, size_t max);

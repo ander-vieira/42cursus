@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/04 18:27:14 by andeviei          #+#    #+#              #
-#    Updated: 2024/03/01 14:22:59 by andeviei         ###   ########.fr        #
+#    Updated: 2024/03/01 21:27:25 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME_BONUS = checker
 
 CFLAGS = -Wall -Wextra -Werror
 
-SRCS = push_swap.c algo.c algo_any.c algo_five.c algo_three.c algo_two.c cmp.c op.c oper.c oper2.c pick_algo.c read_args.c stack.c stack2.c stack3.c stack4.c target.c wrap.c
+SRCS = push_swap.c algo.c algo_any.c algo_five.c algo_three.c algo_two.c cmp.c op.c oper.c pick_algo.c read_args.c stack.c stack2.c stack3.c stack4.c target.c wrap.c
 HDRS = push_swap.h
 
 SRCS_BONUS = checker_bonus.c op_bonus.c read_args_bonus.c stack_bonus.c stack2_bonus.c stack3_bonus.c wrap_bonus.c

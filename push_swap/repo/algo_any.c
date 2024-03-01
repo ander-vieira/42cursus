@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_any.c                                            :+:      :+:    :+:   */
+/*   algo_any.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:01:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 03:38:29 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:22:58 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ static void	move_one_right(t_algo *algo)
 		}
 		i++;
 	}
-	algo_oper(algo, target_get_steps(*algo, i_min));
+	target_do_steps(algo, i_min);
+	algo_op_n(algo, OP_PB, 1);
 }
 
 static void	move_all_left(t_algo *algo)

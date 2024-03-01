@@ -2,7 +2,7 @@
 
 if [ $# -ne 1 ]
 then
-	echo "Must pass list of arguments"
+	echo "Must pass size of list to sort"
 	exit 1
 fi
 

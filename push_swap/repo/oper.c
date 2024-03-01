@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:14:20 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 13:38:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:27:10 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static void	oper_realloc(t_oper *oper)
 	free(o_old);
 }
 
-t_oper	*oper_add(t_oper *oper, t_op op, size_t n)
+void	oper_add(t_oper *oper, t_op op, size_t n)
 {
 	size_t	i;
 
 	if (n == 0)
-		return (oper);
+		return ;
 	while (oper->l + n > oper->s)
 		oper_realloc(oper);
 	i = 0;
@@ -56,22 +56,6 @@ t_oper	*oper_add(t_oper *oper, t_op op, size_t n)
 		i++;
 	}
 	oper->l += n;
-	return (oper);
-}
-
-void	oper_join(t_oper *oper, t_oper new)
-{
-	size_t	i;
-
-	while (oper->l + new.l > oper->s)
-		oper_realloc(oper);
-	i = 0;
-	while (i < new.l)
-	{
-		oper->o[oper->l + i] = new.o[i];
-		i++;
-	}
-	oper->l += new.l;
 }
 
 void	oper_free(t_oper *oper)
@@ -80,4 +64,16 @@ void	oper_free(t_oper *oper)
 	oper->o = NULL;
 	oper->l = 0;
 	oper->s = 0;
+}
+
+void	oper_print(t_oper oper, t_fd fd)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < oper.l)
+	{
+		op_print(oper.o[i], fd);
+		i++;
+	}
 }

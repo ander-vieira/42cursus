@@ -6,62 +6,76 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 23:35:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 03:41:11 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 21:19:55 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	target_count_one(size_t target, size_t len)
+static t_trgt	get_trgt(t_algo algo, size_t target_a)
 {
-	if (2 * target > len)
-		return (len - target);
+	t_trgt	t;
+
+	t.ta = target_a;
+	t.la = algo.a.l;
+	t.tb = stack_target(algo.b, stack_get(algo.a, target_a));
+	t.lb = algo.b.l;
+	return (t);
+}
+
+static size_t	count_rotation(t_trgt t, t_rot r)
+{
+	if (r == ROT_NN)
+		return (cmp_max(t.ta, t.tb));
+	else if (r == ROT_NR)
+		return (t.ta + t.lb - t.tb);
+	else if (r == ROT_RN)
+		return (t.la - t.ta + t.tb);
 	else
-		return (target);
+		return (cmp_max(t.la - t.ta, t.lb - t.tb));
+}
+
+static t_rot	minimum_rotation(t_trgt t)
+{
+	t_rot	r_min;
+
+	r_min = ROT_NN;
+	if (count_rotation(t, ROT_NR) < count_rotation(t, r_min))
+		r_min = ROT_NR;
+	if (count_rotation(t, ROT_RN) < count_rotation(t, r_min))
+		r_min = ROT_RN;
+	if (count_rotation(t, ROT_RR) < count_rotation(t, r_min))
+		r_min = ROT_RR;
+	return (r_min);
 }
 
 size_t	target_count_steps(t_algo algo, size_t target_a)
 {
-	size_t	target_b;
-	size_t	count_a;
-	size_t	count_b;
+	t_trgt	t;
+	t_rot	r;
 
-	target_b = stack_target(algo.b, stack_get(algo.a, target_a));
-	count_a = target_count_one(target_a, algo.a.l);
-	count_b = target_count_one(target_b, algo.b.l);
-	if (ft_xor(count_a != target_a, count_b != target_b))
-		return (cmp_max(count_a, count_b) + 1);
-	else
-		return (count_a + count_b + 1);
+	t = get_trgt(algo, target_a);
+	r = minimum_rotation(t);
+	return (count_rotation(t, r));
 }
 
-static t_oper	target_get_ab(size_t target_a, size_t count_a,
-		size_t target_b, size_t count_b)
+void	target_do_steps(t_algo *algo, size_t target_a)
 {
-	t_oper	oper;
+	t_trgt	t;
+	t_rot	r;
 
-	oper = oper_init();
-	if (count_a != target_a && count_b != target_b)
-		oper_add(oper_add(&oper, OP_RRR, cmp_min(count_a, count_b)),
-			op_choose(count_a >= count_b, OP_RRA, OP_RRB),
-			cmp_diff(count_a, count_b));
-	else if (count_a != target_a && count_b == target_b)
-		oper_add(oper_add(&oper, OP_RRA, count_a), OP_RB, count_b);
-	else if (count_a == target_a && count_b != target_b)
-		oper_add(oper_add(&oper, OP_RA, count_a), OP_RRB, count_b);
+	t = get_trgt(*algo, target_a);
+	r = minimum_rotation(t);
+	if (r == ROT_NN)
+		algo_op_n(algo_op_n(algo, OP_RR, cmp_min(t.ta, t.tb)),
+			op_choose(t.ta >= t.tb, OP_RA, OP_RB),
+			cmp_diff(t.ta, t.tb));
+	else if (r == ROT_NR)
+		algo_op_n(algo_op_n(algo, OP_RA, t.ta), OP_RRB, t.lb - t.tb);
+	else if (r == ROT_RN)
+		algo_op_n(algo_op_n(algo, OP_RRA, t.la - t.ta), OP_RB, t.tb);
 	else
-		oper_add(oper_add(&oper, OP_RR, cmp_min(count_a, count_b)),
-			op_choose(count_a >= count_b, OP_RA, OP_RB),
-			cmp_diff(count_a, count_b));
-	oper_add(&oper, OP_PB, 1);
-	return (oper);
-}
-
-t_oper	target_get_steps(t_algo algo, size_t target_a)
-{
-	size_t	target_b;
-
-	target_b = stack_target(algo.b, stack_get(algo.a, target_a));
-	return (target_get_ab(target_a, target_count_one(target_a, algo.a.l),
-			target_b, target_count_one(target_b, algo.b.l)));
+		algo_op_n(algo_op_n(algo, OP_RRR, cmp_min(t.la - t.ta, t.lb - t.tb)),
+			op_choose(t.la - t.ta >= t.lb - t.tb, OP_RRA, OP_RRB),
+			cmp_diff(t.la - t.ta, t.lb - t.tb));
 }
