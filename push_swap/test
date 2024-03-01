@@ -13,6 +13,13 @@ then
 	exit 1
 fi
 
+make -s -C gen/ all clean
+../util/compilecheck $?
+if [ $? -ne 0 ]
+then
+	exit 1
+fi
+
 if [ "$(uname)" == "Linux" ]
 then
 	CHECKER="./checkerL"
@@ -20,10 +27,10 @@ else
 	CHECKER="./checkerM"
 fi
 
-RESULT1="$(repo/push_swap "$1"; echo x)"
+RESULT1="$(repo/push_swap "$(gen/generator $1)"; echo x)"
 RESULT2="${RESULT1%x}"
-echo -n "$RESULT2"
 echo -n "$RESULT2" | wc -l | tr -d ' '
 echo -n "$RESULT2" | $CHECKER $1
 
 make -s -C repo/ fclean
+make -s -C gen/ fclean

@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 15:31:41 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/12 19:26:58 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:31:50 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_INT_H
 
 # define FT_INT_INTMAX 2147483647
+# define FT_INT_UINTMAX 4294967295
 
 /* ************************************************************************** */
 /* error: handling libft internal errors                                      */

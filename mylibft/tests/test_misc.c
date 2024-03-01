@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/05 15:53:02 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/06 15:58:42 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:30:18 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,26 +48,26 @@ static void	test_memcpy(void)
 	print_test("2", i1 == i2, TRUE);
 }
 
-static void	test_parsenum(void)
+static void	test_parseint(void)
 {
 	int	num;
 
 	print_title("PARSENUM");
-	num = ft_parsenum("500", BASE_DEC);
+	num = ft_parseint("500", BASE_DEC);
 	print_test("1", num == 500 && ft_geterror() == FTERR_OK, FALSE);
-	num = ft_parsenum("-88", BASE_DEC);
+	num = ft_parseint("-88", BASE_DEC);
 	print_test("2", num == -88 && ft_geterror() == FTERR_OK, FALSE);
-	num = ft_parsenum("5f", BASE_HXL);
+	num = ft_parseint("5f", BASE_HXL);
 	print_test("3", num == 95 && ft_geterror() == FTERR_OK, FALSE);
-	num = ft_parsenum("1A8", BASE_HXU);
+	num = ft_parseint("1A8", BASE_HXU);
 	print_test("4", num == 424 && ft_geterror() == FTERR_OK, FALSE);
-	num = ft_parsenum("555", "0");
+	num = ft_parseint("555", "0");
 	print_test("5", num == 0 && ft_geterror() == FTERR_PARSENUM_BADBASE, FALSE);
-	num = ft_parsenum("A0", BASE_DEC);
+	num = ft_parseint("A0", BASE_DEC);
 	print_test("5", num == 0 && ft_geterror() == FTERR_PARSENUM_BADCHAR, FALSE);
-	num = ft_parsenum("1.8", BASE_DEC);
+	num = ft_parseint("1.8", BASE_DEC);
 	print_test("6", num == 1 && ft_geterror() == FTERR_PARSENUM_BADCHAR, FALSE);
-	num = ft_parsenum("200000000000", BASE_DEC);
+	num = ft_parseint("200000000000", BASE_DEC);
 	print_test("7", num == 0 && ft_geterror() == FTERR_PARSENUM_OVERFLOW, TRUE);
 }
 
@@ -76,5 +76,5 @@ void	test_misc(void)
 	test_abs();
 	test_isspace();
 	test_memcpy();
-	test_parsenum();
+	test_parseint();
 }

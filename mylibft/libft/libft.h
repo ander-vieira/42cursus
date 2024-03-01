@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 01:09:13 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:37:43 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ t_byte	ft_geterror(void);
 t_ulong	ft_abs(long num);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
-int		ft_parsenum(char *str, char *base);
+int		ft_parseint(char *str, char *base);
+t_uint	ft_parseuint(char *str, char *base);
 t_bool	ft_xor(t_bool b1, t_bool b2);
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 #    By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/24 12:18:07 by andeviei          #+#    #+#              #
-#    Updated: 2024/03/01 01:09:25 by andeviei         ###   ########.fr        #
+#    Updated: 2024/03/01 01:37:54 by andeviei         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -c -Wall -Wextra -Werror
 
 SRCS = \
 error/ft_error.c \
-misc/ft_abs.c misc/ft_isspace.c misc/ft_memcpy.c misc/ft_parsenum.c misc/ft_xor.c \
+misc/ft_abs.c misc/ft_isspace.c misc/ft_memcpy.c misc/ft_parseint.c misc/ft_parseuint.c misc/ft_xor.c \
 str/ft_strbuild.c str/ft_strchr.c str/ft_strcmp.c str/ft_strformat.c str/ft_strjoin.c str/ft_strlen.c str/ft_strnbrs.c \
 str/ft_strnbru.c str/ft_strprefix.c str/ft_strrchr.c str/ft_strsub.c str/ft_strsuffix.c \
 str/ft_strsplit.c str/ft_strsplit_space.c str/ft_strsplit_magic.c str/ft_strsplit_free.c \

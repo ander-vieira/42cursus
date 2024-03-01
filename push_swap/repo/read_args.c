@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:15:41 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/29 20:34:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:38:23 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	read_nums(t_stack *a, char **strs)
 	i = 0;
 	while (i < len)
 	{
-		num = ft_parsenum(strs[len - 1 - i], BASE_DEC);
+		num = ft_parseint(strs[len - 1 - i], BASE_DEC);
 		if (ft_geterror() != FTERR_OK || stack_has(*a, num))
 			exit_error();
 		stack_push(a, num);
