@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:25:37 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:33:45 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:07:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,4 @@ t_bool	stack_has(t_stack stack, int num)
 		i++;
 	}
 	return (FALSE);
-}
-
-void	stack_print(t_stack stack, t_fd fd)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < stack.l)
-	{
-		ft_printf(fd, "%d\n", stack_get(stack, i));
-		i++;
-	}
 }

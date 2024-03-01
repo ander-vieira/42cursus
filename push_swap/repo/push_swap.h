@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 16:56:36 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 13:50:17 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 14:07:39 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int		stack_pop(t_stack *stack);
 int		stack_get(t_stack stack, size_t i);
 void	stack_set(t_stack stack, size_t i, int num);
 t_bool	stack_has(t_stack stack, int num);
-void	stack_print(t_stack stack, t_fd fd);
 size_t	stack_max(t_stack stack);
 size_t	stack_target(t_stack stack, int num);
 t_bool	stack_ordered(t_stack stack);
