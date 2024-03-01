@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 13:01:25 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:50:10 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 00:59:46 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_oper	*orion(t_stack a)
 	while (algo.a.l != 0)
 		move_one_right(&algo);
 	move_all_left(&algo);
-	stack_free(&(algo.a));
-	stack_free(&(algo.b));
+	algo_free(algo);
 	return (algo.oper);
 }
