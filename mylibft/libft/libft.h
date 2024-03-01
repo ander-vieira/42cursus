@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 12:36:45 by andeviei          #+#    #+#             */
-/*   Updated: 2024/02/16 15:34:40 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:09:13 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_ulong	ft_abs(long num);
 t_bool	ft_isspace(char c);
 void	ft_memcpy(void *dst, void *src, size_t len);
 int		ft_parsenum(char *str, char *base);
+t_bool	ft_xor(t_bool b1, t_bool b2);
 
 /* ************************************************************************** */
 /* str: Functions for handling strings                                        */

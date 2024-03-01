@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   target1.c                                          :+:      :+:    :+:   */
+/*   target.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 23:35:42 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 00:41:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/01 01:09:41 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ size_t	target_count_steps(t_algo algo, size_t target_a)
 	target_b = stack_target(algo.b, stack_get(algo.a, target_a));
 	count_a = target_count_one(target_a, algo.a.l);
 	count_b = target_count_one(target_b, algo.b.l);
-	if ((count_a != target_a) == (count_b != target_b))
+	if (ft_xor(count_a != target_a, count_b != target_b))
 		return (cmp_max(count_a, count_b) + 1);
 	else
 		return (count_a + count_b + 1);
