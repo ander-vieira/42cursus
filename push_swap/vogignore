@@ -1,0 +1,6 @@
+**
+!libft/
+!libft/**
+!*.c
+!*.h
+!Makefile

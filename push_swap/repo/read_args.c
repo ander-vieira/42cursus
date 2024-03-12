@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:15:41 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/01 13:20:49 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:11:34 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static t_bool	read_nums(t_stack *a, char **strs)
 	len = 0;
 	while (strs[len] != NULL)
 		len++;
+	if (len == 0)
+		return (FALSE);
 	*a = stack_init(len);
 	i = 0;
 	while (i < len)
