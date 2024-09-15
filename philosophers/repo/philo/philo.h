@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:34:08 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/12 20:30:05 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/09/15 21:02:22 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ typedef enum e_bool
 	TRUE
 }						t_bool;
 
-typedef pthread_t		t_th;
-typedef pthread_mutex_t	t_mx;
+typedef pthread_t		t_thrd;
+typedef pthread_mutex_t	t_mutex;
 typedef struct timeval	t_tval;
 
 typedef enum e_msg
@@ -43,47 +43,46 @@ typedef enum e_msg
 
 typedef struct s_guy
 {
-	t_mx	mx;
-	t_th	th;
+	t_mutex	mutex;
+	t_thrd	thrd;
 	t_ulong	le;
 }						t_guy;
 
-typedef struct s_data
+typedef struct s_param
 {
-	t_ulong	n;
-	t_ulong	d;
-	t_ulong	e;
-	t_ulong	s;
-	t_bool	h;
-	t_ulong	l;
-}						t_data;
+	t_ulong	num;
+	t_ulong	ttd;
+	t_ulong	tte;
+	t_ulong	tts;
+	t_bool	limited;
+	t_ulong	limit;
+}						t_param;
 
 typedef struct s_sim
 {
-	t_mx	*fk;
-	t_guy	*g;
-	t_mx	mx_p;
-	t_tval	st;
+	t_mutex	*forks;
+	t_mutex	mutex_print;
+	t_tval	start;
 }						t_sim;
 
-typedef struct s_philo
+typedef struct s_data
 {
-	t_data	d;
-	t_sim	s;
-}						t_philo;
+	t_param	param;
+	t_sim	sim;
+}						t_data;
 
 void	error_exit(void);
 
 t_bool	parsenum(char *str, t_ulong *n);
 
-void	print_msg(t_philo *p, t_ulong i, t_msg msg);
+void	print_msg(t_data *data, t_ulong i, t_msg msg);
 
-void	sim_fork_lock(t_philo *p, t_ulong i);
-void	sim_fork_unlock(t_philo *p, t_ulong i);
-void	sim_free(t_philo *p);
-t_bool	sim_init(t_philo *p);
+void	sim_fork_lock(t_data *data, t_ulong i);
+void	sim_fork_unlock(t_data *data, t_ulong i);
+void	sim_free(t_data *data);
+t_bool	sim_init(t_data *data);
 
-t_ulong	time_get(t_philo *p);
-t_bool	time_init(t_philo *p);
+t_ulong	time_get(t_data *data);
+t_bool	time_init(t_data *data);
 
 #endif

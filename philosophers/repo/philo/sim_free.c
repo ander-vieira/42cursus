@@ -6,40 +6,33 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 20:03:59 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/12 20:30:02 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/09/15 21:03:59 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	sim_freeforks(t_philo *p)
+static void	sim_freeforks(t_data *data)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < p->d.n)
+	while (i < data->param.num)
 	{
-		pthread_mutex_destroy(p->s.fk + i);
+		pthread_mutex_destroy(data->sim.forks + i);
 		i++;
 	}
-	free(p->s.fk);
-	p->s.fk = NULL;
+	free(data->sim.forks);
+	data->sim.forks = NULL;
 }
 
-static void	sim_freeguys(t_philo *p)
+static void	sim_freeprint(t_data *data)
 {
-	free(p->s.g);
-	p->s.g = NULL;
+	pthread_mutex_destroy(&(data->sim.mutex_print));
 }
 
-static void	sim_freeprint(t_philo *p)
+void	sim_free(t_data *data)
 {
-	pthread_mutex_destroy(&(p->s.mx_p));
-}
-
-void	sim_free(t_philo *p)
-{
-	sim_freeforks(p);
-	sim_freeguys(p);
-	sim_freeprint(p);
+	sim_freeforks(data);
+	sim_freeprint(data);
 }
