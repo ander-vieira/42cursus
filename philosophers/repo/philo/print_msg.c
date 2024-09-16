@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 14:15:40 by andeviei          #+#    #+#             */
-/*   Updated: 2024/09/16 12:50:00 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:03:40 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ft_putnbr(t_ulong n)
 {
 	if (n >= 10)
 		ft_putnbr(n / 10);
-	write(1, &("0123456789"[n % 10]), 1);
+	write(STDOUT_FILENO, &("0123456789"[n % 10]), 1);
 }
 
 void	print_msg(t_data *data, t_ulong i, t_msg msg, t_bool force)
