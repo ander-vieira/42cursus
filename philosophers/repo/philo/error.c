@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:34:30 by andeviei          #+#    #+#             */
-/*   Updated: 2024/03/12 16:34:48 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/09/15 21:43:26 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,4 @@
 void	error_exit(void)
 {
 	write(STDERR_FILENO, "Error\n", 6);
-	exit(EXIT_FAILURE);
 }

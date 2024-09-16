@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 22:30:08 by andeviei          #+#    #+#             */
-/*   Updated: 2024/09/15 20:56:13 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:31:21 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (!philo_init(&data, argc, argv))
-		error_exit();
-	usleep(data.param.ttd * 1000);
-	print_msg(&data, 0, MSG_DIE);
-	usleep(data.param.ttd * 1000);
-	print_msg(&data, 1, MSG_DIE);
+		return (error_exit(), EXIT_FAILURE);
+	while (state_get(&data) != STATE_DIE)
+		state_update(&data);
 	philo_free(&data);
 	return (EXIT_SUCCESS);
 }
