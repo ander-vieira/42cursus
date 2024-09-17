@@ -1,4 +1,4 @@
-#include "main.hpp"
+#include "Contact.hpp"
 
 static void printCapped(std::string text, unsigned int cap)
 {
@@ -8,7 +8,7 @@ static void printCapped(std::string text, unsigned int cap)
 		std::cout << std::right << std::setw(cap) << text;
 }
 
-Contact::Contact(std::string fname, std::string lname, std::string nick, std::string phone, std::string secret)
+void Contact::initialize(std::string fname, std::string lname, std::string nick, std::string phone, std::string secret)
 {
 	this->fname = fname;
 	this->lname = lname;
@@ -17,15 +17,15 @@ Contact::Contact(std::string fname, std::string lname, std::string nick, std::st
 	this->secret = secret;
 }
 
-void Contact::printLine()
+void Contact::printRow(unsigned int i)
 {
+	std::cout << std::right << std::setw(10) << i;
+	std::cout <<  "|";
 	printCapped(this->fname, 10);
 	std::cout <<  "|";
 	printCapped(this->lname, 10);
 	std::cout <<  "|";
 	printCapped(this->nick, 10);
-	std::cout <<  "|";
-	printCapped(this->phone, 10);
 	std::cout <<  "\n";
 }
 
