@@ -6,7 +6,7 @@
 /*   By: andeviei <andeviei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 19:55:54 by andeviei          #+#    #+#             */
-/*   Updated: 2024/09/16 14:32:28 by andeviei         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:41:54 by andeviei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ static void	sim_initphilos_free(t_data *data, t_ulong f_n, t_ulong t_n)
 
 	state_set(data, STATE_DIE);
 	i = 0;
-	while (i < f_n)
+	while (i < t_n)
 	{
 		pthread_join(data->sim.philos[i].thrd, NULL);
 		i++;
 	}
 	i = 0;
-	while (i < t_n)
+	while (i < f_n)
 	{
 		pthread_mutex_destroy(&(data->sim.philos[i].fork));
 		i++;
