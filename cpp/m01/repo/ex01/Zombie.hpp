@@ -1,7 +1,7 @@
-#include <string>
-
 #ifndef ZOMBIE_H
 # define ZOMBIE_H
+
+#include <string>
 
 class Zombie {
 	public:
