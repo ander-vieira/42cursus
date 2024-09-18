@@ -2,8 +2,7 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
-int main()
-{
+int main() {
 	Weapon weaponA = Weapon("sword");
 	Weapon weaponB = Weapon("sword");
 	HumanA humanA = HumanA("Jose", weaponA);
