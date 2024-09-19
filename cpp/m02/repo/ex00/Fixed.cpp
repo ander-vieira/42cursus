@@ -15,7 +15,7 @@ Fixed &Fixed::operator=(const Fixed &fixed) {
 
 Fixed::~Fixed() {}
 
-int Fixed::getRawBits() {
+int Fixed::getRawBits() const {
 	return this->value;
 }
 
