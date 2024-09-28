@@ -7,13 +7,17 @@ void	randomChump(std::string name);
 int main() {
 	Zombie *zombie;
 
+	std::cout << "main: calling newZombie(\"Jose\")" << std::endl;
 	zombie = newZombie("Jose");
-	std::cout << "Now announcing Jose" << std::endl;
+	std::cout << "main: returned from newZombie(\"Jose\")" << std::endl;
+
+	std::cout << "main: announcing Jose" << std::endl;
 	zombie->announce();
+	std::cout << "main: finished announcing Jose" << std::endl;
 
-	std::cout << "Now announcing and destroying Carlos" << std::endl;
+	std::cout << "main: calling randomChump(\"Carlos\")" << std::endl;
 	randomChump("Carlos");
+	std::cout << "main: returned from randomChump(\"Carlos\")" << std::endl;
 
-	std::cout << "Now destroying Jose" << std::endl;
 	delete zombie;
 }
