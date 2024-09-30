@@ -24,6 +24,10 @@ ClapTrap::~ClapTrap() {
 	std::cout << "ClapTrap destructor called" << std::endl;
 }
 
+void ClapTrap::showStatus() const {
+	std::cout << "Status of ClapTrap " << this->name << ": " << this->hitPoints << " HP, " << this->energyPoints << " EP, " << this->attackDamage << " AD" << std::endl;
+}
+
 void ClapTrap::attack(std::string const &target) {
 	if (this->energyPoints == 0)
 		return;
