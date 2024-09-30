@@ -12,12 +12,12 @@ Fixed::Fixed(const Fixed &fixed) {
 
 Fixed::Fixed(const int i)
 {
-	this->value = i * Fixed::pow10();
+	this->value = i << Fixed::point;
 }
 
 Fixed::Fixed(const float f)
 {
-	this->value = (long)roundf(f * Fixed::pow10());
+	this->value = (long)roundf(f * Fixed::pow2());
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
@@ -36,11 +36,11 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat() const {
-	return ((double)this->value / Fixed::pow10());
+	return ((double)this->value / Fixed::pow2());
 }
 
 int Fixed::toInt() const {
-	return roundf(this->toFloat());
+	return this->value >> Fixed::point;
 }
 
 bool Fixed::operator>(const Fixed &fixed) {
@@ -81,13 +81,13 @@ Fixed Fixed::operator-(const Fixed &fixed) {
 
 Fixed Fixed::operator*(const Fixed &fixed) {
 	Fixed f;
-	f.setRawBits((this->value*fixed.value)/Fixed::pow10());
+	f.setRawBits((this->value*fixed.value)/Fixed::pow2());
 	return f;
 }
 
 Fixed Fixed::operator/(const Fixed &fixed) {
 	Fixed f;
-	f.setRawBits((this->value*Fixed::pow10())/fixed.value);
+	f.setRawBits((this->value*Fixed::pow2())/fixed.value);
 	return f;
 }
 
@@ -129,15 +129,13 @@ const Fixed &Fixed::min(const Fixed &f1, const Fixed &f2) {
 	return (f1.value >= f2.value ? f2 : f1);
 }
 
-int Fixed::pow10() {
+int Fixed::pow2() {
 	static bool init;
 	static int value;
 
 	if (!init)
 	{
-		value = 1;
-		for (int i = 0 ; i < Fixed::point ; i++)
-			value *= 10;
+		value = 1 << Fixed::point;
 		init = true;
 	}
 	return value;

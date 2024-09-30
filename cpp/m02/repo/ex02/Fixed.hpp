@@ -35,8 +35,8 @@ class Fixed {
 		static const Fixed &min(const Fixed &f1, const Fixed &f2);
 	private:
 		const static int point = 8;
-		long int value;
-		static int pow10();
+		int value;
+		static int pow2();
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
