@@ -6,21 +6,21 @@ Fixed::Fixed() {
 	this->value = 0;
 }
 
-Fixed::Fixed(const Fixed &fixed) {
+Fixed::Fixed(Fixed const &fixed) {
 	*this = fixed;
 }
 
-Fixed::Fixed(const int i)
+Fixed::Fixed(int const i)
 {
 	this->value = i << Fixed::point;
 }
 
-Fixed::Fixed(const float f)
+Fixed::Fixed(float const f)
 {
 	this->value = (long)roundf(f * Fixed::pow2());
 }
 
-Fixed &Fixed::operator=(const Fixed &fixed) {
+Fixed &Fixed::operator=(Fixed const &fixed) {
 	this->value = fixed.value;
 	return *this;
 }
@@ -43,49 +43,49 @@ int Fixed::toInt() const {
 	return this->value >> Fixed::point;
 }
 
-bool Fixed::operator>(const Fixed &fixed) const {
+bool Fixed::operator>(Fixed const &fixed) const {
 	return this->value > fixed.value;
 }
 
-bool Fixed::operator<(const Fixed &fixed) const {
+bool Fixed::operator<(Fixed const &fixed) const {
 	return this->value < fixed.value;
 }
 
-bool Fixed::operator>=(const Fixed &fixed) const {
+bool Fixed::operator>=(Fixed const &fixed) const {
 	return this->value >= fixed.value;
 }
 
-bool Fixed::operator<=(const Fixed &fixed) const {
+bool Fixed::operator<=(Fixed const &fixed) const {
 	return this->value <= fixed.value;
 }
 
-bool Fixed::operator==(const Fixed &fixed) const {
+bool Fixed::operator==(Fixed const &fixed) const {
 	return this->value == fixed.value;
 }
 
-bool Fixed::operator!=(const Fixed &fixed) const {
+bool Fixed::operator!=(Fixed const &fixed) const {
 	return this->value != fixed.value;
 }
 
-Fixed Fixed::operator+(const Fixed &fixed) const {
+Fixed Fixed::operator+(Fixed const &fixed) const {
 	Fixed f;
 	f.setRawBits(this->value+fixed.value);
 	return f;
 }
 
-Fixed Fixed::operator-(const Fixed &fixed) const {
+Fixed Fixed::operator-(Fixed const &fixed) const {
 	Fixed f;
 	f.setRawBits(this->value-fixed.value);
 	return f;
 }
 
-Fixed Fixed::operator*(const Fixed &fixed) const {
+Fixed Fixed::operator*(Fixed const &fixed) const {
 	Fixed f;
 	f.setRawBits((this->value*fixed.value)/Fixed::pow2());
 	return f;
 }
 
-Fixed Fixed::operator/(const Fixed &fixed) const {
+Fixed Fixed::operator/(Fixed const &fixed) const {
 	Fixed f;
 	f.setRawBits((this->value*Fixed::pow2())/fixed.value);
 	return f;
@@ -117,7 +117,7 @@ Fixed &Fixed::max(Fixed &f1, Fixed &f2) {
 	return (f1.value >= f2.value ? f1 : f2);
 }
 
-const Fixed &Fixed::max(const Fixed &f1, const Fixed &f2) {
+Fixed const &Fixed::max(Fixed const &f1, Fixed const &f2) {
 	return (f1.value >= f2.value ? f1 : f2);
 }
 
@@ -125,7 +125,7 @@ Fixed &Fixed::min(Fixed &f1, Fixed &f2) {
 	return (f1.value >= f2.value ? f2 : f1);
 }
 
-const Fixed &Fixed::min(const Fixed &f1, const Fixed &f2) {
+Fixed const &Fixed::min(Fixed const &f1, Fixed const &f2) {
 	return (f1.value >= f2.value ? f2 : f1);
 }
 
@@ -141,7 +141,7 @@ int Fixed::pow2() {
 	return value;
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+std::ostream& operator<<(std::ostream& os, Fixed const &fixed) {
 	os << fixed.toFloat();
 	return os;
 }
