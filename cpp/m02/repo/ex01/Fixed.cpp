@@ -15,13 +15,13 @@ Fixed::Fixed(const Fixed &fixed) {
 Fixed::Fixed(const int i)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->value = i * Fixed::pow10();
+	this->value = i << Fixed::point;
 }
 
 Fixed::Fixed(const float f)
 {
 	std::cout << "Float constructor called" << std::endl;
-	this->value = (long)roundf(f * Fixed::pow10());
+	this->value = roundf(f * Fixed::pow2());
 }
 
 Fixed &Fixed::operator=(const Fixed &fixed) {
@@ -43,22 +43,20 @@ void Fixed::setRawBits(int const raw) {
 }
 
 float Fixed::toFloat() const {
-	return ((double)this->value / Fixed::pow10());
+	return ((float)this->value / Fixed::pow2());
 }
 
 int Fixed::toInt() const {
-	return roundf(this->toFloat());
+	return this->value >> Fixed::point;
 }
 
-int Fixed::pow10() {
+int Fixed::pow2() {
 	static bool init;
 	static int value;
 
 	if (!init)
 	{
-		value = 1;
-		for (int i = 0 ; i < Fixed::point ; i++)
-			value *= 10;
+		value = 1 << Fixed::point;
 		init = true;
 	}
 	return value;

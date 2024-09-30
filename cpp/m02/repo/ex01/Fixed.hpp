@@ -17,8 +17,8 @@ class Fixed {
 		int toInt() const;
 	private:
 		const static int point = 8;
-		long int value;
-		static int pow10();
+		int value;
+		static int pow2();
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
