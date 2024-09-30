@@ -6,21 +6,21 @@
 class Fixed {
 	public:
 		Fixed();
-		Fixed(const Fixed &fixed);
-		Fixed(const int i);
-		Fixed(const float f);
-		Fixed &operator=(const Fixed &fixed);
+		Fixed(Fixed const &fixed);
+		Fixed(int const i);
+		Fixed(float const f);
+		Fixed &operator=(Fixed const &fixed);
 		~Fixed();
 		int getRawBits() const;
 		void setRawBits(int const raw);
 		float toFloat() const;
 		int toInt() const;
 	private:
-		const static int point = 8;
+		static int const point = 8;
 		int value;
 		static int pow2();
 };
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
+std::ostream& operator<<(std::ostream& os, Fixed const &fixed);
 
 #endif

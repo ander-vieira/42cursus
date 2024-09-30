@@ -7,24 +7,24 @@ Fixed::Fixed() {
 	this->value = 0;
 }
 
-Fixed::Fixed(const Fixed &fixed) {
+Fixed::Fixed(Fixed const &fixed) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = fixed;
 }
 
-Fixed::Fixed(const int i)
+Fixed::Fixed(int const i)
 {
 	std::cout << "Int constructor called" << std::endl;
 	this->value = i << Fixed::point;
 }
 
-Fixed::Fixed(const float f)
+Fixed::Fixed(float const f)
 {
 	std::cout << "Float constructor called" << std::endl;
 	this->value = roundf(f * Fixed::pow2());
 }
 
-Fixed &Fixed::operator=(const Fixed &fixed) {
+Fixed &Fixed::operator=(Fixed const &fixed) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->value = fixed.value;
 	return *this;
@@ -62,7 +62,7 @@ int Fixed::pow2() {
 	return value;
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
+std::ostream& operator<<(std::ostream& os, Fixed const &fixed) {
 	os << fixed.toFloat();
 	return os;
 }
