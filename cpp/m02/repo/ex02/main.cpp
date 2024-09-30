@@ -22,9 +22,7 @@ int main()
 
 // int main()
 // {
-// 	Fixed a(3.5f);
-// 	Fixed b(42.1f);
-// 	Fixed c(71);
+// 	Fixed a(3.5f), b(42.1f), c(71);
 
 // 	std::cout << "a + b = " << a + b << std::endl;
 // 	std::cout << "b - a = " << b - a << std::endl;
