@@ -30,3 +30,12 @@ int main() {
 
 	return 0;
 }
+
+//This fails because animal is an abstract class now (because makeSound is pure virtual)
+// int main() {
+// 	Animal animal;
+
+// 	animal.makeSound();
+
+// 	return 0;
+// }
