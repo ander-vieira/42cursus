@@ -10,7 +10,7 @@ static bool pointsSameSide(Point const a, Point const b, Point const c, Point co
 	Point const abN((b - a).normal()), ac(c - a), ap(p - a);
 	Fixed cSide = abN*ac, pSide = abN*ap;
 
-	return (abN*ac > 0 && abN*ap > 0) || (abN*ac < 0 && abN*ap < 0);
+	return (cSide > 0 && pSide > 0) || (cSide < 0 && pSide < 0);
 }
 
 bool bsp(Point const a, Point const b, Point const c, Point const point) {
