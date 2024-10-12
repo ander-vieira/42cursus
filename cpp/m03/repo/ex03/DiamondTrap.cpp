@@ -3,7 +3,7 @@
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap() {
 	std::cout << "DiamondTrap default constructor called" << std::endl;
 	this->hitPoints = 100;
-	this->energyPoints = 100;
+	this->energyPoints = 50;
 	this->attackDamage = 30;
 }
 

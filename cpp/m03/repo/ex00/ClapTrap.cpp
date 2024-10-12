@@ -29,7 +29,7 @@ void ClapTrap::showStatus() const {
 }
 
 void ClapTrap::attack(std::string const &target) {
-	if (this->energyPoints == 0)
+	if (this->hitPoints == 0 || this->energyPoints == 0)
 		return;
 	this->energyPoints -= 1;
 	std::cout << "ClapTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
@@ -37,11 +37,13 @@ void ClapTrap::attack(std::string const &target) {
 
 void ClapTrap::takeDamage(unsigned int amount) {
 	this->hitPoints -= amount;
+	if (this->hitPoints < 0)
+		this->hitPoints = 0;
 	std::cout << "ClapTrap " << this->name << " has taken " << amount << " points of damage!" << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	if (this->energyPoints == 0)
+	if (this->hitPoints == 0 || this->energyPoints == 0)
 		return;
 	this->energyPoints -= 1;
 	this->hitPoints += amount;

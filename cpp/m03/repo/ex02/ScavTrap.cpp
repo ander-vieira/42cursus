@@ -23,7 +23,7 @@ ScavTrap::~ScavTrap() {
 }
 
 void ScavTrap::attack(std::string const &target) {
-	if (this->energyPoints == 0)
+	if (this->hitPoints == 0 || this->energyPoints == 0)
 		return;
 	this->energyPoints -= 1;
 	std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->attackDamage << " points of damage!" << std::endl;
