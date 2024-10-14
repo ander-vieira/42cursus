@@ -10,7 +10,7 @@ Cat::Cat(Cat const &cat): Animal(cat) {
 }
 
 Cat::~Cat() {
-	std::cout << "Cat destroyer called" << std::endl;
+	std::cout << "Cat destructor called" << std::endl;
 }
 
 void Cat::makeSound() const {

@@ -10,7 +10,7 @@ Dog::Dog(Dog const &dog): Animal(dog) {
 }
 
 Dog::~Dog() {
-	std::cout << "Dog destroyer called" << std::endl;
+	std::cout << "Dog destructor called" << std::endl;
 }
 
 void Dog::makeSound() const {
