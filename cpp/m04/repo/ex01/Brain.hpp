@@ -3,8 +3,6 @@
 
 # include <iostream>
 
-# define BRAIN_IDEAS 100
-
 class Brain {
 	public:
 		Brain();
@@ -12,7 +10,8 @@ class Brain {
 		Brain &operator=(Brain const &brain);
 		~Brain();
 	private:
-		std::string ideas[BRAIN_IDEAS];
+		static int const SIZE = 100;
+		std::string ideas[Brain::SIZE];
 };
 
 #endif
