@@ -3,24 +3,19 @@
 
 # include <iostream>
 
-typedef unsigned int t_grade;
-
-# define MIN_GRADE 1
-# define MAX_GRADE 150
-
 class Bureaucrat {
 	public:
-		Bureaucrat(std::string const &name, t_grade grade);
+		Bureaucrat(std::string const &name, int grade);
 		~Bureaucrat();
 		std::string const &getName() const;
-		t_grade getGrade() const;
+		int getGrade() const;
 		void promote();
 		void demote();
 		class GradeTooHighException : public std::exception {};
 		class GradeTooLowException : public std::exception {};
 	private:
 		std::string const name;
-		t_grade grade;
+		int grade;
 		Bureaucrat();
 		Bureaucrat(Bureaucrat const &b);
 		Bureaucrat &operator=(Bureaucrat const &b);
