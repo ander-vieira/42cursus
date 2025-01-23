@@ -2,9 +2,9 @@
 
 Bureaucrat::Bureaucrat(std::string const &name, int const grade) : name(name), grade(grade) {
 	if(this->grade < 1)
-		throw Bureaucrat::GradeTooLowException();
-	if(this->grade > 150)
 		throw Bureaucrat::GradeTooHighException();
+	if(this->grade > 150)
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << "Bureaucrat: created " << *this << std::endl;
 }
 
@@ -22,14 +22,14 @@ int Bureaucrat::getGrade() const {
 
 void Bureaucrat::promote() {
 	if(this->grade == 1)
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade -= 1;
 	std::cout << "Bureaucrat: promoted " << *this << std::endl;
 }
 
 void Bureaucrat::demote() {
 	if(this->grade == 150)
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	this->grade += 1;
 	std::cout << "Bureaucrat: demoted " << *this << std::endl;
 }
