@@ -5,6 +5,9 @@
 
 typedef unsigned int t_grade;
 
+# define MIN_GRADE 1
+# define MAX_GRADE 150
+
 class Bureaucrat {
 	public:
 		Bureaucrat(std::string const &name, t_grade grade);
@@ -18,8 +21,6 @@ class Bureaucrat {
 	private:
 		std::string const name;
 		t_grade grade;
-		static t_grade const minGrade = 1;
-		static t_grade const maxGrade = 150;
 		Bureaucrat();
 		Bureaucrat(Bureaucrat const &b);
 		Bureaucrat &operator=(Bureaucrat const &b);

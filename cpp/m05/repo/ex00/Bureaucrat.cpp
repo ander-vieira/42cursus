@@ -1,9 +1,9 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(std::string const &name, t_grade const grade) : name(name), grade(grade) {
-	if(this->grade < minGrade)
+	if(this->grade < MIN_GRADE)
 		throw Bureaucrat::GradeTooLowException();
-	if(this->grade > maxGrade)
+	if(this->grade > MAX_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	std::cout << "Bureaucrat: created " << *this << std::endl;
 }
@@ -21,14 +21,14 @@ t_grade Bureaucrat::getGrade() const {
 }
 
 void Bureaucrat::promote() {
-	if(this->grade == minGrade)
+	if(this->grade == MIN_GRADE)
 		throw Bureaucrat::GradeTooLowException();
 	this->grade -= 1;
 	std::cout << "Bureaucrat: promoted " << *this << std::endl;
 }
 
 void Bureaucrat::demote() {
-	if(this->grade == maxGrade)
+	if(this->grade == MAX_GRADE)
 		throw Bureaucrat::GradeTooHighException();
 	this->grade += 1;
 	std::cout << "Bureaucrat: demoted " << *this << std::endl;
