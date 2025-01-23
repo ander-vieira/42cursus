@@ -5,8 +5,8 @@ int main() {
 		Bureaucrat b1("John", 1);
 		b1.demote();
 	} catch(Bureaucrat::GradeTooHighException &e) {
-		std::cout << "Grade too high" << std::endl;
+		std::cout << "EXCEPTION: Grade too high" << std::endl;
 	} catch(Bureaucrat::GradeTooLowException &e) {
-		std::cout << "Grade too low" << std::endl;
+		std::cout << "EXCEPTION: Grade too low" << std::endl;
 	}
 }
